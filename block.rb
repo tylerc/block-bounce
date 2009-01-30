@@ -2,7 +2,19 @@
 
 require 'gosu'
 
+# TileEngine Class
+#
+# This class manages all tiles in the game
+# tiles hash
+#
+# The tiles hash will contain the image used in the tiles,
+# the tile number, and other undecided (and possibly user
+# defined) attributes
+#
+# The tile engine should also be able to do simple collision
+# detection.
 class TileEngine < Gosu::Window
+	attr_accessor :tiles
 	def initialize title, width, height, tilesize, tiles
 		super width, height, false
 		self.caption = title
