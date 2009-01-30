@@ -2,12 +2,14 @@
 
 require 'gosu'
 
-class GameWindow < Gosu::Window
-	def initialize
-		super 640, 480, false
-		self.caption = "Block Bounce!"
+class TileEngine < Gosu::Window
+	def initialize title, width, height, tilesize, tiles
+		super width, height, false
+		self.caption = title
 	end
-	
+end
+
+class BlockGame < TileEngine
 	def update
 	end
 	
@@ -25,5 +27,5 @@ module ZOrder
 	Background, Objects = *0..1
 end
 
-window = GameWindow.new
-window.show
+game = BlockGame.new "Block Bounce!", 640, 480, 32, {}
+game.show
