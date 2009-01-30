@@ -1,0 +1,16 @@
+== Block-Bounce
+== Written by: Tyler Church
+
+== Description
+This game is a simple breakout clone.
+I am making this for a few reasons:
+
+* To test my development skills
+* To create a reusable tile engine
+* To create a tile map editor
+* To create a game with physics!
+
+== Running The Game
+You need Gosu installed (as a gem) to play the game
+To run the game use the command:
+ruby -rubygems block.rb
