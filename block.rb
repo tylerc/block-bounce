@@ -1,43 +1,116 @@
-#!/usr/bin/env ruby
+require 'rubygems'
+require "rubygame"
+Rubygame::TTF.setup
 
-require 'gosu'
-
-# TileEngine Class
-#
-# This class manages all tiles in the game
-# tiles hash
-#
-# The tiles hash will contain the image used in the tiles,
-# the tile number, and other undecided (and possibly user
-# defined) attributes
-#
-# The tile engine should also be able to do simple collision
-# detection.
-class TileEngine < Gosu::Window
-	attr_accessor :tiles
-	def initialize title, width, height, tilesize, tiles
-		super width, height, false
-		self.caption = title
-	end
-end
-
-class BlockGame < TileEngine
-	def update
+class TileManager
+	def initialize
+		@screen = Rubygame::Screen.new [640,480], 0, [Rubygame::HWSURFACE, Rubygame::DOUBLEBUF]
+		@screen.title = "Block Bounce"
+		
+		@queue = Rubygame::EventQueue.new
+		@clock = Rubygame::Clock.new
+		@clock.target_framerate = 30
+		
+		@tile_size = 32
+		@font = Rubygame::TTF.new 'FreeSans.ttf', @tile_size/2
+		@selx, @sely = 0, 0
 	end
 	
-	def draw
-	end
-	
-	def button_down id
-		if id == Gosu::Button::KbEscape
-			close
+	def run
+		loop do
+			@queue.each do |ev|
+				case ev
+					when Rubygame::QuitEvent
+						Rubygame.quit
+						exit
+					when Rubygame::KeyDownEvent
+						case ev.key
+							when Rubygame::K_ESCAPE
+								Rubygame.quit
+								exit
+							when Rubygame::K_UP
+								@sely -= 1
+							when Rubygame::K_DOWN
+								@sely += 1
+							when Rubygame::K_LEFT
+								@selx -= 1
+							when Rubygame::K_RIGHT
+								@selx += 1
+							when Rubygame::K_SPACE
+								puts @selx.to_s + '.' + @sely.to_s
+						end
+				end
+			end
+			# Draw the tile grid
+			(@screen.width/@tile_size).times do |x|
+				(@screen.height/@tile_size).times do |y|
+					@screen.draw_box [x * @tile_size, y * @tile_size], [x * @tile_size + @tile_size, y * @tile_size + @tile_size] , [0,255,0]
+					#@font.render("#{x.to_s}.#{y.to_s}", true, [255,0,0]).blit(@screen,[x * @tile_size, y * @tile_size])
+				end
+			end
+			@screen.draw_box [@selx * @tile_size, @sely * @tile_size], [@selx * @tile_size + @tile_size, @sely * @tile_size + @tile_size], [255,0,0]
+			@screen.flip
+			#fpsUpdate
+			@clock.tick
 		end
 	end
 end
 
-module ZOrder
-	Background, Objects = *0..1
+class World
+	def initialize
+		@screen = Rubygame::Screen.new [800,600], 0, [Rubygame::HWSURFACE, Rubygame::DOUBLEBUF]
+		@screen.title = "Block Bounce"
+		
+		@queue = Rubygame::EventQueue.new
+		@clock = Rubygame::Clock.new
+		@clock.target_framerate = 30
+	end
+	def fpsUpdate
+		@screen.title = "FPS: #{@clock.framerate}"
+	end
+	def run
+		loop do
+			@queue.each do |ev|
+				case ev
+				when Rubygame::QuitEvent
+					Rubygame.quit
+					exit
+				when Rubygame::KeyDownEvent
+					case ev.key
+					when Rubygame::K_ESCAPE
+						Rubygame.quit
+						exit
+					when Rubygame::K_UP
+						@screen.title = "UP KEY PRESSED"
+						@myY -= 1
+					when Rubygame::K_DOWN
+						@screen.title = "DOWN KEY PRESSED"
+						@myY += 1
+					when Rubygame::K_RIGHT
+						@screen.title = "RIGHT KEY PRESSED"
+						@myX += 1
+					when Rubygame::K_LEFT
+						@screen.title = "LEFT KEY PRESSED"
+						@myX -= 1
+					when Rubygame::K_R
+						@screen.fill [255,0,0]
+					when Rubygame::K_B
+						@screen.fill [0,0,255]
+					when Rubygame::K_G 
+						@screen.fill [0,255,0]
+					when Rubygame::K_SPACE
+						
+					end
+				end
+			end
+			
+			@mySq.blit(@screen, [@myX, @myY])
+			@screen.flip
+			#fpsUpdate
+			@clock.tick
+		end
+	end
 end
 
-game = BlockGame.new "Block Bounce!", 640, 480, 32, {}
-game.show
+game = TileManager.new
+game.run
