@@ -4,15 +4,16 @@ Rubygame::TTF.setup
 
 class TileManager
 	def initialize
-		@screen = Rubygame::Screen.new [640,480], 0, [Rubygame::HWSURFACE, Rubygame::DOUBLEBUF]
+		@screen = Rubygame::Screen.new [640,640], 0, [Rubygame::HWSURFACE, Rubygame::DOUBLEBUF]
 		@screen.title = "Block Bounce"
 		
 		@queue = Rubygame::EventQueue.new
 		@clock = Rubygame::Clock.new
 		@clock.target_framerate = 30
 		
-		@tile_size = 32
-		@font = Rubygame::TTF.new 'FreeSans.ttf', @tile_size/2
+		@tile_size_x = 32
+		@tile_size_y = 32
+		#@font = Rubygame::TTF.new 'FreeSans.ttf', @tile_size/2
 		@selx, @sely = 0, 0
 	end
 	
@@ -42,13 +43,13 @@ class TileManager
 				end
 			end
 			# Draw the tile grid
-			(@screen.width/@tile_size).times do |x|
-				(@screen.height/@tile_size).times do |y|
-					@screen.draw_box [x * @tile_size, y * @tile_size], [x * @tile_size + @tile_size, y * @tile_size + @tile_size] , [0,255,0]
+			(@screen.width/@tile_size_x).times do |x|
+				(@screen.height/@tile_size_y).times do |y|
+					@screen.draw_box [x * @tile_size_x, y * @tile_size_y], [x * @tile_size_x + @tile_size_x, y * @tile_size_y + @tile_size_y] , [0,255,0]
 					#@font.render("#{x.to_s}.#{y.to_s}", true, [255,0,0]).blit(@screen,[x * @tile_size, y * @tile_size])
 				end
 			end
-			@screen.draw_box [@selx * @tile_size, @sely * @tile_size], [@selx * @tile_size + @tile_size, @sely * @tile_size + @tile_size], [255,0,0]
+			@screen.draw_box [@selx * @tile_size_x, @sely * @tile_size_y], [@selx * @tile_size_x + @tile_size_x, @sely * @tile_size_y + @tile_size_y], [255,0,0]
 			@screen.flip
 			#fpsUpdate
 			@clock.tick
