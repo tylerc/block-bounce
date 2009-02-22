@@ -1,3 +1,21 @@
 * Add link to Rubygame installing instructions in README
-* Get a working level editor
-* Get a ball bouncing on the screen
+
+Milestones - Making the game
+* Have a working level editor + level loader
+* Be able to move sprites around
+* Be able to check if a tile has something in it
+* Have a ball bouncing around
+* Have a ball bounce off the paddle and tiles
+* Have a ball destroy tiles
+* Win condition (all tiles destroyed)
+* Be able to lose balls to the bottom of the screen
+* Fail condition (3 balls lost)
+* Upgrades when tiles destroyed (bonus life, bigger paddle, etc.)
+* Different types of tiles (gives out upgrades or not, # of hits to destruction, etc.)
+* Menu interface to load levels (levels to chose from are .lvl files)
+* Progressable levels (you start with level one, beat it, automatically move to level two)
+* polish (add effects, clean up code, address any bugs)
+* create at least 20 levels
+* Unlockable levels (instead of them all being immeadiately accessable)
+
+Milestones - Game Made
