@@ -1,6 +1,5 @@
-* Add link to Rubygame installing instructions in README
-
-Milestones - Making the game
+== Milestones - Making the game
+Version < 1.0 (alpha?)
 * Have a working level editor + level loader
 * Be able to move sprites around
 * Be able to check if a tile has something in it
@@ -14,8 +13,19 @@ Milestones - Making the game
 * Different types of tiles (gives out upgrades or not, # of hits to destruction, etc.)
 * Menu interface to load levels (levels to chose from are .lvl files)
 * Progressable levels (you start with level one, beat it, automatically move to level two)
-* polish (add effects, clean up code, address any bugs)
+
+Version 1.1 (beta?)
+* polish (better graphics, add effects, clean up code, address any bugs)
+
+Version 1.2 (release?)
 * create at least 20 levels
 * Unlockable levels (instead of them all being immeadiately accessable)
 
-Milestones - Game Made
+== Milestones - Game Made
+* document code
+* create a level making tutorial
+* create a guide/tutorial on using the code to make 
+	other games (if the code is good enough)	
+
+== Other
+* Add link to Rubygame installing instructions in README
