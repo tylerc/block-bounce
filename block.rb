@@ -1,4 +1,3 @@
-require 'rubygems'
 require "rubygame"
 Rubygame::TTF.setup
 

@@ -11,6 +11,6 @@ I am making this for a few reasons:
 * To create a game with physics!
 
 == Running The Game
-You need Gosu installed (as a gem) to play the game
+You need Rubygame installed (as a gem) to play the game
 To run the game use the command:
 ruby -rubygems block.rb
