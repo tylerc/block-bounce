@@ -1,5 +1,7 @@
 == Milestones - Making the game
 Version < 1.0 (alpha?)
+* Have a working Sprite editor + loader
+** Pixel to Rect conversions for zoom?
 * Have a working level editor + level loader
 * Be able to move sprites around
 * Be able to check if a tile has something in it
