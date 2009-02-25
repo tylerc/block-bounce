@@ -10,6 +10,8 @@ I am making this for a few reasons:
 * To create a tile map editor
 * To create a game with physics!
 
+**This game is currently no where close to release. You've been warned**
+
 == Running The Game
 You need Rubygame installed (as a gem) to play the game
 To run the game use the command:
