@@ -1,0 +1,46 @@
+This is the documentation for the Sprite Editor
+This document is yet to be implemented
+
+Abstract
+	This program allows you to create and edit sprites for the Block Bounce game
+
+Program Start
+	The program is ruby via the command: ruby -rubygems sprite.rb [file]
+	
+	If a sprite file is specified, it is loaded. 
+	If a file is not specified the user is asked for the name of the new sprite, 
+	and the size of the sprite.
+	
+	The editing window is then openend, displaying a large version of the sprite,
+	that is ready for editing (see Controls section for more details)
+
+Controls
+	There are 2 modes: view and edit
+
+	View Mode
+	This mode allows you to view the sprite (duh!)
+	The scale is kept between mode changes
+	
+	t - toggle between view mode and edit mode
+	up arrow - scales the sprite larger
+	down arrow - scales the sprite smaller
+	left arrow - scales the sprite to the smallest
+	right arrow - scales the sprite to the biggest
+	
+	---
+	
+	Edit Mode
+	This mode allows you to edit the sprite
+	The color values of the currently selected pixel
+		are displayed in the window caption
+	
+	t - toggle between view mode and edit mode
+	g - toggle the display of the grid
+	h - toggle the display of the 'cursor'
+	arrow keys - move the cursor
+	r, g, b, a - changes the corresponding attribute for the pixels RGBA color
+	c - copy the color of the currently selected pixel
+	v - paste the color of the currently selected pixel
+	f - toggles the fill tool. The fill tool fills the pixels 
+		with the color that was selected when it was toggled 
+		on as you move around the board.
