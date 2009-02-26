@@ -38,6 +38,7 @@ class SpriteEditor
 		@buf = " "
 		@buf2 = " "
 		@cur_edit = nil
+		@line_color = nil
 	end
 	
 	def run
@@ -116,6 +117,8 @@ class SpriteEditor
 							@copy = @tiles_color[[@selx,@sely]].clone
 						when Rubygame::K_V
 							@tiles_color[[@selx, @sely]] = @copy.clone
+						when Rubygame::K_L
+							@line_color == nil ? @line_color = @tiles_color[[@selx,@sely]].clone : @line_color = nil
 						# Numbers
 						when Rubygame::K_0
 							@buf += "0"
@@ -163,6 +166,8 @@ class SpriteEditor
 		if @cur_edit == nil
 			@buf = " "
 		end
+		
+		@line_color != nil ? @tiles_color[[@selx,@sely]] = @line_color.clone : nil
 	end
 	
 	def draw
