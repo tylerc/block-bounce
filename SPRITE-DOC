@@ -33,6 +33,7 @@ Controls
 	This mode allows you to edit the sprite
 	The color values of the currently selected pixel
 		are displayed in the window caption
+	The sprite is saved on exit
 	
 	t - toggle between view mode and edit mode
 	s - toggle the display of the grid
