@@ -22,16 +22,12 @@ class SpriteEditor
 		scale_x < scale_y ? @scale = scale_x : @scale = scale_y
 		@font = Rubygame::TTF.new 'FreeSans.ttf', 72
 		@selx, @sely = 0, 0
-		#if data[:tiles] == nil
-			@tiles = {}
-			@tile_size_x.times do |x|
-				@tile_size_y.times do |y|
-					@tiles[[x,y]] = Rubygame::Surface.new [@scale, @scale]
-				end
+		@tiles = {}
+		@tile_size_x.times do |x|
+			@tile_size_y.times do |y|
+				@tiles[[x,y]] = Rubygame::Surface.new [@scale, @scale]
 			end
-		#else
-		#	@tiles = data[:tiles]
-		#end
+		end
 		if data[:colors] == nil
 			@tiles_color = {}
 			@tile_size_x.times do |x|
@@ -73,7 +69,6 @@ class SpriteEditor
 							data = {}
 							data[:width] = @tile_size_x
 							data[:height] = @tile_size_y
-							data[:tiles] = @tiles
 							data[:colors] = @tiles_color
 							data[:name] = @name
 							puts "Saving sprite"
@@ -240,6 +235,7 @@ class SpriteEditor
 		@screen.flip
 	end
 end
+data = {}
 begin
 	puts "Opening file #{ARGV[0]}.sprite..."
 	input = File.new "#{ARGV[0]}.sprite", "r"
