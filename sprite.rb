@@ -63,13 +63,26 @@ class SpriteEditor
 							Rubygame.quit
 							exit
 						when Rubygame::K_UP
-							@sely -= 1
+							@mode == :edit ? @sely -= 1 : @view_scale += 1
 						when Rubygame::K_DOWN
-							@sely += 1
+							@mode == :edit ? @sely += 1 : (@view_scale > 0 ? @view_scale -= 1 : nil)
 						when Rubygame::K_LEFT
-							@selx -= 1
+							@mode == :edit ? @selx -= 1 : @view_scale = 1
 						when Rubygame::K_RIGHT
-							@selx += 1
+							if @mode == :edit
+								@selx += 1
+							end
+							if @mode == :view
+								@tile_size_x < @tile_size_y ? temp = @tile_size_x : temp = @tile_size_y
+								temp2 = 1
+								loop do
+									temp2 += 1
+									if temp2 * temp > 640
+										@view_scale = temp2 - 1
+										break
+									end
+								end
+							end
 						when Rubygame::K_SPACE
 							puts @selx.to_s + '.' + @sely.to_s
 						when Rubygame::K_E
@@ -196,7 +209,7 @@ class SpriteEditor
 		
 		if @mode == :view
 			# Draw the sprite
-			@screen.title = "Sprite Viewer"
+			@screen.title = "Sprite Viewer Scale:#{@view_scale}"
 			(@tile_size_x*@view_scale).times do |x|
 				(@tile_size_y*@view_scale).times do |y|
 					@screen.set_at [x,y], @tiles_color[[x/@view_scale,y/@view_scale]]
