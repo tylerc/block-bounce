@@ -1,0 +1,30 @@
+This is the documentation for the Level Editor
+This document is not yet implemented
+
+Abstract
+	This program allows you to create levels for the block bounce game
+	These levels are made of sprites from the sprite editor (see SPRITE-DOC for more details)
+
+Program Start
+	The Level Editor starts via the command
+		ruby -rubygems level.rb
+	You are then presented with a window split up by a grid (this is where your sprites will go)
+	Below the grid is a list of a sprites currently loaded
+	
+Controls
+	The name of the selected sprite, and whether or not it is the player sprite is
+		displayed in the window caption
+	
+	arrow keys - move cursor around the grid
+	p - asks the user for a loaded sprites number, places the sprite on the selected grid area
+	c - copies the currently selected sprite
+	v - pastes the currently selected sprite
+	l - loads a level
+	s - saves the level being edited
+	a - saves the level edited under the specified name
+	d - designates the currently selected sprite as the player
+	
+Future (things planned for future releases)
+	Launch the game on the level currently being developed (to test easier)
+	Mouse controls
+	Undo
