@@ -39,6 +39,7 @@ Controls
 	h - toggle the display of the 'cursor'
 	arrow keys - move the cursor
 	r, g, b, a - changes the corresponding attribute for the pixels RGBA color
+	q - cancels the color changes (after r,g,b,or a is pressed)
 	c - copy the color of the currently selected pixel
 	v - paste the color of the currently selected pixel
 	l - toggles the line tool. The fill tool fills the pixels 
