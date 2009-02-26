@@ -12,6 +12,13 @@ class SpriteEditor
 		
 		@tile_size_x = width
 		@tile_size_y = length
+		
+		# This sets the scale factor by the smallest 
+		# one (so it all fits on the screen)
+		# This is done so that the size of the squares are uniform
+		scale_x = @screen.width/@tile_size_x
+		scale_y = @screen.height/@tile_size_y
+		scale_x < scale_y ? @scale = scale_x : @scale = scale_y
 		#@font = Rubygame::TTF.new 'FreeSans.ttf', @tile_size/2
 		@selx, @sely = 0, 0
 		@tiles = {}
@@ -70,12 +77,10 @@ class SpriteEditor
 	def draw
 		@screen.fill [0,0,0]
 		# Draw the tile grid
-		scale_x = @screen.width/@tile_size_x
-		scale_y = @screen.height/@tile_size_y
 		if @grid_showing
 			@tile_size_x.times do |x|
 				@tile_size_y.times do |y|
-					@screen.draw_box [x * scale_x, y * scale_y], [x * scale_x + scale_x, y * scale_y + scale_y], [0,255,0]
+					@screen.draw_box [x * @scale, y * @scale], [x * @scale + @scale, y * @scale + @scale], [0,255,0]
 					begin
 						@tiles[[x,y]].blit @screen, [x * @tile_size_x, y * @tile_size_y]
 					rescue NoMethodError
@@ -85,7 +90,7 @@ class SpriteEditor
 			end
 		end
 		if @cursor_showing
-			@screen.draw_box [@selx * scale_x, @sely * scale_y], [@selx * scale_x + scale_x, @sely * scale_y + scale_y], [255,0,0]
+			@screen.draw_box [@selx * @scale, @sely * @scale], [@selx * @scale + @scale, @sely * @scale + @scale], [255,0,0]
 		end
 		@screen.flip
 		#fpsUpdate
