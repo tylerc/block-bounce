@@ -54,3 +54,4 @@ Future
 		In view mode, things start slowing down the higher the scale factor. It may be faster to draw
 			sprites the same way they are drawn in edit mode, instead of using set_at
 	Mouse controls
+	Undo
