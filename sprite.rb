@@ -141,6 +141,8 @@ class SpriteEditor
 		if @sely > @tile_size_y - 1
 			@sely = 0
 		end
+		
+		@screen.title = "Sprite Editor: [#{@selx},#{@sely}] R:#{@tiles_color[[@selx,@sely]][0]} G:#{@tiles_color[[@selx,@sely]][1]} B:#{@tiles_color[[@selx,@sely]][2]} A:#{@tiles_color[[@selx,@sely]][3]}"
 	end
 	
 	def draw
