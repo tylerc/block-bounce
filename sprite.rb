@@ -19,16 +19,25 @@ class SpriteEditor
 		scale_x = @screen.width/@tile_size_x
 		scale_y = @screen.height/@tile_size_y
 		scale_x < scale_y ? @scale = scale_x : @scale = scale_y
-		#@font = Rubygame::TTF.new 'FreeSans.ttf', @tile_size/2
+		@font = Rubygame::TTF.new 'FreeSans.ttf', 72
 		@selx, @sely = 0, 0
 		@tiles = {}
-		(@screen.width/@tile_size_x).times do |x|
-			(@screen.height/@tile_size_y).times do |y|
-				@tiles[[x,y]] = nil
+		@tiles_color = {}
+		@tile_size_x.times do |x|
+			@tile_size_y.times do |y|
+				@tiles[[x,y]] = Rubygame::Surface.new [@scale, @scale]
+			end
+		end
+		@tile_size_x.times do |x|
+			@tile_size_y.times do |y|
+				@tiles_color[[x,y]] = [0,0,0,0]
 			end
 		end
 		@grid_showing = true
 		@cursor_showing = true
+		@buf = " "
+		@buf2 = " "
+		@cur_edit = nil
 	end
 	
 	def run
@@ -70,6 +79,39 @@ class SpriteEditor
 							@grid_showing == true ? @grid_showing = false : @grid_showing = true
 						when Rubygame::K_H
 							@cursor_showing == true ? @cursor_showing = false : @cursor_showing = true
+						when Rubygame::K_R
+							@cur_edit = 0
+							@buf2 = "Red: "
+						when Rubygame::K_RETURN
+							if @cur_edit != nil
+								@tiles_color[[@selx,@sely]][@cur_edit] = @buf.to_i
+								@buf = " "
+								@cur_edit = nil
+								@buf2 = " "
+							end
+						when Rubygame::K_BACKSPACE
+							@buf = @buf[0..@buf.length-2]
+						# Numbers
+						when Rubygame::K_0
+							@buf += "0"
+						when Rubygame::K_1
+							@buf += "1"
+						when Rubygame::K_2
+							@buf += "2"
+						when Rubygame::K_3
+							@buf += "3"
+						when Rubygame::K_4
+							@buf += "4"
+						when Rubygame::K_5
+							@buf += "5"
+						when Rubygame::K_6
+							@buf += "6"
+						when Rubygame::K_7
+							@buf += "7"
+						when Rubygame::K_8
+							@buf += "8"
+						when Rubygame::K_9
+							@buf += "9"
 					end
 			end
 		end
@@ -98,12 +140,10 @@ class SpriteEditor
 		if @grid_showing
 			@tile_size_x.times do |x|
 				@tile_size_y.times do |y|
+					@tiles[[x,y]].blit @screen, [x * @scale, y * @scale]
+					@tiles[[x,y]].fill @tiles_color[[x,y]]
 					@screen.draw_box [x * @scale, y * @scale], [x * @scale + @scale, y * @scale + @scale], [0,255,0]
-					begin
-						@tiles[[x,y]].blit @screen, [x * @tile_size_x, y * @tile_size_y]
-					rescue NoMethodError
-					end
-					#@font.render("#{x.to_s}.#{y.to_s}", true, [255,0,0]).blit(@screen,[x * @tile_size, y * @tile_size])
+					@font.render(@buf2 + @buf, true, [255,255,255]).blit(@screen,[100,100])
 				end
 			end
 		end
