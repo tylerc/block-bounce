@@ -105,14 +105,17 @@ class SpriteEditor
 							@cur_edit = nil
 							@buf2 = " "
 						when Rubygame::K_F
+							# The pixels are looped through this way
+							# because @tiles_color.each didn't work
 							@tile_size_x.times do |x|
 								@tile_size_y.times do |y|
-									@tiles_color[[x,y]][0] = @tiles_color[[@selx,@sely]][0]
-									@tiles_color[[x,y]][1] = @tiles_color[[@selx,@sely]][1]
-									@tiles_color[[x,y]][2] = @tiles_color[[@selx,@sely]][2]
-									@tiles_color[[x,y]][3] = @tiles_color[[@selx,@sely]][3]
+									@tiles_color[[x,y]] = @tiles_color[[@selx,@sely]].clone
 								end
 							end
+						when Rubygame::K_C
+							@copy = @tiles_color[[@selx,@sely]].clone
+						when Rubygame::K_V
+							@tiles_color[[@selx, @sely]] = @copy.clone
 						# Numbers
 						when Rubygame::K_0
 							@buf += "0"
