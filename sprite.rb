@@ -100,6 +100,10 @@ class SpriteEditor
 							end
 						when Rubygame::K_BACKSPACE
 							@buf = @buf[0..@buf.length-2]
+						when Rubygame::K_Q
+							@buf = " "
+							@cur_edit = nil
+							@buf2 = " "
 						# Numbers
 						when Rubygame::K_0
 							@buf += "0"
