@@ -35,7 +35,7 @@ Controls
 		are displayed in the window caption
 	
 	t - toggle between view mode and edit mode
-	g - toggle the display of the grid
+	s - toggle the display of the grid
 	h - toggle the display of the 'cursor'
 	arrow keys - move the cursor
 	r, g, b, a - changes the corresponding attribute for the pixels RGBA color
