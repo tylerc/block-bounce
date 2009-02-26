@@ -47,3 +47,10 @@ Controls
 		with the color that was selected when it was toggled 
 		on as you move around the grid.
 	f - fill tool, fills the whole screen with a color
+
+Future
+	Make it faster
+		In edit mode, the larger the sprite, the slower the program (50x50 is noticably slow)
+		In view mode, things start slowing down the higher the scale factor. It may be faster to draw
+			sprites the same way they are drawn in edit mode, instead of using set_at
+	Mouse controls
