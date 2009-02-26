@@ -1,7 +1,6 @@
 == Milestones - Making the game
 Version < 1.0 (alpha?)
-* Have a working Sprite editor + loader
-** Pixel to Rect conversions for zoom?
+(in alpha1) * Have a working Sprite editor + loader
 * Have a working level editor
 * Be able to load and save levels
 * Be able to move sprites around
