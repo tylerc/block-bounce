@@ -18,6 +18,10 @@ You need Rubygame installed (as a gem) to play the game
 To run the game use the command:
 ruby -rubygems block.rb
 
+== Running The Sprite Editor
+ruby -rubygems sprite.rb [existing-sprite-name]
+See SPRITE-DOC for full information
+
 == License
   Copyright (C) 2009 Tyler Church
 

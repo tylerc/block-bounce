@@ -5,7 +5,7 @@ Abstract
 	This program allows you to create and edit sprites for the Block Bounce game
 
 Program Start
-	The program is run via the command: ruby -rubygems sprite.rb [sprite-name]
+	The program is run via the command: ruby -rubygems sprite.rb [existing-sprite-name]
 	
 	If a sprite name is specified, it is loaded (via sprite-name.sprite file). 
 	If a sprite name is not specified, the user is asked for the name of the new sprite, 
