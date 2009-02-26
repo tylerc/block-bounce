@@ -21,6 +21,7 @@ class SpriteEditor
 			end
 		end
 		@grid_showing = true
+		@cursor_showing = true
 	end
 	
 	def run
@@ -59,6 +60,8 @@ class SpriteEditor
 							end
 						when Rubygame::K_G
 							@grid_showing == true ? @grid_showing = false : @grid_showing = true
+						when Rubygame::K_H
+							@cursor_showing == true ? @cursor_showing = false : @cursor_showing = true
 					end
 			end
 		end
@@ -81,7 +84,9 @@ class SpriteEditor
 				end
 			end
 		end
-		@screen.draw_box [@selx * scale_x, @sely * scale_y], [@selx * scale_x + scale_x, @sely * scale_y + scale_y], [255,0,0]
+		if @cursor_showing
+			@screen.draw_box [@selx * scale_x, @sely * scale_y], [@selx * scale_x + scale_x, @sely * scale_y + scale_y], [255,0,0]
+		end
 		@screen.flip
 		#fpsUpdate
 		@clock.tick
