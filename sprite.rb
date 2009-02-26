@@ -104,6 +104,15 @@ class SpriteEditor
 							@buf = " "
 							@cur_edit = nil
 							@buf2 = " "
+						when Rubygame::K_F
+							@tile_size_x.times do |x|
+								@tile_size_y.times do |y|
+									@tiles_color[[x,y]][0] = @tiles_color[[@selx,@sely]][0]
+									@tiles_color[[x,y]][1] = @tiles_color[[@selx,@sely]][1]
+									@tiles_color[[x,y]][2] = @tiles_color[[@selx,@sely]][2]
+									@tiles_color[[x,y]][3] = @tiles_color[[@selx,@sely]][3]
+								end
+							end
 						# Numbers
 						when Rubygame::K_0
 							@buf += "0"
@@ -147,6 +156,10 @@ class SpriteEditor
 		end
 		
 		@screen.title = "Sprite Editor: [#{@selx},#{@sely}] R:#{@tiles_color[[@selx,@sely]][0]} G:#{@tiles_color[[@selx,@sely]][1]} B:#{@tiles_color[[@selx,@sely]][2]} A:#{@tiles_color[[@selx,@sely]][3]}"
+		
+		if @cur_edit == nil
+			@buf = " "
+		end
 	end
 	
 	def draw
