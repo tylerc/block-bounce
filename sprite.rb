@@ -39,6 +39,8 @@ class SpriteEditor
 		@buf2 = " "
 		@cur_edit = nil
 		@line_color = nil
+		@mode = :edit
+		@view_scale = 1
 	end
 	
 	def run
@@ -119,6 +121,8 @@ class SpriteEditor
 							@tiles_color[[@selx, @sely]] = @copy.clone
 						when Rubygame::K_L
 							@line_color == nil ? @line_color = @tiles_color[[@selx,@sely]].clone : @line_color = nil
+						when Rubygame::K_T
+							@mode == :edit ? @mode = :view : @mode = :edit
 						# Numbers
 						when Rubygame::K_0
 							@buf += "0"
@@ -161,8 +165,6 @@ class SpriteEditor
 			@sely = 0
 		end
 		
-		@screen.title = "Sprite Editor: [#{@selx},#{@sely}] R:#{@tiles_color[[@selx,@sely]][0]} G:#{@tiles_color[[@selx,@sely]][1]} B:#{@tiles_color[[@selx,@sely]][2]} A:#{@tiles_color[[@selx,@sely]][3]}"
-		
 		if @cur_edit == nil
 			@buf = " "
 		end
@@ -172,20 +174,34 @@ class SpriteEditor
 	
 	def draw
 		@screen.fill [0,0,0]
-		# Draw the tile grid
-		if @grid_showing
-			@tile_size_x.times do |x|
-				@tile_size_y.times do |y|
-					@tiles[[x,y]].blit @screen, [x * @scale, y * @scale]
-					@tiles[[x,y]].fill @tiles_color[[x,y]]
-					@screen.draw_box [x * @scale, y * @scale], [x * @scale + @scale, y * @scale + @scale], [0,255,0]
-					@font.render(@buf2 + @buf, true, [255,255,255]).blit(@screen,[100,100])
+		if @mode == :edit
+			@screen.title = "Sprite Editor: [#{@selx},#{@sely}] R:#{@tiles_color[[@selx,@sely]][0]} G:#{@tiles_color[[@selx,@sely]][1]} B:#{@tiles_color[[@selx,@sely]][2]} A:#{@tiles_color[[@selx,@sely]][3]}"
+			# Draw the tile grid
+			if @grid_showing
+				@tile_size_x.times do |x|
+					@tile_size_y.times do |y|
+						@tiles[[x,y]].blit @screen, [x * @scale, y * @scale]
+						@tiles[[x,y]].fill @tiles_color[[x,y]]
+						@screen.draw_box [x * @scale, y * @scale], [x * @scale + @scale, y * @scale + @scale], [0,255,0]
+					end
 				end
+				
+				@font.render(@buf2 + @buf, true, [255,255,255]).blit(@screen,[100,100])
+			end
+			# draw cursor
+			if @cursor_showing
+				@screen.draw_box [@selx * @scale, @sely * @scale], [@selx * @scale + @scale, @sely * @scale + @scale], [255,0,0]
 			end
 		end
-		# draw cursor
-		if @cursor_showing
-			@screen.draw_box [@selx * @scale, @sely * @scale], [@selx * @scale + @scale, @sely * @scale + @scale], [255,0,0]
+		
+		if @mode == :view
+			# Draw the sprite
+			@screen.title = "Sprite Viewer"
+			(@tile_size_x*@view_scale).times do |x|
+				(@tile_size_y*@view_scale).times do |y|
+					@screen.set_at [x,y], @tiles_color[[x/@view_scale,y/@view_scale]]
+				end	
+			end
 		end
 		@screen.flip
 	end
