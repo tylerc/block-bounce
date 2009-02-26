@@ -75,13 +75,22 @@ class SpriteEditor
 							rescue
 								puts 'ERROR!'
 							end
-						when Rubygame::K_G
+						when Rubygame::K_S
 							@grid_showing == true ? @grid_showing = false : @grid_showing = true
 						when Rubygame::K_H
 							@cursor_showing == true ? @cursor_showing = false : @cursor_showing = true
 						when Rubygame::K_R
 							@cur_edit = 0
 							@buf2 = "Red: "
+						when Rubygame::K_G
+							@cur_edit = 1
+							@buf2 = "Green: "
+						when Rubygame::K_B
+							@cur_edit = 2
+							@buf2 = "Blue: "
+						when Rubygame::K_A
+							@cur_edit = 3
+							@buf2 = "Alpha: "
 						when Rubygame::K_RETURN
 							if @cur_edit != nil
 								@tiles_color[[@selx,@sely]][@cur_edit] = @buf.to_i
