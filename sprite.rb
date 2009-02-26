@@ -35,6 +35,7 @@ class SpriteEditor
 		loop do
 			update
 			draw
+			@clock.tick
 		end
 	end
 	
@@ -72,6 +73,23 @@ class SpriteEditor
 					end
 			end
 		end
+		# wraps the cursor
+		# 1 is minused from the tile_size because
+		# the cusor numbers from 0, not 1
+		if @selx < 0
+			@selx = @tile_size_x - 1
+		end
+		if @selx > @tile_size_x -1
+			@selx = 0
+		end
+		
+		if @sely < 0
+			@sely = @tile_size_y - 1
+		end
+		
+		if @sely > @tile_size_y - 1
+			@sely = 0
+		end
 	end
 	
 	def draw
@@ -89,12 +107,11 @@ class SpriteEditor
 				end
 			end
 		end
+		# draw cursor
 		if @cursor_showing
 			@screen.draw_box [@selx * @scale, @sely * @scale], [@selx * @scale + @scale, @sely * @scale + @scale], [255,0,0]
 		end
 		@screen.flip
-		#fpsUpdate
-		@clock.tick
 	end
 end
 print "Width: "
