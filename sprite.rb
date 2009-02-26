@@ -1,8 +1,9 @@
 require "rubygame"
+require 'yaml'
 Rubygame::TTF.setup
 
 class SpriteEditor
-	def initialize width, length
+	def initialize width, length, name
 		@screen = Rubygame::Screen.new [640,640], 0, [Rubygame::HWSURFACE, Rubygame::DOUBLEBUF]
 		@screen.title = "Sprite Editor"
 		
@@ -41,6 +42,7 @@ class SpriteEditor
 		@line_color = nil
 		@mode = :edit
 		@view_scale = 1
+		@name = name
 	end
 	
 	def run
@@ -60,6 +62,17 @@ class SpriteEditor
 				when Rubygame::KeyDownEvent
 					case ev.key
 						when Rubygame::K_ESCAPE
+							data = {}
+							data[:width] = @tile_size_x
+							data[:height] = @tile_size_y
+							data[:tiles] = @tiles
+							data[:colors] = @tiles_color
+							data[:name] = @name
+							puts "Saving sprite"
+							input = File.new "#{@name}.sprite", "w"
+							input.puts YAML.dump(data)
+							input.close
+							puts "Sprite saved"
 							Rubygame.quit
 							exit
 						when Rubygame::K_UP
@@ -219,9 +232,18 @@ class SpriteEditor
 		@screen.flip
 	end
 end
+#begin
+#puts "Opening file #{ARGV[0]}..."
+#input = File.new ARGV[0], "r"
+#data = YAML.load(input)
+#rescue IOError
+puts "File open failed"
+print "Name: "
+name = gets.chomp.to_s
 print "Width: "
-x = gets.chomp.to_i
+width = gets.chomp.to_i
 print "Length: "
-y = gets.chomp.to_i
-game = SpriteEditor.new x, y
+height = gets.chomp.to_i
+#end
+game = SpriteEditor.new width, height, name
 game.run
