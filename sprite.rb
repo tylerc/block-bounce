@@ -3,7 +3,7 @@ require 'yaml'
 Rubygame::TTF.setup
 
 class SpriteEditor
-	def initialize width, length, name
+	def initialize data
 		@screen = Rubygame::Screen.new [640,640], 0, [Rubygame::HWSURFACE, Rubygame::DOUBLEBUF]
 		@screen.title = "Sprite Editor"
 		
@@ -11,8 +11,8 @@ class SpriteEditor
 		@clock = Rubygame::Clock.new
 		@clock.target_framerate = 30
 		
-		@tile_size_x = width
-		@tile_size_y = length
+		@tile_size_x = data[:width]
+		@tile_size_y = data[:height]
 		
 		# This sets the scale factor by the smallest 
 		# one (so it all fits on the screen)
@@ -22,17 +22,25 @@ class SpriteEditor
 		scale_x < scale_y ? @scale = scale_x : @scale = scale_y
 		@font = Rubygame::TTF.new 'FreeSans.ttf', 72
 		@selx, @sely = 0, 0
-		@tiles = {}
-		@tiles_color = {}
-		@tile_size_x.times do |x|
-			@tile_size_y.times do |y|
-				@tiles[[x,y]] = Rubygame::Surface.new [@scale, @scale]
+		#if data[:tiles] == nil
+			@tiles = {}
+			@tile_size_x.times do |x|
+				@tile_size_y.times do |y|
+					@tiles[[x,y]] = Rubygame::Surface.new [@scale, @scale]
+				end
 			end
-		end
-		@tile_size_x.times do |x|
-			@tile_size_y.times do |y|
-				@tiles_color[[x,y]] = [0,0,0,0]
+		#else
+		#	@tiles = data[:tiles]
+		#end
+		if data[:colors] == nil
+			@tiles_color = {}
+			@tile_size_x.times do |x|
+				@tile_size_y.times do |y|
+					@tiles_color[[x,y]] = [0,0,0,0]
+				end
 			end
+		else
+			@tiles_color = data[:colors]
 		end
 		@grid_showing = true
 		@cursor_showing = true
@@ -42,7 +50,7 @@ class SpriteEditor
 		@line_color = nil
 		@mode = :edit
 		@view_scale = 1
-		@name = name
+		@name = data[:name]
 	end
 	
 	def run
@@ -232,18 +240,19 @@ class SpriteEditor
 		@screen.flip
 	end
 end
-#begin
-#puts "Opening file #{ARGV[0]}..."
-#input = File.new ARGV[0], "r"
-#data = YAML.load(input)
-#rescue IOError
-puts "File open failed"
-print "Name: "
-name = gets.chomp.to_s
-print "Width: "
-width = gets.chomp.to_i
-print "Length: "
-height = gets.chomp.to_i
-#end
-game = SpriteEditor.new width, height, name
+begin
+	puts "Opening file #{ARGV[0]}.sprite..."
+	input = File.new "#{ARGV[0]}.sprite", "r"
+	data = YAML.load(input)
+	input.close
+rescue Errno::ENOENT
+	puts "File open failed"
+	print "Name: "
+	data[:name] = STDIN.gets.chomp.to_s
+	print "Width: "
+	data[:width] = STDIN.gets.chomp.to_i
+	print "Length: "
+	data[:height] = STDIN.gets.chomp.to_i
+end
+game = SpriteEditor.new data
 game.run
