@@ -20,42 +20,56 @@ class SpriteEditor
 				@tiles[[x,y]] = nil
 			end
 		end
+		@grid_showing = true
 	end
 	
 	def run
 		loop do
-			@queue.each do |ev|
-				case ev
-					when Rubygame::QuitEvent
-						Rubygame.quit
-						exit
-					when Rubygame::KeyDownEvent
-						case ev.key
-							when Rubygame::K_ESCAPE
-								Rubygame.quit
-								exit
-							when Rubygame::K_UP
-								@sely -= 1
-							when Rubygame::K_DOWN
-								@sely += 1
-							when Rubygame::K_LEFT
-								@selx -= 1
-							when Rubygame::K_RIGHT
-								@selx += 1
-							when Rubygame::K_SPACE
-								puts @selx.to_s + '.' + @sely.to_s
-							when Rubygame::K_E
-								begin
-									eval gets.chomp
-								rescue
-									puts 'ERROR!'
-								end
-						end
-				end
+			update
+			draw
+		end
+	end
+	
+	def update
+		@queue.each do |ev|
+			case ev
+				when Rubygame::QuitEvent
+					Rubygame.quit
+					exit
+				when Rubygame::KeyDownEvent
+					case ev.key
+						when Rubygame::K_ESCAPE
+							Rubygame.quit
+							exit
+						when Rubygame::K_UP
+							@sely -= 1
+						when Rubygame::K_DOWN
+							@sely += 1
+						when Rubygame::K_LEFT
+							@selx -= 1
+						when Rubygame::K_RIGHT
+							@selx += 1
+						when Rubygame::K_SPACE
+							puts @selx.to_s + '.' + @sely.to_s
+						when Rubygame::K_E
+							begin
+								eval gets.chomp
+							rescue
+								puts 'ERROR!'
+							end
+						when Rubygame::K_G
+							@grid_showing == true ? @grid_showing = false : @grid_showing = true
+					end
 			end
-			# Draw the tile grid
-			scale_x = @screen.width/@tile_size_x
-			scale_y = @screen.height/@tile_size_y
+		end
+	end
+	
+	def draw
+		@screen.fill [0,0,0]
+		# Draw the tile grid
+		scale_x = @screen.width/@tile_size_x
+		scale_y = @screen.height/@tile_size_y
+		if @grid_showing
 			@tile_size_x.times do |x|
 				@tile_size_y.times do |y|
 					@screen.draw_box [x * scale_x, y * scale_y], [x * scale_x + scale_x, y * scale_y + scale_y], [0,255,0]
@@ -66,11 +80,11 @@ class SpriteEditor
 					#@font.render("#{x.to_s}.#{y.to_s}", true, [255,0,0]).blit(@screen,[x * @tile_size, y * @tile_size])
 				end
 			end
-			@screen.draw_box [@selx * scale_x, @sely * scale_y], [@selx * scale_x + scale_x, @sely * scale_y + scale_y], [255,0,0]
-			@screen.flip
-			#fpsUpdate
-			@clock.tick
 		end
+		@screen.draw_box [@selx * scale_x, @sely * scale_y], [@selx * scale_x + scale_x, @sely * scale_y + scale_y], [255,0,0]
+		@screen.flip
+		#fpsUpdate
+		@clock.tick
 	end
 end
 print "Width: "
