@@ -17,6 +17,7 @@ class LevelEditor
 		@grid_height = 512
 		@scale_x = @grid_width/@tile_size_x
 		@scale_y = @grid_height/@tile_size_y
+		@selx, @sely = 0, 0
 	end
 	
 	def run
@@ -50,6 +51,9 @@ class LevelEditor
 				@screen.draw_box [x * @tile_size_x, y * @tile_size_y], [x * @tile_size_x + @tile_size_x, y * @tile_size_y + @tile_size_y], [0,255,0]
 			end
 		end
+		
+		# draw the cursor
+		@screen.draw_box [@selx * @tile_size_x, @sely * @tile_size_y], [@selx * @tile_size_x + @tile_size_x, @sely * @tile_size_y + @tile_size_y], [255,0,0]
 		@screen.flip
 	end
 end
