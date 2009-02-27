@@ -16,6 +16,7 @@ Controls
 		displayed in the window caption
 	
 	arrow keys - move cursor around the grid
+	left shift - asks for the name of a sprite and loads it
 	p - asks the user for a loaded sprites number, places the sprite on the selected grid area
 	c - copies the currently selected sprite
 	v - pastes the currently selected sprite
