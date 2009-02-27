@@ -9,6 +9,7 @@ Program Start
 	The Level Editor starts via the command
 		ruby -rubygems level.rb
 	You are then presented with a window split up by a grid (this is where your sprites will go)
+	Each sprite in the grid is 64x32 (width x height)
 	Below the grid is a list of a sprites currently loaded
 	
 Controls
