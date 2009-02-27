@@ -61,23 +61,13 @@ class SpriteEditor
 		@queue.each do |ev|
 			case ev
 				when Rubygame::QuitEvent
+					save
 					Rubygame.quit
 					exit
 				when Rubygame::KeyDownEvent
 					case ev.key
 						when Rubygame::K_ESCAPE
-							data = {}
-							data[:width] = @tile_size_x
-							data[:height] = @tile_size_y
-							data[:colors] = @tiles_color
-							data[:name] = @name
-							puts "Saving sprite"
-							input = File.new "#{@name}.sprite", "w"
-							input.puts YAML.dump(data)
-							input.close
-							puts "Sprite saved"
-							Rubygame.quit
-							exit
+							@queue.post(Rubygame::QuitEvent.new)
 						when Rubygame::K_UP
 							@mode == :edit ? @sely -= 1 : @view_scale += 1
 						when Rubygame::K_DOWN
@@ -233,6 +223,19 @@ class SpriteEditor
 			end
 		end
 		@screen.flip
+	end
+	
+	def save
+		data = {}
+		data[:width] = @tile_size_x
+		data[:height] = @tile_size_y
+		data[:colors] = @tiles_color
+		data[:name] = @name
+		puts "Saving sprite"
+		input = File.new "#{@name}.sprite", "w"
+		input.puts YAML.dump(data)
+		input.close
+		puts "Sprite saved"
 	end
 end
 data = {}
