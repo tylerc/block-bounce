@@ -3,7 +3,7 @@ require 'yaml'
 Rubygame::TTF.setup
 
 class LevelEditor
-	def intialize
+	def initialize
 		@screen = Rubygame::Screen.new [640,640], 0, [Rubygame::HWSURFACE, Rubygame::DOUBLEBUF]
 		@screen.title = "Level Editor"
 		
@@ -21,9 +21,23 @@ class LevelEditor
 	end
 	
 	def update
+		@queue.each do |ev|
+			case ev
+				when Rubygame::QuitEvent
+					Rubygame.quit
+					exit
+				when Rubygame::KeyDownEvent
+					case ev.key
+						when Rubygame::K_ESCAPE
+							@queue.post(Rubygame::QuitEvent.new)
+					end
+			end
+		end
 	end
 	
 	def draw
+		@screen.fill [0,0,0]
+		@screen.flip
 	end
 end
 
