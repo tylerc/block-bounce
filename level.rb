@@ -4,7 +4,7 @@ Rubygame::TTF.setup
 
 class LevelEditor
 	def initialize
-		@screen = Rubygame::Screen.new [640,640], 0, [Rubygame::HWSURFACE, Rubygame::DOUBLEBUF]
+		@screen = Rubygame::Screen.new [512,700], 0, [Rubygame::HWSURFACE, Rubygame::DOUBLEBUF]
 		@screen.title = "Level Editor"
 		
 		@queue = Rubygame::EventQueue.new
@@ -13,8 +13,10 @@ class LevelEditor
 		
 		@tile_size_x = 64
 		@tile_size_y = 32
-		@scale_x = @screen.width/@tile_size_x
-		@scale_y = @screen.height/@tile_size_y
+		@grid_width = 512
+		@grid_height = 512
+		@scale_x = @grid_width/@tile_size_x
+		@scale_y = @grid_height/@tile_size_y
 	end
 	
 	def run
