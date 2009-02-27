@@ -28,7 +28,8 @@ Version 1.2 (release?)
 * document code
 * create a level making tutorial
 * create a guide/tutorial on using the code to make 
-	other games (if the code is good enough)	
+	other games (if the code is good enough)
+* try and unify the sprite and level editor controls	
 
 == Other
 * Add link to Rubygame installing instructions in README
