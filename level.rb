@@ -10,6 +10,7 @@ class LevelEditor
 		@queue = Rubygame::EventQueue.new
 		@clock = Rubygame::Clock.new
 		@clock.target_framerate = 30
+		@font = Rubygame::TTF.new 'FreeSans.ttf', 72
 		
 		@tile_size_x = 64
 		@tile_size_y = 32
@@ -18,7 +19,8 @@ class LevelEditor
 		@scale_x = @grid_width/@tile_size_x
 		@scale_y = @grid_height/@tile_size_y
 		@selx, @sely = 0, 0
-		puts @scale_x
+		@buf, @buf2 = ' ', ' '
+		@cur_edit
 	end
 	
 	def run
@@ -36,6 +38,9 @@ class LevelEditor
 					Rubygame.quit
 					exit
 				when Rubygame::KeyDownEvent
+					if @cur_edit != nil
+						@buf += ev.string
+					end
 					case ev.key
 						when Rubygame::K_ESCAPE
 							@queue.post(Rubygame::QuitEvent.new)
@@ -47,6 +52,21 @@ class LevelEditor
 							@selx > 0 ? @selx -= 1 : @selx = @scale_x - 1
 						when Rubygame::K_RIGHT
 							@selx < @scale_x - 1 ? @selx += 1 : @selx = 0
+						when Rubygame::K_LSHIFT
+							@cur_edit = :load_sprite
+							@buf2 = "load: "
+						when Rubygame::K_BACKSPACE
+							@buf = @buf[0..@buf.length-3]
+						when Rubygame::K_RETURN
+							if @cur_edit != nil
+								@buf = " "
+								@cur_edit = nil
+								@buf2 = " "
+							end
+						when Rubygame::K_Q
+							@buf = " "
+							@cur_edit = nil
+							@buf2 = " "
 					end
 			end
 		end
@@ -63,6 +83,10 @@ class LevelEditor
 		
 		# draw the cursor
 		@screen.draw_box [@selx * @tile_size_x, @sely * @tile_size_y], [@selx * @tile_size_x + @tile_size_x, @sely * @tile_size_y + @tile_size_y], [255,0,0]
+		
+		# draw text
+		@font.render(@buf2 + @buf, true, [255,255,255]).blit(@screen,[100,100])
+		
 		@screen.flip
 	end
 end
