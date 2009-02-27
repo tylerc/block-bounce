@@ -10,6 +10,11 @@ class LevelEditor
 		@queue = Rubygame::EventQueue.new
 		@clock = Rubygame::Clock.new
 		@clock.target_framerate = 30
+		
+		@tile_size_x = 64
+		@tile_size_y = 32
+		@scale_x = @screen.width/@tile_size_x
+		@scale_y = @screen.height/@tile_size_y
 	end
 	
 	def run
@@ -37,6 +42,12 @@ class LevelEditor
 	
 	def draw
 		@screen.fill [0,0,0]
+		# draw the grid
+		@scale_x.times do |x|
+			@scale_y.times do |y|
+				@screen.draw_box [x * @tile_size_x, y * @tile_size_y], [x * @tile_size_x + @tile_size_x, y * @tile_size_y + @tile_size_y], [0,255,0]
+			end
+		end
 		@screen.flip
 	end
 end
