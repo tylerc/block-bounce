@@ -15,6 +15,9 @@ Program Start
 
 Controls
 	There are 2 modes: View and Edit
+	
+	Any
+	o - saves the sprite to a bitmap file
 
 	View Mode
 	This mode allows you to view the sprite (duh!)
