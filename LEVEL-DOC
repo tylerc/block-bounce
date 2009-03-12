@@ -16,21 +16,17 @@ Controls
 	The name of the selected sprite, and whether or not it is the player sprite is
 		displayed in the window caption
 	
-	arrow keys - move cursor around the grid
-	left shift - asks for the name of a sprite and loads it
-	p - asks the user for a loaded sprites number, places the sprite on the selected grid area
-	c - copies the currently selected sprite
-	v - pastes the currently selected sprite
-	l - loads a level
+	left mouse button - Selects a tile/Places a selected tile
+	right moust button - Deletes a tile
 	s - saves the level being edited
 	a - saves the level edited under the specified name
+	l - loads a level
 	d - designates the currently selected sprite as the player
+	left shift - asks for the name of a sprite and loads it
 	s - toggles the display of the grid
-	h - toggles the display of the cursor
-	Ctrl + arrow keys - line tool. fills the grids you move
+	Ctrl + left mouse button - line tool. fills the grids you move
 		to with the sprite you started with (until Ctrl is released)
 	
 Future (things planned for future releases)
 	Launch the game on the level currently being developed (to test easier)
-	Mouse controls
 	Undo
