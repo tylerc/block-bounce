@@ -142,6 +142,8 @@ class SpriteEditor
 							@line_color == nil ? @line_color = @tiles_color[[@selx,@sely]].clone : @line_color = nil
 						when Rubygame::K_T
 							@mode == :edit ? @mode = :view : @mode = :edit
+						when Rubygame::K_O
+							@mode = :save_bmp
 						# Numbers
 						when Rubygame::K_0
 							@buf += "0"
@@ -221,6 +223,17 @@ class SpriteEditor
 					@screen.set_at [x,y], @tiles_color[[x/@view_scale,y/@view_scale]]
 				end	
 			end
+		end
+		
+		if @mode == :save_bmp
+			temp_surf = Rubygame::Surface.new [@tile_size_x,@tile_size_y]
+			@tile_size_x.times do |x|
+				@tile_size_y.times do |y|
+					temp_surf.set_at [x,y], @tiles_color[[x/@view_scale,y/@view_scale]]
+				end	
+			end
+			temp_surf.savebmp("#{@name}.bmp")
+			@mode = :edit
 		end
 		@screen.flip
 	end
