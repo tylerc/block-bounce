@@ -44,14 +44,6 @@ class LevelEditor
 					case ev.key
 						when Rubygame::K_ESCAPE
 							@queue.post(Rubygame::QuitEvent.new)
-						when Rubygame::K_UP
-							@sely > 0 ? @sely -= 1 : @sely = @scale_y - 1
-						when Rubygame::K_DOWN
-							@sely < @scale_y -1? @sely += 1 : @sely = 0
-						when Rubygame::K_LEFT
-							@selx > 0 ? @selx -= 1 : @selx = @scale_x - 1
-						when Rubygame::K_RIGHT
-							@selx < @scale_x - 1 ? @selx += 1 : @selx = 0
 						when Rubygame::K_LSHIFT
 							@cur_edit = :load_sprite
 							@buf2 = "load: "
@@ -68,6 +60,14 @@ class LevelEditor
 							@cur_edit = nil
 							@buf2 = " "
 					end
+				when Rubygame::MouseDownEvent
+					case ev.button
+						when 1
+							@selx = (ev.pos[0]/@tile_size_x).to_i
+							@sely = (ev.pos[1]/@tile_size_y).to_i
+						#when 3
+					end
+					
 			end
 		end
 	end
