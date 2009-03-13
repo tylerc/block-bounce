@@ -43,8 +43,10 @@ class LevelEditor
 					exit
 				when Rubygame::KeyDownEvent
 					if @cur_edit != nil
-						if @buf == ' '
+						if @buf == ' ' and
 							@buf = ev.string.chomp
+						elsif ev.key == 8
+							@buf.chop!
 						else
 							@buf += ev.string.chomp
 						end
@@ -55,8 +57,6 @@ class LevelEditor
 						when Rubygame::K_LSHIFT
 							@cur_edit = :load_sprite
 							@buf2 = "load: "
-						when Rubygame::K_BACKSPACE
-							@buf = @buf[0..@buf.length-3]
 						when Rubygame::K_RETURN
 							if @cur_edit != nil
 								if @cur_edit == :load_sprite
@@ -73,7 +73,9 @@ class LevelEditor
 						when Rubygame::K_E
 							eval gets
 						when Rubygame::K_S
-							@grid_showing ? @grid_showing = false : @grid_showing = true
+							if @cur_edit == nil
+								@grid_showing ? @grid_showing = false : @grid_showing = true
+							end
 					end
 				when Rubygame::MouseDownEvent
 					case ev.button
