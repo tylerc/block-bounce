@@ -74,10 +74,17 @@ class LevelEditor
 	
 	def draw
 		@screen.fill [0,0,0]
-		# draw the grid
+		# draw the level map grid
 		@scale_x.times do |x|
 			@scale_y.times do |y|
 				@screen.draw_box [x * @tile_size_x, y * @tile_size_y], [x * @tile_size_x + @tile_size_x, y * @tile_size_y + @tile_size_y], [0,255,0]
+			end
+		end
+		
+		# draw the loaded sprite grid
+		@scale_x.times do |x|
+			((700/@tile_size_y)-@scale_y).times do |y|
+				@screen.draw_box [x * @tile_size_x, y * @tile_size_y + 544], [x * @tile_size_x + @tile_size_x, y * @tile_size_y + @tile_size_y + 544], [0,0,255]
 			end
 		end
 		
