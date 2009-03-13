@@ -23,12 +23,10 @@ class LevelEditor
 		@cur_edit = nil
 		
 		# 8 x 5
-		@sprites = {}
-		8.times do |x|
-			5.times do |y|
-				@sprites[[x,y]] = Rubygame::Surface.new [@tile_size_x, @tile_size_y]
-			end
-		end
+		@sprites = []
+		#40.times do |x|
+		#	@sprites[x] = nil#Rubygame::Surface.new [@tile_size_x, @tile_size_y]
+		#end
 	end
 	
 	def run
@@ -64,7 +62,7 @@ class LevelEditor
 						when Rubygame::K_RETURN
 							if @cur_edit != nil
 								if @cur_edit == :load_sprite
-									@sprites[[@selx,@sely]] = Rubygame::Surface.load @buf
+									@sprites[@sprites.length] = Rubygame::Surface.load @buf
 								end
 								@buf = " "
 								@cur_edit = nil
@@ -74,6 +72,8 @@ class LevelEditor
 							@buf = " "
 							@cur_edit = nil
 							@buf2 = " "
+						when Rubygame::K_E
+							eval gets
 					end
 				when Rubygame::MouseDownEvent
 					case ev.button
@@ -97,8 +97,13 @@ class LevelEditor
 		end
 		
 		# draw the loaded sprite grid
+		# x * 3 + y
 		@scale_x.times do |x|
 			((700/@tile_size_y)-@scale_y).times do |y|
+				begin
+				@sprites[x * ((700/@tile_size_y)-@scale_y) + y].blit @screen, [x * @tile_size_x, y * @tile_size_y + 544]
+				rescue
+				end
 				@screen.draw_box [x * @tile_size_x, y * @tile_size_y + 544], [x * @tile_size_x + @tile_size_x, y * @tile_size_y + @tile_size_y + 544], [0,0,255]
 			end
 		end
