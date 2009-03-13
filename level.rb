@@ -20,7 +20,15 @@ class LevelEditor
 		@scale_y = @grid_height/@tile_size_y
 		@selx, @sely = 0, 0
 		@buf, @buf2 = ' ', ' '
-		@cur_edit
+		@cur_edit = nil
+		
+		# 8 x 5
+		@sprites = {}
+		8.times do |x|
+			5.times do |y|
+				@sprites[[x,y]] = Rubygame::Surface.new [@tile_size_x, @tile_size_y]
+			end
+		end
 	end
 	
 	def run
@@ -39,7 +47,11 @@ class LevelEditor
 					exit
 				when Rubygame::KeyDownEvent
 					if @cur_edit != nil
-						@buf += ev.string
+						if @buf == ' '
+							@buf = ev.string.chomp
+						else
+							@buf += ev.string.chomp
+						end
 					end
 					case ev.key
 						when Rubygame::K_ESCAPE
@@ -51,6 +63,9 @@ class LevelEditor
 							@buf = @buf[0..@buf.length-3]
 						when Rubygame::K_RETURN
 							if @cur_edit != nil
+								if @cur_edit == :load_sprite
+									@sprites[[@selx,@sely]] = Rubygame::Surface.load @buf
+								end
 								@buf = " "
 								@cur_edit = nil
 								@buf2 = " "
@@ -92,7 +107,7 @@ class LevelEditor
 		@screen.draw_box [@selx * @tile_size_x, @sely * @tile_size_y], [@selx * @tile_size_x + @tile_size_x, @sely * @tile_size_y + @tile_size_y], [255,0,0]
 		
 		# draw text
-		@font.render(@buf2 + @buf, true, [255,255,255]).blit(@screen,[100,100])
+		@font.render(@buf2 + @buf, true, [255,255,255]).blit(@screen,[10,100])
 		
 		@screen.flip
 	end
