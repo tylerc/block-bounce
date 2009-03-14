@@ -23,6 +23,7 @@ class LevelEditor
 		@cur_edit = nil
 		@sprites = []
 		@grid_showing = true
+		@lvl_sprites = {}
 	end
 	
 	def run
@@ -81,11 +82,14 @@ class LevelEditor
 							@selx = (ev.pos[0]/@tile_size_x).to_i
 							@sely = (ev.pos[1]/@tile_size_y).to_i
 							puts "#{@selx}, #{@sely}"
-							@sel = @sprites[(@selx * ((700/@tile_size_y)-@scale_y))]
+							if @sely >= 17
+								@sel = @sprites[@sely-17+(5*@selx)]
+							else
+								@sel != nil ? @lvl_sprites[[@selx,@sely]] = @sel : nil
+							end
 						when 3
 							@selx = (ev.pos[0]/@tile_size_x).to_i
 							@sely = (ev.pos[1]/@tile_size_y).to_i
-							puts "#{@selx}, #{@sely}"
 							if @sely >= 17
 								@sprites.delete @sprites[@selx * ((700/@tile_size_y)-@scale_y)]
 							end
@@ -97,6 +101,10 @@ class LevelEditor
 	
 	def draw
 		@screen.fill [0,0,0]
+		# draw the sprites
+		@lvl_sprites.each_key do |sprite|
+			@lvl_sprites[sprite].blit @screen, [sprite[0] * 64, sprite[1] * 32]
+		end
 		# draw the level map grid
 		@scale_x.times do |x|
 			@scale_y.times do |y|
