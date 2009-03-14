@@ -69,6 +69,7 @@ class LevelEditor
 									data = {}
 									data[:sprite_files] = @sprite_files.clone
 									data[:lvl_sprites] = @lvl_sprites.clone
+									data[:name] = @name
 									puts "Saving level..."
 									input = File.new "#{@buf}.lvl", "w"
 									input.puts YAML.dump(data)
@@ -85,6 +86,7 @@ class LevelEditor
 										@sprite_files += data[:sprite_files][sprite].to_a
 									end
 									@lvl_sprites = data[:lvl_sprites].clone
+									@name = data[:name]
 									input.close
 								end
 								@buf = " "
