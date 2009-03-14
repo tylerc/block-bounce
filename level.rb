@@ -70,7 +70,9 @@ class LevelEditor
 							@cur_edit = nil
 							@buf2 = " "
 						when Rubygame::K_E
-							eval gets
+							if @cur_edit == nil
+								eval gets
+							end
 						when Rubygame::K_S
 							if @cur_edit == nil
 								@grid_showing ? @grid_showing = false : @grid_showing = true
@@ -90,6 +92,9 @@ class LevelEditor
 						when 3
 							@selx = (ev.pos[0]/@tile_size_x).to_i
 							@sely = (ev.pos[1]/@tile_size_y).to_i
+							if @sely <= 15
+								@lvl_sprites.delete [@selx,@sely]
+							end
 							if @sely >= 17
 								@sprites.delete @sprites[@selx * ((700/@tile_size_y)-@scale_y)]
 							end
