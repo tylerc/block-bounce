@@ -26,6 +26,7 @@ class LevelEditor
 		@lvl_sprites = {}
 		@sprite_files = []
 		@name = ''
+		@dragging = false
 	end
 	
 	def run
@@ -130,6 +131,13 @@ class LevelEditor
 								@cur_edit = :save_level_with_name
 								@buf2 = "name: "
 							end
+						when Rubygame::K_LCTRL
+							@dragging = true
+					end
+				when Rubygame::KeyUpEvent
+					case ev.key
+						when Rubygame::K_LCTRL
+							@dragging = false
 					end
 				when Rubygame::MouseDownEvent
 					case ev.button
@@ -151,6 +159,14 @@ class LevelEditor
 							if @sely >= 17
 								@sprites.delete @sprites[@selx * ((700/@tile_size_y)-@scale_y)]
 							end
+					end
+				when Rubygame::MouseMotionEvent
+					if @dragging
+						@selx = (ev.pos[0]/@tile_size_x).to_i
+						@sely = (ev.pos[1]/@tile_size_y).to_i
+						if @sely <= 15
+							@lvl_sprites[[@selx,@sely]] = @sel
+						end
 					end
 					
 			end
