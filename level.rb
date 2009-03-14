@@ -119,7 +119,7 @@ class LevelEditor
 							@sely = (ev.pos[1]/@tile_size_y).to_i
 							puts "#{@selx}, #{@sely}"
 							if @sely >= 17
-								@sel = @sprites[@sely-17+(5*@selx)]
+								@sel = @sely-17+(5*@selx)
 							elsif @sely <= 15
 								@sel != nil ? @lvl_sprites[[@selx,@sely]] = @sel : nil
 							end
@@ -142,7 +142,7 @@ class LevelEditor
 		@screen.fill [0,0,0]
 		# draw the sprites
 		@lvl_sprites.each_key do |sprite|
-			@lvl_sprites[sprite].blit @screen, [sprite[0] * 64, sprite[1] * 32]
+			@sprites[@lvl_sprites[sprite]].blit @screen, [sprite[0] * 64, sprite[1] * 32]
 		end
 		# draw the level map grid
 		@scale_x.times do |x|
