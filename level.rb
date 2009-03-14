@@ -115,6 +115,21 @@ class LevelEditor
 								@cur_edit = :load_level
 								@buf2 = "level: "
 							end
+						when Rubygame::K_S
+							if @name != ''
+								data = {}
+								data[:sprite_files] = @sprite_files.clone
+								data[:lvl_sprites] = @lvl_sprites.clone
+								data[:name] = @name
+								puts "Saving level..."
+								input = File.new "#{@name}.lvl", "w"
+								input.puts YAML.dump(data)
+								input.close
+								puts "Level saved!"
+							else
+								@cur_edit = :save_level_with_name
+								@buf2 = "name: "
+							end
 					end
 				when Rubygame::MouseDownEvent
 					case ev.button
