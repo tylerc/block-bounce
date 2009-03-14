@@ -86,7 +86,7 @@ class LevelEditor
 							puts "#{@selx}, #{@sely}"
 							if @sely >= 17
 								@sel = @sprites[@sely-17+(5*@selx)]
-							else
+							elsif @sely <= 15
 								@sel != nil ? @lvl_sprites[[@selx,@sely]] = @sel : nil
 							end
 						when 3
