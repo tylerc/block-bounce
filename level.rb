@@ -25,6 +25,7 @@ class LevelEditor
 		@grid_showing = true
 		@lvl_sprites = {}
 		@sprite_files = []
+		@name = ''
 	end
 	
 	def run
@@ -63,7 +64,8 @@ class LevelEditor
 									@sprites[@sprites.length] = Rubygame::Surface.load @buf
 									@sprite_files += [@buf]
 								end
-								if @cur_edit == :save_sprite_with_name
+								if @cur_edit == :save_level_with_name
+									@name = @buf
 									data = {}
 									data[:sprite_files] = @sprite_files.clone
 									puts "Saving level..."
@@ -71,6 +73,15 @@ class LevelEditor
 									input.puts YAML.dump(data)
 									input.close
 									puts "Level saved!"
+								end
+								if @cur_edit == :load_level
+									input = File.new "#{@buf}.lvl"
+									data = YAML.load(input)
+									data[:sprite_files].length.times do |sprite|
+										@sprites[sprite] = Rubygame::Surface.load data[:sprite_files][sprite]
+										@sprite_files += data[:sprite_files][sprite].to_a
+									end
+									input.close
 								end
 								@buf = " "
 								@cur_edit = nil
@@ -89,8 +100,15 @@ class LevelEditor
 								@grid_showing ? @grid_showing = false : @grid_showing = true
 							end
 						when Rubygame::K_A
-							@cur_edit = :save_sprite_with_name
-							@buf2 = "name: "
+							if @cur_edit == nil
+								@cur_edit = :save_level_with_name
+								@buf2 = "name: "
+							end
+						when Rubygame::K_L
+							if @cur_edit == nil
+								@cur_edit = :load_level
+								@buf2 = "level: "
+							end
 					end
 				when Rubygame::MouseDownEvent
 					case ev.button
