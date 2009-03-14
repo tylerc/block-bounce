@@ -73,7 +73,7 @@ class LevelEditor
 							if @cur_edit == nil
 								eval gets
 							end
-						when Rubygame::K_S
+						when Rubygame::K_H
 							if @cur_edit == nil
 								@grid_showing ? @grid_showing = false : @grid_showing = true
 							end

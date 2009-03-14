@@ -23,10 +23,18 @@ Controls
 	l - loads a level
 	d - designates the currently selected sprite as the player
 	left shift - asks for the name of a sprite and loads it
-	s - toggles the display of the grid
+	h - toggles the display of the grid
 	Ctrl + left mouse button - line tool. fills the grids you move
 		to with the sprite you started with (until Ctrl is released)
 	
 Future (things planned for future releases)
 	Launch the game on the level currently being developed (to test easier)
 	Undo
+
+TODO - features not implemented yet
+	s - saves the level being edited
+	a - saves the level edited under the specified name
+	l - loads a level
+	d - designates the currently selected sprite as the player
+	Ctrl + left mouse button - line tool. fills the grids you move
+		to with the sprite you started with (until Ctrl is released)
