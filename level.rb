@@ -21,8 +21,6 @@ class LevelEditor
 		@selx, @sely = 0, 0
 		@buf, @buf2 = ' ', ' '
 		@cur_edit = nil
-		
-		# 8 x 5
 		@sprites = []
 		@grid_showing = true
 	end
@@ -82,7 +80,15 @@ class LevelEditor
 						when 1
 							@selx = (ev.pos[0]/@tile_size_x).to_i
 							@sely = (ev.pos[1]/@tile_size_y).to_i
-						#when 3
+							puts "#{@selx}, #{@sely}"
+							@sel = @sprites[(@selx * ((700/@tile_size_y)-@scale_y))]
+						when 3
+							@selx = (ev.pos[0]/@tile_size_x).to_i
+							@sely = (ev.pos[1]/@tile_size_y).to_i
+							puts "#{@selx}, #{@sely}"
+							if @sely >= 17
+								@sprites.delete @sprites[@selx * ((700/@tile_size_y)-@scale_y)]
+							end
 					end
 					
 			end
