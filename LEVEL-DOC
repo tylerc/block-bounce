@@ -25,6 +25,7 @@ Controls
 	h - toggles the display of the grid
 	Ctrl + left mouse button - line tool. fills the grids you move
 		to with the sprite you started with (until Ctrl is released)
+	q - cancels the current command (like loading a sprite)
 	
 Future (things planned for future releases)
 	Launch the game on the level currently being developed (to test easier)
