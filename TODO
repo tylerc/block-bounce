@@ -1,8 +1,8 @@
 == Milestones - Making the game
 Version < 1.0 (alpha?)
 (in alpha1) * Have a working Sprite editor + loader
-* Have a working level editor
-* Be able to load and save levels (in editor)
+(in alpha2) * Have a working level editor
+(in alpha2) * Be able to load and save levels (in editor)
 * Be able to load and save levels (in game)
 * Be able to move sprites around
 * Be able to check if a tile has something in it
