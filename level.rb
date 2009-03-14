@@ -75,6 +75,8 @@ class LevelEditor
 									puts "Level saved!"
 								end
 								if @cur_edit == :load_level
+									@sprites = []
+									@sprite_files = []
 									input = File.new "#{@buf}.lvl"
 									data = YAML.load(input)
 									data[:sprite_files].length.times do |sprite|
