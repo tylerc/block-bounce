@@ -3,19 +3,19 @@ Version < 1.0 (alpha?)
 (in alpha1) * Have a working Sprite editor + loader
 (in alpha2) * Have a working level editor
 (in alpha2) * Be able to load and save levels (in editor)
-* Be able to load and save levels (in game)
-* Be able to move sprites around
-* Be able to check if a tile has something in it
-* Have a ball bouncing around
-* Have a ball bounce off the paddle and tiles
-* Have a ball destroy tiles
-* Win condition (all tiles destroyed)
-* Be able to lose balls to the bottom of the screen
-* Fail condition (3 balls lost)
-* Upgrades when tiles destroyed (bonus life, bigger paddle, etc.)
-* Different types of tiles (gives out upgrades or not, # of hits to destruction, etc.)
-* Menu interface to load levels (levels to chose from are .lvl files)
-* Progressable levels (you start with level one, beat it, automatically move to level two)
+(planned alpha3) * Be able to load and save levels (in game)
+(planned alpha3) * Be able to move sprites around
+(planned alpha3) * Be able to check if a tile has something in it
+(planned alpha3) * Have a ball bouncing around
+(planned alpha3) * Have a ball bounce off the paddle and tiles
+(planned alpha3) * Have a ball destroy tiles
+(planned alpha4) * Win condition (all tiles destroyed)
+(planned alpha4) * Be able to lose balls to the bottom of the screen
+(planned alpha4) * Fail condition (3 balls lost)
+(planned alpha5) * interface to load levels (levels to chose from are .lvl files)
+(planned alpha6) * Progressable levels (you start with level one, beat it, automatically move to level two)
+(planned alpha7) * Upgrades when tiles destroyed (bonus life, bigger paddle, etc.)
+(planned alpha8) * Different types of tiles (gives out upgrades or not, # of hits to destruction, etc.)
 
 Version 1.1 (beta?)
 * polish (better graphics, add effects, clean up code, address any bugs)
