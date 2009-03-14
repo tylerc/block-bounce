@@ -33,7 +33,5 @@ Future (things planned for future releases)
 
 TODO - features not implemented yet
 	s - saves the level being edited
-	a - saves the level edited under the specified name
-	l - loads a level
 	Ctrl + left mouse button - line tool. fills the grids you move
 		to with the sprite you started with (until Ctrl is released)
