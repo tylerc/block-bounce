@@ -22,6 +22,10 @@ ruby -rubygems block.rb
 ruby -rubygems sprite.rb [existing-sprite-name]
 See SPRITE-DOC for full information
 
+== Running The Level Editor
+ruby -rubygems level.rb
+See LEVEL-DOC for full information
+
 == License
   Copyright (C) 2009 Tyler Church
 
