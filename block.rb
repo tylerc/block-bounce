@@ -3,7 +3,7 @@ require 'yaml'
 
 class Game
 	def initialize
-		@screen = Rubygame::Screen.new [512,544], 0, [Rubygame::HWSURFACE, Rubygame::DOUBLEBUF]
+		@screen = Rubygame::Screen.new [512,608], 0, [Rubygame::HWSURFACE, Rubygame::DOUBLEBUF]
 		@screen.title = "Block Bounce!"
 		
 		@queue = Rubygame::EventQueue.new
@@ -47,6 +47,13 @@ class Game
 	end
 	
 	def draw
+		@screen.fill [0,0,0]
+		# draw the sprites
+		@lvl_sprites.each_key do |sprite|
+			@sprites[@lvl_sprites[sprite]].blit @screen, [sprite[0] * 64, sprite[1] * 32]
+		end
+		
+		@screen.flip
 	end
 end
 
