@@ -17,7 +17,7 @@ class Game
 		@y = @screen.height-32
 		@ballx = @screen.width/2
 		@bally = @screen.height-48
-		@ball_speed = 1
+		@ball_speed = 2 # do not set to 1 (the ball wont move...)
 		@angle = 0
 	end
 	
@@ -39,10 +39,8 @@ class Game
 					case ev.key
 						when Rubygame::K_ESCAPE
 							@queue.post(Rubygame::QuitEvent.new)
-						when Rubygame::K_UP
-							@angle += 1
-						when Rubygame::K_DOWN
-							@angle -= 1
+						when Rubygame::K_E
+							eval STDIN.gets
 					end
 				when Rubygame::MouseMotionEvent
 					ev.pos[0] < @screen.width-@player.width ? @x = ev.pos[0] : @x = 448
@@ -50,8 +48,25 @@ class Game
 		end
 		
 		#update ball position
-		@ballx += @ball_speed * -Math.tan(-@angle * (3.14 / 180))
-                @bally += @ball_speed * -Math.cos(-@angle * (3.14 / 180))
+		@ballx += (@ball_speed * Math.sin(@angle * (3.14 / 180))).to_i
+                @bally += -(@ball_speed * Math.cos(@angle * (3.14 / 180))).to_i
+=begin
+                if false#@ballx <= 0
+                	@angle = 90
+                end
+                
+                if false#@ballx >= @screen.width
+                	@angle = 270
+                end
+                
+                if @bally <= 0
+                	@angle = 180
+                end
+                
+                if @bally+@ball.height >= @screen.height
+                	@angle = 0
+                end
+=end
 	end
 	
 	def draw
