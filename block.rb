@@ -10,17 +10,7 @@ class Game
 		@clock = Rubygame::Clock.new
 		@clock.target_framerate = 30
 		
-		@sprites = []
-		@sprite_files = []
-		input = File.new "#{ARGV[0]}.lvl"
-		data = YAML.load(input)
-		data[:sprite_files].length.times do |sprite|
-			@sprites[sprite] = Rubygame::Surface.load data[:sprite_files][sprite]
-			@sprite_files += data[:sprite_files][sprite].to_a
-		end
-		@lvl_sprites = data[:lvl_sprites].clone
-		@name = data[:name]
-		input.close
+		load_level ARGV[0]
 	end
 	
 	def run
@@ -54,6 +44,21 @@ class Game
 		end
 		
 		@screen.flip
+	end
+	
+	def load_level name
+		@sprites = []
+		@sprite_files = []
+		input = File.new "#{name}.lvl"
+		data = YAML.load(input)
+		data[:sprite_files].length.times do |sprite|
+			@sprites[sprite] = Rubygame::Surface.load data[:sprite_files][sprite]
+			@sprite_files += data[:sprite_files][sprite].to_a
+		end
+		@lvl_sprites = data[:lvl_sprites].clone
+		@name = data[:name]
+		input.close
+		
 	end
 end
 
