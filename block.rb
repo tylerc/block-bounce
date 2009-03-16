@@ -11,7 +11,7 @@ class Game
 		@clock.target_framerate = 30
 		
 		load_level ARGV[0]
-		@player = Rubygame::Surface.load "player.bmp"
+		@player = Rubygame::Surface.load "sprites/player.bmp"
 		@x = @screen.width/2
 		@y = @screen.height-32
 	end

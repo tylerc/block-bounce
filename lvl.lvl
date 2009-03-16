@@ -1,9 +1,9 @@
 --- 
 :name: lvl
 :sprite_files: 
-- b.bmp
-- r.bmp
-- g.bmp
+- sprites/b.bmp
+- sprites/r.bmp
+- sprites/g.bmp
 :lvl_sprites: 
   ? 
     - 0
