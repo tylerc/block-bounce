@@ -6,7 +6,7 @@ Version < 1.0 (alpha?)
 (in alpha2) * Be able to load and save levels (in editor)
 ---
 (in alpha3) * Be able to load levels (in game)
-(planned alpha3) * Be able to move the player around
+(in alpha3) * Be able to move the player around
 (planned alpha3) * Be able to check if a tile has something in it
 (planned alpha3) * Have a ball bouncing around
 (planned alpha3) * Have a ball bounce off the paddle and tiles
