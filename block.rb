@@ -11,7 +11,9 @@ class Game
 		@clock.target_framerate = 30
 		
 		load_level ARGV[0]
-		Rubygame::Surface.load "player.bmp"
+		@player = Rubygame::Surface.load "player.bmp"
+		@x = @screen.width/2
+		@y = @screen.height-32
 	end
 	
 	def run
@@ -33,6 +35,8 @@ class Game
 						when Rubygame::K_ESCAPE
 							@queue.post(Rubygame::QuitEvent.new)
 					end
+				when Rubygame::MouseMotionEvent
+					ev.pos[0] < @screen.width-@player.width ? @x = ev.pos[0] : @x = 448
 			end
 		end
 	end
@@ -43,6 +47,9 @@ class Game
 		@lvl_sprites.each_key do |sprite|
 			@sprites[@lvl_sprites[sprite]].blit @screen, [sprite[0] * 64, sprite[1] * 32]
 		end
+		
+		# draw the player
+		@player.blit @screen, [@x,@y]
 		
 		@screen.flip
 	end
