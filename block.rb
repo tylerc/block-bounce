@@ -11,6 +11,7 @@ class Game
 		@clock.target_framerate = 30
 		
 		load_level ARGV[0]
+		Rubygame::Surface.load "player.bmp"
 	end
 	
 	def run
