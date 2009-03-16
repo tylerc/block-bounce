@@ -12,8 +12,11 @@ class Game
 		
 		load_level ARGV[0]
 		@player = Rubygame::Surface.load "sprites/player.bmp"
+		@ball = Rubygame::Surface.load 'sprites/ball.bmp'
 		@x = @screen.width/2
 		@y = @screen.height-32
+		@ballx = @screen.width/2
+		@bally = @screen.height-48
 	end
 	
 	def run
@@ -48,8 +51,9 @@ class Game
 			@sprites[@lvl_sprites[sprite]].blit @screen, [sprite[0] * 64, sprite[1] * 32]
 		end
 		
-		# draw the player
+		# draw the player and ball
 		@player.blit @screen, [@x,@y]
+		@ball.blit @screen, [@ballx, @bally]
 		
 		@screen.flip
 	end
