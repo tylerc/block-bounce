@@ -3,7 +3,7 @@ Version < 1.0 (alpha?)
 (in alpha1) * Have a working Sprite editor + loader
 (in alpha2) * Have a working level editor
 (in alpha2) * Be able to load and save levels (in editor)
-(planned alpha3) * Be able to load and save levels (in game)
+(planned alpha3) * Be able to load levels (in game)
 (planned alpha3) * Be able to move sprites around
 (planned alpha3) * Be able to check if a tile has something in it
 (planned alpha3) * Have a ball bouncing around
