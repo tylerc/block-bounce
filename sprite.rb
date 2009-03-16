@@ -263,7 +263,7 @@ rescue Errno::ENOENT
 	data[:name] = STDIN.gets.chomp.to_s
 	print "Width: "
 	data[:width] = STDIN.gets.chomp.to_i
-	print "Length: "
+	print "Height: "
 	data[:height] = STDIN.gets.chomp.to_i
 end
 game = SpriteEditor.new data
