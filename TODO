@@ -10,7 +10,7 @@ Version < 1.0 (alpha?)
 (planned alpha3) * Be able to check if a tile has something in it
 (in alpha3) * Have a ball bouncing around
 (planned alpha3) * Have a ball bounce off the paddle and tiles
-(planned alpha3) * Have a ball destroy tiles
+(in alpha3) * Have a ball destroy tiles
 ---
 (planned alpha4) * Win condition (all tiles destroyed)
 (planned alpha4) * Be able to lose balls to the bottom of the screen

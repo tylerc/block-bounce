@@ -66,6 +66,10 @@ class Game
                 if @bally+@ball.height >= @screen.height
                 	@angle = 0
                 end
+                
+                #puts (@ballx/64).to_i
+		#puts (@bally/32).to_i
+		@lvl_sprites.delete [@ballx/64,@bally/32]
 	end
 	
 	def draw
@@ -94,7 +98,6 @@ class Game
 		@lvl_sprites = data[:lvl_sprites].clone
 		@name = data[:name]
 		input.close
-		
 	end
 end
 
