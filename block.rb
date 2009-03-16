@@ -19,6 +19,18 @@ class Game
 	end
 	
 	def update
+		@queue.each do |ev|
+			case ev
+				when Rubygame::QuitEvent
+					Rubygame.quit
+					exit
+				when Rubygame::KeyDownEvent
+					case ev.key
+						when Rubygame::K_ESCAPE
+							@queue.post(Rubygame::QuitEvent.new)
+					end
+			end
+		end
 	end
 	
 	def draw
