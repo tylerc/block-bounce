@@ -17,7 +17,7 @@ class Game
 		@y = @screen.height-32
 		@ballx = @screen.width/2
 		@bally = @screen.height-48
-		@ball_speed = 2 # do not set to 1 (the ball wont move...)
+		@ball_speed = 5 # do not set to 1 (the ball wont move...)
 		@angle = 0
 	end
 	
@@ -50,12 +50,12 @@ class Game
 		#update ball position
 		@ballx += (@ball_speed * Math.sin(@angle * (3.14 / 180))).to_i
                 @bally += -(@ball_speed * Math.cos(@angle * (3.14 / 180))).to_i
-=begin
-                if false#@ballx <= 0
+
+                if @ballx <= 0
                 	@angle = 90
                 end
                 
-                if false#@ballx >= @screen.width
+                if @ballx >= @screen.width-@ball.width
                 	@angle = 270
                 end
                 
@@ -66,7 +66,6 @@ class Game
                 if @bally+@ball.height >= @screen.height
                 	@angle = 0
                 end
-=end
 	end
 	
 	def draw
