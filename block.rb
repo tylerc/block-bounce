@@ -67,8 +67,6 @@ class Game
                 	@angle = 0
                 end
                 
-                #puts (@ballx/64).to_i
-		#puts (@bally/32).to_i
 		@lvl_sprites.delete [@ballx/64,@bally/32]
 	end
 	
