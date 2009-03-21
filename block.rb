@@ -16,9 +16,9 @@ class Game
 		@x = @screen.width/2
 		@y = @screen.height-32
 		@ballx = @screen.width/2
-		@bally = @screen.height-48
+		@bally = 200#@screen.height-48
 		@ball_speed = 5 # do not set to 1 (the ball wont move...)
-		@angle = 0
+		@angle = 180
 	end
 	
 	def run
@@ -50,20 +50,31 @@ class Game
 		#update ball position
 		@ballx += (@ball_speed * Math.sin(@angle * (3.14 / 180))).to_i
                 @bally += -(@ball_speed * Math.cos(@angle * (3.14 / 180))).to_i
-
+                
+                # Check for collisions with borders
+                
+                # Left
                 if @ballx <= 0
                 	@angle = 90
                 end
                 
+                # Right
                 if @ballx >= @screen.width-@ball.width
                 	@angle = 270
                 end
                 
+                # Top
                 if @bally <= 0
                 	@angle = 180
                 end
                 
+                # Bottom
                 if @bally+@ball.height >= @screen.height
+                	@angle = 0
+                end
+                
+                # Check for collision with paddle
+                if @bally+@ball.height >= @y and @ballx > @x and @ballx < @x + @player.width
                 	@angle = 0
                 end
                 
