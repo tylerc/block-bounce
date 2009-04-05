@@ -17,8 +17,9 @@ class Game
 		@y = @screen.height-32
 		@ballx = @screen.width/2
 		@bally = 200#@screen.height-48
-		@ball_speed = 8 # do not set to 1 (the ball wont move...)
-		@angle = 30
+		@ball_speed = 12 # do not set to 1 (the ball wont move...)
+		@angle = 220
+		@hope = 1
 	end
 	
 	def run
@@ -49,35 +50,40 @@ class Game
 		
 		#update ball position
 		@ballx += (@ball_speed * Math.sin(@angle * (3.14 / 180))).to_i
-                @bally += -(@ball_speed * Math.cos(@angle * (3.14 / 180))).to_i
-                
+                @bally += -(@ball_speed * Math.cos(@angle * (3.14 / 180))).to_i * @hope
                 # Check for collisions with borders
                 
                 # Left
                 if @ballx <= 0
-                	@angle < 270 ? @angle -= 90 : @angle += 90
+                	#@angle < 270 ? @angle -= 90 : @angle += 90
+                	@angle *= -1
                 end
                 
                 # Right
                 if @ballx >= @screen.width-@ball.width
-                	@angle < 90 ? @angle -= 90 : @angle += 90
+                	#@angle < 90 ? @angle -= 90 : @angle += 90
+                	@angle *= -1
                 end
                 
                 # Top
                 if @bally <= 0
-                	@angle < 90 ? @angle -= 90 : @angle += 90
-                	@angle == 0 ? @angle = 180 : nil
+                	#@angle < 90 ? @angle += 90 : @angle -= 90
+                  	#@angle == 0 ? @angle = 180 : nil
+                	@hope *= -1
                 end
                 
                 # Bottom
                 if @bally+@ball.height >= @screen.height
-                	@angle < 180 ? @angle += 90 : @angle -= 90
-                	@angle == 180 ? @angle = 0 : nil
+                	# reset
+			@ballx = @screen.width/2
+			@bally = 200#@screen.height-48
+			@angle = 30
                 end
                 
                 # Check for collision with paddle
                 if @bally+@ball.height >= @y and @ballx+@ball.width > @x and @ballx < @x + @player.width
                 	@angle = @ballx-(@x + @player.width/2)
+                	@hope = 1
                 end
                 
 		@lvl_sprites.delete [@ballx/64,@bally/32]
