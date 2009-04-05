@@ -21,7 +21,7 @@ class SpriteEditor
 		scale_y = @screen.height/@tile_size_y
 		scale_x < scale_y ? @scale = scale_x : @scale = scale_y
 		@font = Rubygame::TTF.new 'FreeSans.ttf', 72
-		@selx, @sely = 0, 0
+		@selx, @sely, @oldselx, @oldsely = 0, 0, 0, 0
 		@tiles = {}
 		@tile_size_x.times do |x|
 			@tile_size_y.times do |y|
@@ -48,6 +48,7 @@ class SpriteEditor
 		@view_scale = 1
 		@name = data[:name]
 		@dir = dir
+		@redraw_grid = true
 	end
 	
 	def run
@@ -59,6 +60,8 @@ class SpriteEditor
 	end
 	
 	def update
+		@oldselx = @selx
+		@oldsely = @sely
 		@queue.each do |ev|
 			case ev
 				when Rubygame::QuitEvent
@@ -100,6 +103,7 @@ class SpriteEditor
 							end
 						when Rubygame::K_S
 							@grid_showing == true ? @grid_showing = false : @grid_showing = true
+							@redraw_grid = true
 						when Rubygame::K_H
 							@cursor_showing == true ? @cursor_showing = false : @cursor_showing = true
 						when Rubygame::K_R
@@ -192,26 +196,36 @@ class SpriteEditor
 		end
 		
 		@line_color != nil ? @tiles_color[[@selx,@sely]] = @line_color.clone : nil
+		
+		if @buf != " " or @buf2 != " "
+			@redraw_grid = true
+		end
 	end
 	
 	def draw
-		@screen.fill [0,0,0]
 		if @mode == :edit
 			@screen.title = "Sprite Editor: [#{@selx},#{@sely}] R:#{@tiles_color[[@selx,@sely]][0]} G:#{@tiles_color[[@selx,@sely]][1]} B:#{@tiles_color[[@selx,@sely]][2]} A:#{@tiles_color[[@selx,@sely]][3]}"
+			
 			# Draw the tile grid
-			@tile_size_x.times do |x|
-				@tile_size_y.times do |y|
-					@tiles[[x,y]].blit @screen, [x * @scale, y * @scale]
-					@tiles[[x,y]].fill @tiles_color[[x,y]]
-					if @grid_showing
-						@screen.draw_box [x * @scale, y * @scale], [x * @scale + @scale, y * @scale + @scale], [0,255,0]
+			if @redraw_grid
+				@tile_size_x.times do |x|
+					@tile_size_y.times do |y|
+						@tiles[[x,y]].blit @screen, [x * @scale, y * @scale]
+						@tiles[[x,y]].fill @tiles_color[[x,y]]
+						if @grid_showing
+							@screen.draw_box [x * @scale, y * @scale], [x * @scale + @scale, y * @scale + @scale], [0,255,0]
+						end
 					end
 				end
+				@redraw_grid = false
 			end
-				
-				@font.render(@buf2 + @buf, true, [255,255,255]).blit(@screen,[100,100])
+			
+			@font.render(@buf2 + @buf, true, [255,255,255]).blit(@screen,[100,100])
 			# draw cursor
 			if @cursor_showing
+				@tiles[[@oldselx,@oldsely]].blit @screen, [@oldselx * @scale, @oldsely * @scale]
+				@tiles[[@oldselx,@oldsely]].fill @tiles_color[[@oldselx,@oldsely]]
+				@screen.draw_box [@oldselx * @scale, @oldsely * @scale], [@oldselx * @scale + @scale, @oldsely * @scale + @scale], [0,255,0]
 				@screen.draw_box [@selx * @scale, @sely * @scale], [@selx * @scale + @scale, @sely * @scale + @scale], [255,0,0]
 			end
 		end
