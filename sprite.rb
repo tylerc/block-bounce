@@ -198,17 +198,17 @@ class SpriteEditor
 		if @mode == :edit
 			@screen.title = "Sprite Editor: [#{@selx},#{@sely}] R:#{@tiles_color[[@selx,@sely]][0]} G:#{@tiles_color[[@selx,@sely]][1]} B:#{@tiles_color[[@selx,@sely]][2]} A:#{@tiles_color[[@selx,@sely]][3]}"
 			# Draw the tile grid
-			if @grid_showing
-				@tile_size_x.times do |x|
-					@tile_size_y.times do |y|
-						@tiles[[x,y]].blit @screen, [x * @scale, y * @scale]
-						@tiles[[x,y]].fill @tiles_color[[x,y]]
+			@tile_size_x.times do |x|
+				@tile_size_y.times do |y|
+					@tiles[[x,y]].blit @screen, [x * @scale, y * @scale]
+					@tiles[[x,y]].fill @tiles_color[[x,y]]
+					if @grid_showing
 						@screen.draw_box [x * @scale, y * @scale], [x * @scale + @scale, y * @scale + @scale], [0,255,0]
 					end
 				end
+			end
 				
 				@font.render(@buf2 + @buf, true, [255,255,255]).blit(@screen,[100,100])
-			end
 			# draw cursor
 			if @cursor_showing
 				@screen.draw_box [@selx * @scale, @sely * @scale], [@selx * @scale + @scale, @sely * @scale + @scale], [255,0,0]
