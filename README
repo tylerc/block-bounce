@@ -16,7 +16,7 @@ I am making this for a few reasons:
 (Note: This game is tested and developed on Linux with Ruby 1.8.7)
 You need Rubygame installed (as a gem) to play the game
 To run the game use the command:
-ruby -rubygems block.rb
+ruby -rubygems block.rb levels/lvl
 
 == Running The Sprite Editor
 ruby -rubygems sprite.rb [existing-sprite-name]
