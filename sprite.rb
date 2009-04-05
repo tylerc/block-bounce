@@ -124,6 +124,7 @@ class SpriteEditor
 								@buf = " "
 								@cur_edit = nil
 								@buf2 = " "
+								@redraw_grid = true
 							end
 						when Rubygame::K_BACKSPACE
 							@buf = @buf[0..@buf.length-2]
@@ -196,10 +197,6 @@ class SpriteEditor
 		end
 		
 		@line_color != nil ? @tiles_color[[@selx,@sely]] = @line_color.clone : nil
-		
-		if @buf != " " or @buf2 != " "
-			@redraw_grid = true
-		end
 	end
 	
 	def draw
@@ -225,7 +222,9 @@ class SpriteEditor
 			if @cursor_showing
 				@tiles[[@oldselx,@oldsely]].blit @screen, [@oldselx * @scale, @oldsely * @scale]
 				@tiles[[@oldselx,@oldsely]].fill @tiles_color[[@oldselx,@oldsely]]
-				@screen.draw_box [@oldselx * @scale, @oldsely * @scale], [@oldselx * @scale + @scale, @oldsely * @scale + @scale], [0,255,0]
+				if @grid_showing
+					@screen.draw_box [@oldselx * @scale, @oldsely * @scale], [@oldselx * @scale + @scale, @oldsely * @scale + @scale], [0,255,0]
+				end
 				@screen.draw_box [@selx * @scale, @sely * @scale], [@selx * @scale + @scale, @sely * @scale + @scale], [255,0,0]
 			end
 		end
