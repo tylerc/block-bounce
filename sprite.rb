@@ -141,6 +141,7 @@ class SpriteEditor
 									@tiles_color[[x,y]] = @tiles_color[[@selx,@sely]].clone
 								end
 							end
+							@redraw_grid = true
 						when Rubygame::K_C
 							@copy = @tiles_color[[@selx,@sely]].clone
 						when Rubygame::K_V
@@ -223,17 +224,19 @@ class SpriteEditor
 			
 			@font.render(@buf2 + @buf, true, [255,255,255]).blit(@screen,[100,100])
 			# draw cursor
+		
+			@tiles[[@oldselx,@oldsely]].blit @screen, [@oldselx * @scale, @oldsely * @scale]
+			@tiles[[@oldselx,@oldsely]].fill @tiles_color[[@oldselx,@oldsely]]
+			if @grid_showing
+				@screen.draw_box [@oldselx * @scale, @oldsely * @scale], [@oldselx * @scale + @scale, @oldsely * @scale + @scale], [0,255,0]
+			end
 			if @cursor_showing
-				@tiles[[@oldselx,@oldsely]].blit @screen, [@oldselx * @scale, @oldsely * @scale]
-				@tiles[[@oldselx,@oldsely]].fill @tiles_color[[@oldselx,@oldsely]]
-				if @grid_showing
-					@screen.draw_box [@oldselx * @scale, @oldsely * @scale], [@oldselx * @scale + @scale, @oldsely * @scale + @scale], [0,255,0]
-				end
 				@screen.draw_box [@selx * @scale, @sely * @scale], [@selx * @scale + @scale, @sely * @scale + @scale], [255,0,0]
 			end
 		end
 		
 		if @mode == :view
+			@screen.fill [0,0,0]
 			# Draw the sprite
 			@screen.title = "Sprite Viewer Scale:#{@view_scale}"
 			(@tile_size_x*@view_scale).times do |x|
