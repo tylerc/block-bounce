@@ -132,6 +132,7 @@ class SpriteEditor
 							@buf = " "
 							@cur_edit = nil
 							@buf2 = " "
+							@redraw_grid = true
 						when Rubygame::K_F
 							# The pixels are looped through this way
 							# because @tiles_color.each didn't work
@@ -148,6 +149,8 @@ class SpriteEditor
 							@line_color == nil ? @line_color = @tiles_color[[@selx,@sely]].clone : @line_color = nil
 						when Rubygame::K_T
 							@mode == :edit ? @mode = :view : @mode = :edit
+							@screen.fill [0,0,0]
+							@mode == :view ? @redraw_grid = true : nil
 						when Rubygame::K_O
 							@mode = :save_bmp
 						# Numbers
@@ -214,7 +217,8 @@ class SpriteEditor
 						end
 					end
 				end
-				@redraw_grid = false
+				# checking if this is the first draw is hack-ish fix for a weird error (where the sprite wouldn't be drawn)
+				defined? @first_draw ? @redraw_grid = false : @first_draw = false
 			end
 			
 			@font.render(@buf2 + @buf, true, [255,255,255]).blit(@screen,[100,100])
