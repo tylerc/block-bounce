@@ -3,7 +3,7 @@ require 'yaml'
 Rubygame::TTF.setup
 
 class SpriteEditor
-	def initialize data
+	def initialize data, dir
 		@screen = Rubygame::Screen.new [640,640], 0, [Rubygame::HWSURFACE, Rubygame::DOUBLEBUF]
 		@screen.title = "Sprite Editor"
 		
@@ -47,6 +47,7 @@ class SpriteEditor
 		@mode = :edit
 		@view_scale = 1
 		@name = data[:name]
+		@dir = dir
 	end
 	
 	def run
@@ -245,7 +246,7 @@ class SpriteEditor
 		data[:colors] = @tiles_color
 		data[:name] = @name
 		puts "Saving sprite"
-		input = File.new "#{@name}.sprite", "w"
+		input = File.new "#{@dir}.sprite", "w"
 		input.puts YAML.dump(data)
 		input.close
 		puts "Sprite saved"
@@ -266,5 +267,5 @@ rescue Errno::ENOENT
 	print "Height: "
 	data[:height] = STDIN.gets.chomp.to_i
 end
-game = SpriteEditor.new data
+game = SpriteEditor.new data, ARGV[0]
 game.run
