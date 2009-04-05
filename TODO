@@ -8,7 +8,7 @@ Version < 1.0 (alpha?)
 (in alpha3) * Be able to load levels (in game)
 (in alpha3) * Be able to move the player around
 (in alpha3) * Have a ball bouncing around
-(planned alpha3) * Have a ball bounce off the paddle and tiles
+(planned alpha3) * Have a ball bounce off the paddle and tiles (with angle)
 (in alpha3) * Have a ball destroy tiles
 ---
 (planned alpha4) * Win condition (all tiles destroyed)
