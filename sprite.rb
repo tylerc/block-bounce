@@ -253,7 +253,7 @@ class SpriteEditor
 					temp_surf.set_at [x,y], @tiles_color[[x/@view_scale,y/@view_scale]]
 				end	
 			end
-			temp_surf.savebmp("#{@name}.bmp")
+			temp_surf.savebmp("#{@dir}.bmp")
 			@mode = :edit
 		end
 		@screen.flip
