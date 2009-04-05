@@ -74,8 +74,8 @@ class Game
                 end
                 
                 # Check for collision with paddle
-                if @bally+@ball.height >= @y and @ballx > @x and @ballx < @x + @player.width
-                	@angle = 0
+                if @bally+@ball.height >= @y and @ballx+@ball.width > @x and @ballx < @x + @player.width
+                	@angle = @ballx-(@x + @player.width/2)
                 end
                 
 		@lvl_sprites.delete [@ballx/64,@bally/32]
