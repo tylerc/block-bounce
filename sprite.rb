@@ -218,7 +218,7 @@ class SpriteEditor
 					end
 				end
 				# checking if this is the first draw is hack-ish fix for a weird error (where the sprite wouldn't be drawn)
-				defined? @first_draw ? @redraw_grid = false : @first_draw = false
+				@first_draw.nil? ? @first_draw = false : @redraw_grid = false
 			end
 			
 			@font.render(@buf2 + @buf, true, [255,255,255]).blit(@screen,[100,100])
