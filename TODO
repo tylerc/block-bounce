@@ -1,5 +1,5 @@
 == Milestones - Making the game
-Version < 1.0 (alpha?)
+Version < 1.0 (alpha)
 (in alpha1) * Have a working Sprite editor + loader
 ---
 (in alpha2) * Have a working level editor
@@ -24,10 +24,10 @@ Version < 1.0 (alpha?)
 ---
 (planned alpha8) * Different types of tiles (gives out upgrades or not, # of hits to destruction, etc.)
 
-Version 1.1 (beta?)
+Version 1.1 (beta)
 * polish (better graphics, add effects, clean up code, address any bugs)
 
-Version 1.2 (release?)
+Version 1.2 (release)
 * create at least 20 levels
 * Unlockable levels (instead of them all being immeadiately accessable)
 
