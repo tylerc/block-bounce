@@ -18,6 +18,11 @@ You need Rubygame installed (as a gem) to play the game
 To run the game use the command:
 ruby -rubygems block.rb levels/lvl2
 
+== Playing The Game
+* Your mouse moves the blue paddle
+* You goal is to destroy all the blocks on the screen
+* HINT: The ball bounces at a different angle depending on where it hits the paddle
+
 == Running The Sprite Editor
 ruby -rubygems sprite.rb [existing-sprite-name]
 See SPRITE-DOC for full information
