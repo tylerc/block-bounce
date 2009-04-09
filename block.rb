@@ -16,8 +16,8 @@ class Game
 		@x = @screen.width/2
 		@y = @screen.height-32
 		@ballx = @screen.width/2
-		@bally = 200
-		@ball_speed = 12 # do not set to 1 (the ball wont move...)
+		@bally = 590
+		@ball_speed = 10 # do not set to 1 (the ball wont move...)
 		@angle = 220
 		@hope = 1
 	end
@@ -72,7 +72,7 @@ class Game
                 if @bally+@ball.height >= @screen.height
                 	# reset
 			@ballx = @screen.width/2
-			@bally = 200
+			@bally = 590
 			@angle = 30
                 end
                 
@@ -82,6 +82,10 @@ class Game
                 	@hope = 1
                 end
                 
+                #@lvl_sprites[[@ballx/64,@bally/32]].nil? ? nil : puts("Yes")
+                if !@lvl_sprites[[@ballx/64,@bally/32]].nil?
+                	@hope *= -1
+                end
 		@lvl_sprites.delete [@ballx/64,@bally/32]
 	end
 	
