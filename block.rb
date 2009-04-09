@@ -16,7 +16,7 @@ class Game
 		@x = @screen.width/2
 		@y = @screen.height-32
 		@ballx = @screen.width/2
-		@bally = 200#@screen.height-48
+		@bally = 200
 		@ball_speed = 12 # do not set to 1 (the ball wont move...)
 		@angle = 220
 		@hope = 1
@@ -55,20 +55,16 @@ class Game
                 
                 # Left
                 if @ballx <= 0
-                	#@angle < 270 ? @angle -= 90 : @angle += 90
                 	@angle *= -1
                 end
                 
                 # Right
                 if @ballx >= @screen.width-@ball.width
-                	#@angle < 90 ? @angle -= 90 : @angle += 90
                 	@angle *= -1
                 end
                 
                 # Top
                 if @bally <= 0
-                	#@angle < 90 ? @angle += 90 : @angle -= 90
-                  	#@angle == 0 ? @angle = 180 : nil
                 	@hope *= -1
                 end
                 
@@ -76,7 +72,7 @@ class Game
                 if @bally+@ball.height >= @screen.height
                 	# reset
 			@ballx = @screen.width/2
-			@bally = 200#@screen.height-48
+			@bally = 200
 			@angle = 30
                 end
                 
