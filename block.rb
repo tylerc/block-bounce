@@ -82,7 +82,6 @@ class Game
                 	@hope = 1
                 end
                 
-                #@lvl_sprites[[@ballx/64,@bally/32]].nil? ? nil : puts("Yes")
                 if !@lvl_sprites[[@ballx/64,@bally/32]].nil?
                 	@hope *= -1
                 end
