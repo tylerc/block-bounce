@@ -20,6 +20,7 @@ class Game
 		@ball_speed = 10 # do not set to 1 (the ball wont move...)
 		@angle = 220
 		@hope = 1
+		@hope2 = 1
 	end
 	
 	def run
@@ -49,8 +50,8 @@ class Game
 		end
 		
 		#update ball position
-		@ballx += (@ball_speed * Math.sin(@angle * (3.14 / 180))).to_i
-                @bally += -(@ball_speed * Math.cos(@angle * (3.14 / 180))).to_i * @hope
+		@ballx += move[0]
+		@bally += move[1]
                 # Check for collisions with borders
                 
                 # Left
@@ -80,12 +81,48 @@ class Game
                 if @bally+@ball.height >= @y and @ballx+@ball.width > @x and @ballx < @x + @player.width
                 	@angle = @ballx-(@x + @player.width/2)
                 	@hope = 1
+                	@hope2 = 1
                 end
                 
-                if !@lvl_sprites[[@ballx/64,@bally/32]].nil?
-                	@hope *= -1
-                end
-		@lvl_sprites.delete [@ballx/64,@bally/32]
+		@lvl_sprites.each_key do |sprite|
+			if sprite[0] * 64 > @ballx + @ball.width
+				next
+			end
+			
+			if sprite[0] * 64 + 64 < @ballx
+				next
+			end
+			
+			if sprite[1] * 32 > @bally + @ball.height
+				next
+			end
+			
+			if sprite[1] * 32 + 32 < @bally
+				next
+			end
+			
+			# Right
+			if @ballx - move[0] > sprite[0] * 64 + 64
+				@hope2 *= -1
+			end
+			
+			# Left
+			if @ballx - move[0] < sprite[0] * 64
+				@hope2 *= -1
+			end
+			
+			# Top
+			if @bally - move[1] < sprite[1] * 32
+				@hope *= -1
+			end
+			
+			# Bottom
+			if @bally - move[1] > sprite[1] * 32 + 32
+				@hope *= -1
+			end
+			
+			@lvl_sprites.delete sprite
+		end
 	end
 	
 	def draw
@@ -114,6 +151,10 @@ class Game
 		@lvl_sprites = data[:lvl_sprites].clone
 		@name = data[:name]
 		input.close
+	end
+	
+	def move
+		return (@ball_speed * Math.sin(@angle * (3.14 / 180))).to_i * @hope2, -(@ball_speed * Math.cos(@angle * (3.14 / 180))).to_i * @hope
 	end
 end
 
