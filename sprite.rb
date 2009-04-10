@@ -286,6 +286,7 @@ rescue Errno::ENOENT
 	data[:width] = STDIN.gets.chomp.to_i
 	print "Height: "
 	data[:height] = STDIN.gets.chomp.to_i
+	dir = data[:name]
 end
-game = SpriteEditor.new data, ARGV[0]
+game = SpriteEditor.new data, dir
 game.run
