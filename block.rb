@@ -57,6 +57,7 @@ class Game
                 # Left
                 if @ballx <= 0
                 	@angle *= -1
+					@ballx = 1
                 end
                 
                 # Right
@@ -67,6 +68,7 @@ class Game
                 # Top
                 if @bally <= 0
                 	@hope *= -1
+					@bally = 1
                 end
                 
                 # Bottom
