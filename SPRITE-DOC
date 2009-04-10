@@ -1,4 +1,5 @@
 This is the documentation for the Sprite Editor
+Note: The sprite editor is almost pointless to use, a program like microsoft paint, or GIMP will do the job much better than this. Just be sure to save as a bitmap!
 
 Abstract
 	This program allows you to create and edit sprites for the Block Bounce game
