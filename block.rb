@@ -139,25 +139,28 @@ class Game
 	
 	def draw
 		@screen.fill [0,0,0]
-		# draw the sprites
-		@lvl_sprites.each_key do |sprite|
-			@sprites[@lvl_sprites[sprite]].blit @screen, [sprite[0] * 64, sprite[1] * 32]
+		if @life > 0
+			# draw the sprites
+			@lvl_sprites.each_key do |sprite|
+				@sprites[@lvl_sprites[sprite]].blit @screen, [sprite[0] * 64, sprite[1] * 32]
+			end
+		
+			# draw the player and ball
+			@player.blit @screen, [@x,@y]
+			@ball.blit @screen, [@ballx, @bally]
+		
+			# Draw the life "bar"
+			@font.render("Life: ", true, [255,255,255]).blit(@screen,[@screen.width-220,5])
+			@life.times do |x|
+				@ball.blit @screen, [@screen.width-100+25*x,50]
+			end
+		
+			if !@started
+				@font.render("Click To Start...", true, [255,255,255]).blit(@screen,[@screen.width/2-@font.size_text("Click To Start...")[0]/2,@screen.height/2])
+			end
+		else
+			@font.render("You got pwned!", true, [255, 255, 255]).blit(@screen,[@screen.width/2-@font.size_text("You got pwned!")[0]/2,@screen.height/2])
 		end
-		
-		# draw the player and ball
-		@player.blit @screen, [@x,@y]
-		@ball.blit @screen, [@ballx, @bally]
-		
-		# Draw the life "bar"
-		@font.render("Life: ", true, [255,255,255]).blit(@screen,[@screen.width-220,5])
-		@life.times do |x|
-			@ball.blit @screen, [@screen.width-100+25*x,50]
-		end
-		
-		if !@started
-			@font.render("Click To Start...", true, [255,255,255]).blit(@screen,[@screen.width/2-@font.size_text("Click To Start...")[0]/2,@screen.height/2])
-		end
-		
 		@screen.flip
 	end
 	
