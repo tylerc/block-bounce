@@ -1,14 +1,16 @@
 require 'rubygame'
 require 'yaml'
+Rubygame::TTF.setup
 
 class Game
 	def initialize
-		@screen = Rubygame::Screen.new [512,608], 0, [Rubygame::HWSURFACE, Rubygame::DOUBLEBUF]
+		@screen = Rubygame::Screen.new [512,650], 0, [Rubygame::HWSURFACE, Rubygame::DOUBLEBUF]
 		@screen.title = "Block Bounce!"
 		
 		@queue = Rubygame::EventQueue.new
 		@clock = Rubygame::Clock.new
 		@clock.target_framerate = 30
+		@font = Rubygame::TTF.new 'FreeSans.ttf', 56
 		
 		load_level ARGV[0]
 		@player = Rubygame::Surface.load "sprites/player.bmp"
@@ -16,7 +18,7 @@ class Game
 		@x = @screen.width/2
 		@y = @screen.height-32
 		@ballx = @screen.width/2
-		@bally = 590
+		@bally = @y-@ball.height
 		@ball_speed = 10 # do not set to 1 (the ball wont move...)
 		@angle = 220
 		@hope = 1
@@ -77,9 +79,9 @@ class Game
                 	@life -= 1
                 	
                 	# reset
-			@ballx = @screen.width/2
-			@bally = 590
-			@angle = 30
+			@ballx = @x
+			@bally = @y-@ball.height
+			@angle = 0
                 end
                 
                 # Check for collision with paddle
@@ -140,6 +142,12 @@ class Game
 		# draw the player and ball
 		@player.blit @screen, [@x,@y]
 		@ball.blit @screen, [@ballx, @bally]
+		
+		# Draw the life "bar"
+		@font.render("Life: ", true, [255,255,255]).blit(@screen,[@screen.width-220,5])
+		@life.times do |x|
+			@ball.blit @screen, [@screen.width-100+25*x,50]
+		end
 		
 		@screen.flip
 	end
