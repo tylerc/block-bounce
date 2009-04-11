@@ -178,6 +178,7 @@ class Game
 	def load_level name
 		@sprites = []
 		@sprite_files = []
+		begin
 		input = File.new "#{name}.lvl"
 		data = YAML.load(input)
 		data[:sprite_files].length.times do |sprite|
@@ -187,6 +188,10 @@ class Game
 		@lvl_sprites = data[:lvl_sprites].clone
 		@name = data[:name]
 		input.close
+		rescue Errno::ENOENT
+			puts "Could not load #{name}.lvl"
+			exit
+		end
 		
 		@sprites_health = {}
 		begin
@@ -194,7 +199,7 @@ class Game
 		data = YAML.load(input)
 		input.close
 		rescue Errno::ENOENT
-		puts 'No level properties defined (found in level_name.yml)'
+		puts 'No level properties defined (found in #{name}.yml)'
 		puts 'using defaults...'
 		data = {}
 		data[:health] = {}
