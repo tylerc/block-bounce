@@ -189,10 +189,19 @@ class Game
 		input.close
 		
 		@sprites_health = {}
+		begin
 		input = File.new "#{name}.yml"
 		data = YAML.load(input)
-		data[:health]
 		input.close
+		rescue Errno::ENOENT
+		puts 'No level properties defined (found in level_name.yml)'
+		puts 'using defaults...'
+		data = {}
+		data[:health] = {}
+		@lvl_sprites.values.uniq.length.times do |x|
+			data[:health][x] = 1
+		end
+		end
 		@sprites_health = @lvl_sprites.clone
 		@sprites_health.each_key do |key|
 			#value = data[:health][value]
