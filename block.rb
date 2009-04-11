@@ -154,6 +154,10 @@ class Game
 			@ball.blit @screen, [@screen.width-100+25*x,50]
 		end
 		
+		if !@started
+			@font.render("Click To Start...", true, [255,255,255]).blit(@screen,[@screen.width/2-@font.size_text("Click To Start...")[0]/2,@screen.height/2])
+		end
+		
 		@screen.flip
 	end
 	
