@@ -15,6 +15,7 @@ Version < 1.0 (alpha)
 (planned alpha4) * Win condition (all tiles destroyed)
 (in alpha4) * Be able to lose balls to the bottom of the screen
 (planned alpha4) * Fail condition (3 balls lost)
+(planned alpha4) * Have a "Click To Start" message
 ---
 (planned alpha5) * interface to load levels (levels to chose from are .lvl files)
 ---
