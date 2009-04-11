@@ -1,0 +1,6 @@
+== Main Game (block.rb)
+
+== Level Editor (level.rb)
+* The Editor crashes if you click on a "loaded" block that isn't loaded
+
+== Sprite Editor (sprite.rb)
