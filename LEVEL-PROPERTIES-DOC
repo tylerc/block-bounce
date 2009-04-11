@@ -1,0 +1,10 @@
+This document describes the YAML markup nessisary for .lvl files.
+
+Each level (.lvl file) will have an accociated .yml file with the same name. (i.e. level1.lvl with have a level1.yml file)
+Each .yml file will be defined as a ruby hash. (example hash will be called "data")
+
+Properties.
+	1: Health
+	data[:health][sprite_number] = health
+	where sprite_number is the index number of the loaded sprite
+	where health is the number of desired hits it takes to destroy a tile
