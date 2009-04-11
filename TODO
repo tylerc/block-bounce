@@ -13,7 +13,7 @@ Version < 1.0 (alpha)
 ---
 (planned alpha4) * Blocks take 2 hits to die (Start of block properties)
 (planned alpha4) * Win condition (all tiles destroyed)
-(planned alpha4) * Be able to lose balls to the bottom of the screen
+(in alpha4) * Be able to lose balls to the bottom of the screen
 (planned alpha4) * Fail condition (3 balls lost)
 ---
 (planned alpha5) * interface to load levels (levels to chose from are .lvl files)
