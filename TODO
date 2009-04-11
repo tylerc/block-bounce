@@ -12,7 +12,7 @@ Version < 1.0 (alpha)
 (in alpha3) * Have a ball destroy tiles
 ---
 (planned alpha4) * Blocks take 2 hits to die (Start of block properties)
-(planned alpha4) * Win condition (all tiles destroyed)
+(in alpha4) * Win condition (all tiles destroyed)
 (in alpha4) * Be able to lose balls to the bottom of the screen
 (in alpha4) * Fail condition (3 balls lost)
 (in alpha4) * Have a "Click To Start" message
