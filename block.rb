@@ -209,8 +209,13 @@ class Game
 		end
 		@sprites_health = @lvl_sprites.clone
 		@sprites_health.each_key do |key|
-			#value = data[:health][value]
-			@sprites_health[key] = data[:health][@sprites_health[key]]
+			if data[:health][@sprites_health[key]] != nil
+				@sprites_health[key] = data[:health][@sprites_health[key]]
+			else
+				puts "A property wasn't defined"
+				puts 'defaulting to 1...'
+				@sprites_health[key] = 1
+			end
 		end
 	end
 	
