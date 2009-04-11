@@ -135,10 +135,10 @@ class Game
 				@hope *= -1
 			end
 			
-			if @lvl_sprites[sprite] == 0
+			@sprites_health[sprite] -= 1
+			
+			if @sprites_health[sprite] == 0
 				@lvl_sprites.delete sprite
-			else
-				@lvl_sprites[sprite] -= 1
 			end
 		end
 	end
@@ -187,6 +187,17 @@ class Game
 		@lvl_sprites = data[:lvl_sprites].clone
 		@name = data[:name]
 		input.close
+		
+		@sprites_health = {}
+		input = File.new "#{name}.yml"
+		data = YAML.load(input)
+		data[:health]
+		input.close
+		@sprites_health = @lvl_sprites.clone
+		@sprites_health.each_key do |key|
+			#value = data[:health][value]
+			@sprites_health[key] = data[:health][@sprites_health[key]]
+		end
 	end
 	
 	def move
