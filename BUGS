@@ -1,6 +1,12 @@
 == Main Game (block.rb)
 
 == Level Editor (level.rb)
-* The Editor crashes if you click on a "loaded" block that isn't loaded
+(high) * The Editor crashes if you click on a "loaded" block that isn't loaded
+(medium) * 'q' is used to cancel commands, what if you need to type 'q'?
+(medium) * crash when using line tool over an empty tile
+(low) * no way to save work if there is a crash. problem with this: data may be corrupted
+(high) * crashes if you load a level that doesn't exist
+(high) * crashes if you load a bitmap that doesn't exist
+(medium) * most file paths go offscreen
 
 == Sprite Editor (sprite.rb)
