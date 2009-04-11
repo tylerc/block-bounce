@@ -15,6 +15,10 @@ class Game
 		load_level ARGV[0]
 		@player = Rubygame::Surface.load "sprites/player.bmp"
 		@ball = Rubygame::Surface.load 'sprites/ball.bmp'
+		reset
+	end
+	
+	def reset
 		@x = @screen.width/2
 		@y = @screen.height-32
 		@ballx = @screen.width/2
@@ -82,11 +86,7 @@ class Game
                 # Bottom
                 if @bally+@ball.height >= @screen.height
                 	@life -= 1
-                	
-                	# reset
-			@ballx = @x
-			@bally = @y-@ball.height
-			@angle = 0
+                	reset
                 end
                 
                 # Check for collision with paddle
