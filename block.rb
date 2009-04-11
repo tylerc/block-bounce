@@ -21,6 +21,7 @@ class Game
 		@angle = 220
 		@hope = 1
 		@hope2 = 1
+		@life = 3
 	end
 	
 	def run
@@ -73,6 +74,8 @@ class Game
                 
                 # Bottom
                 if @bally+@ball.height >= @screen.height
+                	@life -= 1
+                	
                 	# reset
 			@ballx = @screen.width/2
 			@bally = 590
