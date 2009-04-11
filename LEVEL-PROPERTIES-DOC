@@ -9,3 +9,16 @@ Properties.
 	data[:health][sprite_number] = health
 	where sprite_number is the index number of the loaded sprite
 	where health is the number of desired hits it takes to destroy a tile
+	
+How to create:
+	Until a proper GUI editor is made for these files, you will have to either write them by hand, or using ruby.
+	Opening up irb and doing this:
+		data = {}
+		data[:health] = {}
+	Should set you up, all you have to do is fill in the actuall properties
+	This code should save your file:
+		require 'yaml'
+		output = File.new 'mylvl.yml', 'w'
+		output.puts YAML.dump(data)
+		output.close
+	Place the outputted file in the directory with you .lvl file, and you're done!
