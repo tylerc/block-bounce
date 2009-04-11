@@ -15,10 +15,10 @@ class Game
 		load_level ARGV[0]
 		@player = Rubygame::Surface.load "sprites/player.bmp"
 		@ball = Rubygame::Surface.load 'sprites/ball.bmp'
-		reset
+		reset true
 	end
 	
-	def reset
+	def reset life=false
 		@x = @screen.width/2
 		@y = @screen.height-32
 		@ballx = @screen.width/2
@@ -27,8 +27,10 @@ class Game
 		@angle = 220
 		@hope = 1
 		@hope2 = 1
-		@life = 3
 		@started = false
+		if life
+			@life = 3
+		end
 	end
 	
 	def run
@@ -133,7 +135,11 @@ class Game
 				@hope *= -1
 			end
 			
-			@lvl_sprites.delete sprite
+			if @lvl_sprites[sprite] == 0
+				@lvl_sprites.delete sprite
+			else
+				@lvl_sprites[sprite] -= 1
+			end
 		end
 	end
 	
