@@ -24,6 +24,7 @@ class Game
 		@hope = 1
 		@hope2 = 1
 		@life = 3
+		@started = false
 	end
 	
 	def run
@@ -49,12 +50,16 @@ class Game
 					end
 				when Rubygame::MouseMotionEvent
 					ev.pos[0] < @screen.width-@player.width ? @x = ev.pos[0] : @x = 448
+				when Rubygame::MouseUpEvent
+					@started = true
 			end
 		end
 		
 		#update ball position
-		@ballx += move[0]
-		@bally += move[1]
+		if @started
+			@ballx += move[0]
+			@bally += move[1]
+		end
                 # Check for collisions with borders
                 
                 # Left
