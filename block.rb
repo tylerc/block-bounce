@@ -199,7 +199,7 @@ class Game
 		data = YAML.load(input)
 		input.close
 		rescue Errno::ENOENT
-		puts 'No level properties defined (found in #{name}.yml)'
+		puts "No level properties defined (found in #{name}.yml)"
 		puts 'using defaults...'
 		data = {}
 		data[:health] = {}
