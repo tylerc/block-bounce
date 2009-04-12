@@ -16,6 +16,7 @@ Version < 1.0 (alpha)
 (in alpha4) * Be able to lose balls to the bottom of the screen
 (in alpha4) * Fail condition (3 balls lost)
 (in alpha4) * Have a "Click To Start" message
+(planned alpha4) * Level Properties Editor
 (planned alpha4) * Fix all bugs found up to this point
 ---
 (planned alpha5) * interface to load levels (levels to chose from are .lvl files)
