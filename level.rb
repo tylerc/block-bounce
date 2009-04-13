@@ -135,7 +135,9 @@ class LevelEditor
 								end
 							end
 						when Rubygame::K_LCTRL
-							@dragging = true
+							if @sel != nil
+								@dragging = true
+							end
 					end
 				when Rubygame::KeyUpEvent
 					case ev.key
