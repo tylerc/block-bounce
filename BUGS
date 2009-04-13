@@ -1,7 +1,6 @@
 == Main Game (block.rb)
 
 == Level Editor (level.rb)
-(high) * crashes if you load a level that doesn't exist
 (medium) * most file paths go offscreen
 (medium) * you have to type file extensions (defualt to .lvl and .bmp)
 
