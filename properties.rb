@@ -22,11 +22,11 @@ hbox.pack_start_defaults(level_label)
 hbox.pack_start_defaults(level)
 level_button = Gtk::Button.new("Load Level")
 labels = []
-20.times do |x|
+19.times do |x|
 	labels[x] = Gtk::Label.new("")
 end
 entries = []
-20.times do |x|
+19.times do |x|
 	entries[x] = Gtk::Entry.new
 end
 level_button.signal_connect("clicked") do
@@ -38,7 +38,6 @@ level_button.signal_connect("clicked") do
 	data[:sprite_files].length.times do |x|
 		labels[x].text = data[:sprite_files][x]
 	end
-	
 	begin
 	input = File.new "levels/lvl2.yml"
 	data = YAML.load(input)
@@ -46,20 +45,34 @@ level_button.signal_connect("clicked") do
 	data[:health].length.times do |x|
 		entries[x].text = data[:health][x].to_s
 	end
+	@health = data[:health].clone
 	rescue Errno::ENOENT
 		length.times do |x|
 			entries[x].text = "1"
 		end
 	end
 end
+save_button = Gtk::Button.new("Save")
+save_button.signal_connect("clicked") do
+	@health.length.times do |x|
+		@health[x] = entries[x].text.to_i
+	end
+	data = {}
+	data[:health] = @health.clone
+	
+	output = File.new 'levels/lvl2.yml', 'w'
+	output.puts YAML.dump(data)
+	output.close
+end
 
 table.attach(hbox,0,1,0,1)
 table.attach(level_button,1,2,0,1)
+table.attach(save_button,1,2,1,2)
 labels.length.times do |x|
-	table.attach(labels[x],0,1,1+x,2+x)
+	table.attach(labels[x],0,1,2+x,3+x)
 end
 entries.length.times do |x|
-	table.attach(entries[x],1,2,1+x,2+x)
+	table.attach(entries[x],1,2,2+x,3+x)
 end
 
 window.border_width = 5
