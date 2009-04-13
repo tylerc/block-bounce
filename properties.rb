@@ -18,11 +18,16 @@ level = Gtk::Entry.new
 level_label = Gtk::Label.new("Level:")
 hbox.pack_start_defaults(level_label)
 hbox.pack_start_defaults(level)
+level_button = Gtk::Button.new("Load Level")
+level_button.signal_connect("clicked") do
+	
+end
 
 table.attach(hbox,0,1,0,1)
+table.attach(level_button,1,2,0,1)
+
 
 window.border_width = 5
-window.set_size_request(500,300)
 window.title = "Level Properties Editor"
 window.add(table)
 window.show_all
