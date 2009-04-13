@@ -35,14 +35,10 @@ level_button.signal_connect("clicked") do
 	data = YAML.load(input)
 	input.close
 	
-	p data[:sprite_files]
 	data[:sprite_files].length.times do |x|
-		#table.attach(Gtk::Label.new(data[:sprite_files][x]),0,1,1+x,2+x)
 		labels[x].text = data[:sprite_files][x]
 	end
 end
-
-# 
 
 table.attach(hbox,0,1,0,1)
 table.attach(level_button,1,2,0,1)
