@@ -62,8 +62,12 @@ class LevelEditor
 						when Rubygame::K_RETURN
 							if @cur_edit != nil
 								if @cur_edit == :load_sprite
+									begin
 									@sprites[@sprites.length] = Rubygame::Surface.load @buf
 									@sprite_files += [@buf]
+									rescue Rubygame::SDLError
+										puts "Error: Couldn't load sprite"
+									end
 								end
 								if @cur_edit == :save_level_with_name
 									@name = @buf
