@@ -10,5 +10,9 @@
 (medium) * most file paths go offscreen
 (medium) * you have to type file extensions (defualt to .lvl and .bmp)
 
+== Level Properties Editor (properties.rb)
+(high) * Crashes if you enter in a level that doesn't exisit
+(high) * Does nothing if the value in the edit box is not a number
+
 == Sprite Editor (sprite.rb)
 (tool is discontinued... but still useful, continue to track?) - No
