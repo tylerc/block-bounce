@@ -148,10 +148,10 @@ class LevelEditor
 							@selx = (ev.pos[0]/@tile_size_x).to_i
 							@sely = (ev.pos[1]/@tile_size_y).to_i
 							puts "#{@selx}, #{@sely}"
-							if @sely >= 17
+							if @sely >= 17 and @sel != nil
 								@sel = @sely-17+(5*@selx)
-							elsif @sely <= 15
-								@sel != nil ? @lvl_sprites[[@selx,@sely]] = @sel : nil
+							elsif @sely <= 15 and @sel != nil
+								@lvl_sprites[[@selx,@sely]] = @sel
 							end
 						when 3
 							@selx = (ev.pos[0]/@tile_size_x).to_i
