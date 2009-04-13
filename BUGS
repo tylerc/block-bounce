@@ -3,7 +3,6 @@
 == Level Editor (level.rb)
 
 == Level Properties Editor (properties.rb)
-(high) * Crashes if you enter in a level that doesn't exisit
 (high) * Does nothing if the value in the edit box is not a number
 
 == Sprite Editor (sprite.rb)

@@ -30,27 +30,32 @@ entries = []
 	entries[x] = Gtk::Entry.new
 end
 level_button.signal_connect("clicked") do
-	input = File.new "#{level.text}.lvl"
-	data = YAML.load(input)
-	input.close
-	length = data[:sprite_files].length
-	data[:sprite_files].length.times do |x|
-		labels[x].text = data[:sprite_files][x]
+	begin
+		input = File.new "#{level.text}.lvl"
+		data = YAML.load(input)
+		input.close
+		length = data[:sprite_files].length
+		data[:sprite_files].length.times do |x|
+			labels[x].text = data[:sprite_files][x]
+		end
+	rescue
+		puts "Could not load level"
+		length = 0
 	end
 	begin
-	input = File.new "#{level.text}.yml"
-	data = YAML.load(input)
-	input.close
-	data[:health].length.times do |x|
-		entries[x].text = data[:health][x].to_s
-	end
-	@health = data[:health].clone
-	rescue Errno::ENOENT
-		@health = {}
-		length.times do |x|
-			entries[x].text = "1"
-			@health[x] = 1
+		input = File.new "#{level.text}.yml"
+		data = YAML.load(input)
+		input.close
+		data[:health].length.times do |x|
+			entries[x].text = data[:health][x].to_s
 		end
+		@health = data[:health].clone
+		rescue Errno::ENOENT
+			@health = {}
+			length.times do |x|
+				entries[x].text = "1"
+				@health[x] = 1
+			end
 	end
 end
 save_button = Gtk::Button.new("Save")
