@@ -19,8 +19,8 @@ Controls
 	right moust button - Deletes a tile
 	s - saves the level being edited
 	a - saves the level edited under the specified name
-	l - loads a level
-	left shift - asks for the name of a sprite and loads it
+	l - loads a level (do not enter the .lvl file extension)
+	left shift - asks for the name of a sprite and loads it (all sprites are bmp, do not enter a file extensions
 	h - toggles the display of the grid
 	Ctrl + left mouse button - line tool. fills the grids you move
 		to with the sprite you started with (until Ctrl is released)
