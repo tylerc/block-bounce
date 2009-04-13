@@ -10,7 +10,22 @@ Properties.
 	where sprite_number is the index number of the loaded sprite
 	where health is the number of desired hits it takes to destroy a tile
 	
-How to create:
+How to create with properties editor:
+	You need to have ruby-GNOME2 installed
+	run the command:
+		ruby properties.rb
+	Enter the path to the level in the input box labeled "Level"
+	LEAVE OUT THE FILE EXTENSION!
+	Press Load Level
+	
+	It will then show the sprites you used for that level, along with their health values
+	change to the desired settings
+	
+	press the Save button.
+	
+	You are now done, you can edit another level's properties or quit the application
+	
+How to create via ruby script/irb:
 	Until a proper GUI editor is made for these files, you will have to either write them by hand, or using ruby.
 	Opening up irb and doing this:
 		data = {}
