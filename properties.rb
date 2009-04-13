@@ -31,12 +31,25 @@ entries = []
 end
 level_button.signal_connect("clicked") do
 	#input = File.new "#{level.text}.lvl"
-	input = File.new "levels/lvl.lvl"
+	input = File.new "levels/lvl2.lvl"
 	data = YAML.load(input)
 	input.close
-	
+	length = data[:sprite_files].length
 	data[:sprite_files].length.times do |x|
 		labels[x].text = data[:sprite_files][x]
+	end
+	
+	begin
+	input = File.new "levels/lvl2.yml"
+	data = YAML.load(input)
+	input.close
+	data[:health].length.times do |x|
+		entries[x].text = data[:health][x].to_s
+	end
+	rescue Errno::ENOENT
+		length.times do |x|
+			entries[x].text = "1"
+		end
 	end
 end
 
