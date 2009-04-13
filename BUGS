@@ -1,7 +1,6 @@
 == Main Game (block.rb)
 
 == Level Editor (level.rb)
-(medium) * most file paths go offscreen
 (medium) * you have to type file extensions (defualt to .lvl and .bmp)
 
 == Level Properties Editor (properties.rb)

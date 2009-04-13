@@ -10,7 +10,7 @@ class LevelEditor
 		@queue = Rubygame::EventQueue.new
 		@clock = Rubygame::Clock.new
 		@clock.target_framerate = 30
-		@font = Rubygame::TTF.new 'FreeSans.ttf', 72
+		@font = Rubygame::TTF.new 'FreeSans.ttf', 42
 		
 		@tile_size_x = 64
 		@tile_size_y = 32
