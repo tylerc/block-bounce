@@ -30,8 +30,7 @@ entries = []
 	entries[x] = Gtk::Entry.new
 end
 level_button.signal_connect("clicked") do
-	#input = File.new "#{level.text}.lvl"
-	input = File.new "levels/lvl2.lvl"
+	input = File.new "#{level.text}.lvl"
 	data = YAML.load(input)
 	input.close
 	length = data[:sprite_files].length
@@ -39,7 +38,7 @@ level_button.signal_connect("clicked") do
 		labels[x].text = data[:sprite_files][x]
 	end
 	begin
-	input = File.new "levels/lvl2.yml"
+	input = File.new "#{level.text}.yml"
 	data = YAML.load(input)
 	input.close
 	data[:health].length.times do |x|
@@ -47,8 +46,10 @@ level_button.signal_connect("clicked") do
 	end
 	@health = data[:health].clone
 	rescue Errno::ENOENT
+		@health = {}
 		length.times do |x|
 			entries[x].text = "1"
+			@health[x] = 1
 		end
 	end
 end
@@ -60,7 +61,7 @@ save_button.signal_connect("clicked") do
 	data = {}
 	data[:health] = @health.clone
 	
-	output = File.new 'levels/lvl2.yml', 'w'
+	output = File.new "#{level.text}.yml", 'w'
 	output.puts YAML.dump(data)
 	output.close
 end
