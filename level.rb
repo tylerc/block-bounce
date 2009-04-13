@@ -95,7 +95,7 @@ class LevelEditor
 								@cur_edit = nil
 								@buf2 = " "
 							end
-						when Rubygame::K_Q
+						when Rubygame::K_SEMICOLON
 							@buf = " "
 							@cur_edit = nil
 							@buf2 = " "

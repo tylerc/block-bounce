@@ -1,7 +1,6 @@
 == Main Game (block.rb)
 
 == Level Editor (level.rb)
-(medium) * 'q' is used to cancel commands, what if you need to type 'q'?
 (medium) * crash when using line tool over an empty tile
 (low) * no way to save work if there is a crash. problem with trying: data may be corrupted
 (high) * crashes if you load a level that doesn't exist
