@@ -17,7 +17,7 @@ Version < 1.0 (alpha)
 (in alpha4) * Fail condition (3 balls lost)
 (in alpha4) * Have a "Click To Start" message
 (in alpha4) * Level Properties Editor
-(planned alpha4) * Fix all bugs found up to this point
+(in alpha4) * Fix all bugs found up to this point
 ---
 (planned alpha5) * interface to load levels (levels to chose from are .lvl files)
 ---

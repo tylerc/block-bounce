@@ -60,15 +60,21 @@ level_button.signal_connect("clicked") do
 end
 save_button = Gtk::Button.new("Save")
 save_button.signal_connect("clicked") do
+	save = true
 	@health.length.times do |x|
 		@health[x] = entries[x].text.to_i
+		@health[x] == 0 ? save = false : nil
 	end
-	data = {}
-	data[:health] = @health.clone
+	if save
+		data = {}
+		data[:health] = @health.clone
 	
-	output = File.new "#{level.text}.yml", 'w'
-	output.puts YAML.dump(data)
-	output.close
+		output = File.new "#{level.text}.yml", 'w'
+		output.puts YAML.dump(data)
+		output.close
+	else
+		puts "Values can't be Strings or 0"
+	end
 end
 
 table.attach(hbox,0,1,0,1)

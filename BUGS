@@ -3,7 +3,6 @@
 == Level Editor (level.rb)
 
 == Level Properties Editor (properties.rb)
-(high) * Does nothing if the value in the edit box is not a number
 
 == Sprite Editor (sprite.rb)
 (tool is discontinued... but still useful, continue to track?) - No
