@@ -63,7 +63,7 @@ class LevelEditor
 							if @cur_edit != nil
 								if @cur_edit == :load_sprite
 									begin
-									@sprites[@sprites.length] = Rubygame::Surface.load @buf
+									@sprites[@sprites.length] = Rubygame::Surface.load "#{@buf}.bmp"
 									@sprite_files += [@buf]
 									rescue
 										puts "Error: Couldn't load sprite"
