@@ -22,6 +22,7 @@ ruby -rubygems block.rb levels/lvl2
 * Your mouse moves the blue paddle
 * You goal is to destroy all the blocks on the screen
 * Press 'p' to pause the game
+* Press Escape (ESC) to quit
 * HINT: The ball bounces at a different angle depending on where it hits the paddle
 
 == Running The Level Editor

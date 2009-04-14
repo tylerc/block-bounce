@@ -18,6 +18,7 @@ class Game
 		reset true
 		
 		@paused = false
+		@quitting = false
 	end
 	
 	def reset life=false
@@ -37,15 +38,48 @@ class Game
 	
 	def run
 		loop do
-			if not @paused
+			if !@paused and !@quitting
 				update
 				draw
-			else
+			end
+			if @paused and not @quitting
 				update_paused
 				draw_paused
 			end
+			if @quitting
+				update_quitting
+				draw_quitting
+			end
 			@clock.tick
 		end
+	end
+	
+	def update_quitting
+		@queue.each do |ev|
+			case ev	
+				when Rubygame::QuitEvent
+					Rubygame.quit
+					exit
+				when Rubygame::KeyDownEvent
+					case ev.key
+						when Rubygame::K_E
+							eval STDIN.gets
+						when Rubygame::K_Y
+							Rubygame.quit
+							exit
+						when Rubygame::K_N
+							@quitting = false
+					end
+			end
+		end
+	end
+	
+	def draw_quitting
+		@screen.fill [0,0,0]
+		@font.render("Are you sure", true, [255, 255, 255]).blit(@screen,[@screen.width/2-@font.size_text("Are you sure")[0]/2,@screen.height/2-100])
+		@font.render("You want to Quit?", true, [255, 255, 255]).blit(@screen,[@screen.width/2-@font.size_text("You want to Quit?")[0]/2,@screen.height/2])
+		@font.render("(Y/N)", true, [255, 255, 255]).blit(@screen,[@screen.width/2-@font.size_text("(Y/N)")[0]/2,@screen.height/2+100])
+		@screen.flip
 	end
 	
 	def update_paused
@@ -57,14 +91,12 @@ class Game
 				when Rubygame::KeyDownEvent
 					case ev.key
 						when Rubygame::K_ESCAPE
-							@queue.post(Rubygame::QuitEvent.new)
+							@quitting = true
 						when Rubygame::K_E
 							eval STDIN.gets
 						when Rubygame::K_P
 							@paused = false
 					end
-				when Rubygame::MouseUpEvent
-					@paused = false
 			end
 		end
 	end
@@ -84,7 +116,7 @@ class Game
 				when Rubygame::KeyDownEvent
 					case ev.key
 						when Rubygame::K_ESCAPE
-							@queue.post(Rubygame::QuitEvent.new)
+							@quitting = true
 						when Rubygame::K_E
 							eval STDIN.gets
 						when Rubygame::K_P
