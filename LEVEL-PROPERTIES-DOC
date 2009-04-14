@@ -11,7 +11,7 @@ Properties.
 	where health is the number of desired hits it takes to destroy a tile
 	
 How to create with properties editor:
-	You need to have ruby-GNOME2 installed
+	You need to have ruby-GNOME2 installed (http://ruby-gnome2.sourceforge.jp/hiki.cgi?Install+Guide )
 	run the command:
 		ruby properties.rb
 	Enter the path to the level in the input box labeled "Level"
