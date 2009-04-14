@@ -74,7 +74,7 @@ class Game
 		@screen.fill [0,0,0]
 		loading_font = Rubygame::TTF.new 'FreeSans.ttf', 20
 		@levels.each do |level|
-			@screen.draw_box([@screen.width/2-loading_font.size_text(level)[0]/2,35*@levels.index(level)],[@screen.width/2+loading_font.size_text(level)[0]/2,35*@levels.index(level)+loading_font.size_text(level)[1]],[0,255,255])
+			@screen.draw_box([@screen.width/2-loading_font.size_text(level)[0]/2-5,35*@levels.index(level)],[@screen.width/2+loading_font.size_text(level)[0]/2+5,35*@levels.index(level)+loading_font.size_text(level)[1]],[0,255,255])
 			loading_font.render(level, true, [255, 255, 255]).blit(@screen,[@screen.width/2-loading_font.size_text(level)[0]/2,35*@levels.index(level)])
 		end
 		@screen.flip
