@@ -16,6 +16,8 @@ class Game
 		@player = Rubygame::Surface.load "sprites/player.bmp"
 		@ball = Rubygame::Surface.load 'sprites/ball.bmp'
 		reset true
+		
+		@paused = false
 	end
 	
 	def reset life=false
@@ -35,10 +37,24 @@ class Game
 	
 	def run
 		loop do
-			update
-			draw
+			if not @paused
+				update
+				draw
+			else
+				update_paused
+				draw_paused
+			end
 			@clock.tick
 		end
+	end
+	
+	def update_paused
+	end
+	
+	def draw_paused
+		@screen.fill [0,0,0]
+		
+		@screen.flip
 	end
 	
 	def update
