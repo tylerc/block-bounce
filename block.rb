@@ -55,7 +55,7 @@ class Game
 							eval STDIN.gets
 					end
 				when Rubygame::MouseMotionEvent
-					ev.pos[0] < @screen.width-@player.width ? @x = ev.pos[0]-@player.width/2 : @x = 448
+					@x = ev.pos[0]-@player.width/2
 				when Rubygame::MouseUpEvent
 					@started = true
 			end
