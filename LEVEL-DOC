@@ -3,6 +3,7 @@ This is the documentation for the Level Editor
 Abstract
 	This program allows you to create levels for the block bounce game
 	These levels are made of sprites from the sprite editor (see SPRITE-DOC for more details)
+	Levels also have level properties. See LEVEL-PROPERTIES-DOC for more information
 
 Program Start
 	The Level Editor starts via the command
