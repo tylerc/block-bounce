@@ -20,7 +20,7 @@ Version < 1.0 (alpha)
 (in alpha4) * Fix all bugs found up to this point
 ---
 (planned alpha5) * interface to load levels (levels to chose from are .lvl files)
-(planned alpha5) * Add a way to pause the game
+(in alpha5) * Add a way to pause the game
 (planned alpha5) * Add an "Are you sure you want to quit?" message
 ---
 (planned alpha6) * Progressable levels (you start with level one, beat it, automatically move to level two)

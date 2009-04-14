@@ -49,11 +49,29 @@ class Game
 	end
 	
 	def update_paused
+		@queue.each do |ev|
+			case ev
+				when Rubygame::QuitEvent
+					Rubygame.quit
+					exit
+				when Rubygame::KeyDownEvent
+					case ev.key
+						when Rubygame::K_ESCAPE
+							@queue.post(Rubygame::QuitEvent.new)
+						when Rubygame::K_E
+							eval STDIN.gets
+						when Rubygame::K_P
+							@paused = false
+					end
+				when Rubygame::MouseUpEvent
+					@paused = false
+			end
+		end
 	end
 	
 	def draw_paused
 		@screen.fill [0,0,0]
-		
+		@font.render("Paused", true, [255, 255, 255]).blit(@screen,[@screen.width/2-@font.size_text("Paused")[0]/2,@screen.height/2])
 		@screen.flip
 	end
 	
@@ -69,6 +87,8 @@ class Game
 							@queue.post(Rubygame::QuitEvent.new)
 						when Rubygame::K_E
 							eval STDIN.gets
+						when Rubygame::K_P
+							@paused = true
 					end
 				when Rubygame::MouseMotionEvent
 					@x = ev.pos[0]-@player.width/2
