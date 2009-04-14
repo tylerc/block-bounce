@@ -19,13 +19,11 @@ class Game
 					@levels += [x]
 				end
 			end
-			puts @levels
 		else
 			puts 'Error! Could not load levels'
 			exit
 		end
 		@levels.reverse!
-		load_level ARGV[0]
 		@player = Rubygame::Surface.load "sprites/player.bmp"
 		@ball = Rubygame::Surface.load 'sprites/ball.bmp'
 		reset true

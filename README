@@ -16,7 +16,7 @@ I am making this for a few reasons:
 (Note: This game is tested and developed on Linux with Ruby 1.8.7)
 You need Rubygame installed (as a gem) to play the game
 To run the game use the command:
-ruby -rubygems block.rb levels/lvl2
+ruby -rubygems block.rb
 
 == Playing The Game
 * Your mouse moves the blue paddle
