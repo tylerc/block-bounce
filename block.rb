@@ -12,6 +12,18 @@ class Game
 		@clock.target_framerate = 30
 		@font = Rubygame::TTF.new 'FreeSans.ttf', 56
 		
+		@levels = []
+		if File.directory? 'levels'
+			Dir.entries('levels/.').each do |x|
+				if x != '..' and x != '.' and x[-3..-1] == 'lvl'
+					@levels += [x]
+				end
+			end
+			puts @levels
+		else
+			puts 'Error! Could not load levels'
+			exit
+		end
 		load_level ARGV[0]
 		@player = Rubygame::Surface.load "sprites/player.bmp"
 		@ball = Rubygame::Surface.load 'sprites/ball.bmp'
