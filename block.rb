@@ -24,12 +24,13 @@ class Game
 			puts 'Error! Could not load levels'
 			exit
 		end
+		@levels.reverse!
 		load_level ARGV[0]
 		@player = Rubygame::Surface.load "sprites/player.bmp"
 		@ball = Rubygame::Surface.load 'sprites/ball.bmp'
 		reset true
 		
-		@state = :playing
+		@state = :loading
 	end
 	
 	def reset life=false
@@ -61,7 +62,37 @@ class Game
 				update_quitting
 				draw_quitting
 			end
+			if @state == :loading
+				update_loading
+				draw_loading
+			end
 			@clock.tick
+		end
+	end
+	
+	def draw_loading
+		@screen.fill [0,0,0]
+		loading_font = Rubygame::TTF.new 'FreeSans.ttf', 20
+		@levels.each do |level|
+			loading_font.render(level, true, [255, 255, 255]).blit(@screen,[@screen.width/2-loading_font.size_text(level)[0]/2,21*@levels.index(level)])
+		end
+		@screen.flip
+	end
+	
+	def update_loading
+		@queue.each do |ev|
+			case ev	
+				when Rubygame::QuitEvent
+					Rubygame.quit
+					exit
+				when Rubygame::KeyDownEvent
+					case ev.key
+						when Rubygame::K_E
+							eval STDIN.gets
+					end
+				when Rubygame::MouseUpEvent
+					#puts
+			end
 		end
 	end
 	
