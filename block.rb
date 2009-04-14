@@ -29,8 +29,7 @@ class Game
 		@ball = Rubygame::Surface.load 'sprites/ball.bmp'
 		reset true
 		
-		@paused = false
-		@quitting = false
+		@state = :playing
 	end
 	
 	def reset life=false
@@ -50,15 +49,15 @@ class Game
 	
 	def run
 		loop do
-			if !@paused and !@quitting
+			if @state == :playing
 				update
 				draw
 			end
-			if @paused and not @quitting
+			if @state == :paused
 				update_paused
 				draw_paused
 			end
-			if @quitting
+			if @state == :quitting
 				update_quitting
 				draw_quitting
 			end
@@ -80,7 +79,7 @@ class Game
 							Rubygame.quit
 							exit
 						when Rubygame::K_N
-							@quitting = false
+							@state = :playing
 					end
 			end
 		end
@@ -103,11 +102,11 @@ class Game
 				when Rubygame::KeyDownEvent
 					case ev.key
 						when Rubygame::K_ESCAPE
-							@quitting = true
+							@state = :quitting
 						when Rubygame::K_E
 							eval STDIN.gets
 						when Rubygame::K_P
-							@paused = false
+							@state = :playing
 					end
 			end
 		end
@@ -128,11 +127,11 @@ class Game
 				when Rubygame::KeyDownEvent
 					case ev.key
 						when Rubygame::K_ESCAPE
-							@quitting = true
+							@state = :quitting
 						when Rubygame::K_E
 							eval STDIN.gets
 						when Rubygame::K_P
-							@paused = true
+							@state = :paused
 					end
 				when Rubygame::MouseMotionEvent
 					@x = ev.pos[0]-@player.width/2
