@@ -26,6 +26,7 @@ class Game
 		@levels.reverse!
 		@player = Rubygame::Surface.load "sprites/player.bmp"
 		@ball = Rubygame::Surface.load 'sprites/ball.bmp'
+		@title = Rubygame::Surface.load 'bounce.bmp'
 		reset true
 		
 		@state = :loading
@@ -70,10 +71,11 @@ class Game
 	
 	def draw_loading
 		@screen.fill [0,0,0]
+		@title.blit @screen, [0,0]
 		loading_font = Rubygame::TTF.new 'FreeSans.ttf', 20
 		@levels.each do |level|
-			@screen.draw_box([@screen.width/2-loading_font.size_text(level)[0]/2-5,35*@levels.index(level)],[@screen.width/2+loading_font.size_text(level)[0]/2+5,35*@levels.index(level)+loading_font.size_text(level)[1]],[0,255,255])
-			loading_font.render(level, true, [255, 255, 255]).blit(@screen,[@screen.width/2-loading_font.size_text(level)[0]/2,35*@levels.index(level)])
+			@screen.draw_box([@screen.width/2-loading_font.size_text(level)[0]/2-5,35*@levels.index(level)+200],[@screen.width/2+loading_font.size_text(level)[0]/2+5,35*@levels.index(level)+loading_font.size_text(level)[1]+200],[0,255,255])
+			loading_font.render(level, true, [255, 255, 255]).blit(@screen,[@screen.width/2-loading_font.size_text(level)[0]/2,35*@levels.index(level)+200])
 		end
 		@screen.flip
 	end
