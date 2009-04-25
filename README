@@ -23,6 +23,7 @@ ruby -rubygems block.rb
 * You goal is to destroy all the blocks on the screen
 * Press 'p' to pause the game
 * Press Escape (ESC) to quit
+* Click the button with the level name to choose a level (in the menu)
 * HINT: The ball bounces at a different angle depending on where it hits the paddle
 
 == Running The Level Editor
