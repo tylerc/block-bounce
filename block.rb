@@ -168,6 +168,10 @@ class Game
 					@x = ev.pos[0]-@player.width/2
 				when Rubygame::MouseUpEvent
 					@started = true
+					if @lvl_sprites.length == 0 or @life <= 0
+						@state = :loading
+						reset true
+					end
 			end
 		end
 		
@@ -276,11 +280,13 @@ class Game
 			end
 		else
 			@font.render("You got pwned!", true, [255, 255, 255]).blit(@screen,[@screen.width/2-@font.size_text("You got pwned!")[0]/2,@screen.height/2])
+			@font.render("Click To Start...", true, [255,255,255]).blit(@screen,[@screen.width/2-@font.size_text("Click To Start...")[0]/2,@screen.height/2+100])
 		end
 		if @lvl_sprites.length == 0
 			@screen.fill [0,0,0]
 			@font.render("You are an uber", true, [255, 255, 255]).blit(@screen,[@screen.width/2-@font.size_text("You are an uber")[0]/2,@screen.height/2])
 			@font.render("l33t player!", true, [255, 255, 255]).blit(@screen,[@screen.width/2-@font.size_text("l33t player!")[0]/2,@screen.height/2+@font.size_text("l33t player!")[1]])
+			@font.render("Click To Start...", true, [255,255,255]).blit(@screen,[@screen.width/2-@font.size_text("Click To Start...")[0]/2,@screen.height/2+250])
 		end
 		@screen.flip
 	end

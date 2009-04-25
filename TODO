@@ -23,7 +23,7 @@ Version < 1.0 (alpha)
 (planned alpha5) * Beautify level loading interface
 (in alpha5) * Add a way to pause the game
 (in alpha5) * Add an "Are you sure you want to quit?" message
-(planned alpha5) * Go back to level loader when you beat or lose a level
+(in alpha5) * Go back to level loader when you beat or lose a level
 ---
 (planned alpha6) * Progressable levels (you start with level one, beat it, automatically move to level two)
 ---
