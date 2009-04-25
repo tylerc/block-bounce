@@ -1,4 +1,5 @@
 == Main Game (block.rb)
+ * Level loading crashes if you don't click inside a button
 
 == Level Editor (level.rb)
 
