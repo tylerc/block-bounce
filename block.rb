@@ -92,8 +92,11 @@ class Game
 							eval STDIN.gets
 					end
 				when Rubygame::MouseUpEvent
-					load_level("levels/#{@levels[ev.pos[1]/35][0..-5]}")
+					begin
+					load_level("levels/#{@levels[(ev.pos[1]-200)/35][0..-5]}")
 					@state = :playing
+					rescue
+					end
 			end
 		end
 	end
