@@ -76,8 +76,8 @@ class Game
 	def draw_menu
 		@screen.fill [0,0,0]
 		@title.blit @screen, [0,0]
-		font = Rubygame::TTF.new 'FreeSans.ttf', 30
-		font.render("Load Level", true, [255,255,255]).blit(@screen, [100,100])
+		font = Rubygame::TTF.new 'FreeSans.ttf', 25
+		font.render("Load Level", true, [255,255,255]).blit(@screen, [190,200])
 		@screen.flip
 	end
 	
