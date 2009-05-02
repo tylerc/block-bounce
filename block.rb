@@ -75,7 +75,7 @@ class Game
 	
 	def draw_menu
 		@screen.fill [0,0,0]
-		
+		@title.blit @screen, [0,0]
 		@screen.flip
 	end
 	
