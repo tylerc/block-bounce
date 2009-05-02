@@ -29,7 +29,7 @@ class Game
 		@title = Rubygame::Surface.load 'bounce.bmp'
 		reset true
 		
-		@state = :loading
+		@state = :menu
 	end
 	
 	def reset life=false
@@ -65,8 +65,22 @@ class Game
 				update_loading
 				draw_loading
 			end
+			if @state == :menu
+				update_menu
+				draw_menu
+			end
 			@clock.tick
 		end
+	end
+	
+	def draw_menu
+		@screen.fill [0,0,0]
+		
+		@screen.flip
+	end
+	
+	def update_menu
+		
 	end
 	
 	def draw_loading
