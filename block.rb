@@ -80,7 +80,13 @@ class Game
 	end
 	
 	def update_menu
-		
+		@queue.each do |ev|
+			case ev
+				when Rubygame::QuitEvent
+					Rubygame.quit
+					exit
+			end
+		end
 	end
 	
 	def draw_loading
