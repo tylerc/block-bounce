@@ -37,7 +37,7 @@ h2. Running The Level Editor
 h2. Running the Level Properties Editor
 
 * Command: ruby -rubygems properties.rb
-* you need ruby-GNOME2 installed (http://ruby-gnome2.sourceforge.jp/hiki.cgi?Install+Guide )
+* you need "ruby-GNOME2 installed":http://ruby-gnome2.sourceforge.jp/hiki.cgi?Install+Guide
 * See LEVEL-PROPERTIES-DOC for more information
 
 h2. Running The Sprite Editor
