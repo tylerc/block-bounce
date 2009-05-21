@@ -1,7 +1,9 @@
 h2. Block-Bounce
+
 h3. Written by: Tyler Church
 
 h2. Description
+
 This game is a simple breakout clone.
 I am making this for a few reasons:
 
@@ -11,6 +13,7 @@ I am making this for a few reasons:
 * To create a game with physics!
 
 h2. Running The Game
+
 (Note: This game is tested and developed on Linux with Ruby 1.8.7)
 You need Rubygame installed (as a gem) to play the game
 To run the game use the command:
@@ -40,6 +43,7 @@ h2. Running The Sprite Editor
 * See SPRITE-DOC for full information
 
 h2. License
+
 <blockquote>
 Copyright (C) 2009 Tyler Church
 
