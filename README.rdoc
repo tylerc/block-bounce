@@ -10,8 +10,6 @@ I am making this for a few reasons:
 * To create a tile map editor
 * To create a game with physics!
 
-**This game isn't close to release and will be very buggy. You've been warned**
-
 == Running The Game
 (Note: This game is tested and developed on Linux with Ruby 1.8.7)
 You need Rubygame installed (as a gem) to play the game
@@ -32,15 +30,15 @@ See LEVEL-DOC for full information
 See LEVEL-PROPERTIES-DOC for information on adding level properties
 
 == Running the Level Properties Editor
-ruby -rubygems properties.rb
-you need ruby-GNOME2 installed (http://ruby-gnome2.sourceforge.jp/hiki.cgi?Install+Guide )
-See LEVEL-PROPERTIES-DOC for more information
+* Command: ruby -rubygems properties.rb
+* you need ruby-GNOME2 installed (http://ruby-gnome2.sourceforge.jp/hiki.cgi?Install+Guide )
+* See LEVEL-PROPERTIES-DOC for more information
 
 == Running The Sprite Editor
-Note: It is recommended that you do NOT use the sprite editor.
-Just use a different program and save to a .bmp file
-ruby -rubygems sprite.rb [existing-sprite-name]
-See SPRITE-DOC for full information
+* *Note: It is recommended that you do NOT use the sprite editor.
+Just use a different program and save to a .bmp file*
+* ruby -rubygems sprite.rb [existing-sprite-name]
+* See SPRITE-DOC for full information
 
 == License
   Copyright (C) 2009 Tyler Church
