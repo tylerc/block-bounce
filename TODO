@@ -26,6 +26,7 @@ Version < 1.0 (alpha)
 (in alpha5) * Go back to level loader when you beat or lose a level
 ---
 (planned alpha6) * Progressable levels (you start with level one, beat it, automatically move to level two)
+(planned alpha6) * ESC while in-game should quit to main menu, ESC while in menu should exit the game
 ---
 (planned alpha7) * Bouncing Sound
 (planned alpha7) * Subtle background music (loop)
