@@ -15,9 +15,14 @@ I am making this for a few reasons:
 h2. Running The Game
 
 (Note: This game is tested and developed on Linux with Ruby 1.8.7)
-You need Rubygame installed (as a gem) to play the game
+You need Rubygame installed (see below) to play the game
 To run the game use the command:
 ruby -rubygems block.rb
+
+h2. Installing Rubygame
+
+"Mac and Windows Instructions":http://docs.rubygame.org/rdoc/current/
+"Ubuntu/Debian Instructions":http://rubygame.org/wiki/Debian_based_GNU/Linux_Distro_Installation_Guide
 
 h2. Playing The Game
 
