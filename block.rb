@@ -28,6 +28,8 @@ class Game
 		@player = Rubygame::Surface.load "sprites/player.bmp"
 		@ball = Rubygame::Surface.load 'sprites/ball.bmp'
 		@title = Rubygame::Surface.load 'bounce.bmp'
+		
+		# Main menu variables
 		@mouse_y = 0
 		reset true
 		
@@ -79,15 +81,27 @@ class Game
 		@screen.fill [0,0,0]
 		@title.blit @screen, [0,0]
 		color = [255,255,255]
-		if @mouse_y > 200 and @mouse_y < @font2.size_text('Load Level')[1]+200
+		color2 = [255,255,255]
+		color3 = [255,255,255]
+		color4 = [255,255,255]
+		y = @font2.size_text('A')[1]
+		if @mouse_y > 200 and @mouse_y < y+200
 			color = [255, 0, 0]
 		end
-		y = @font2.size_text('A')[1]
+		if @mouse_y > 200+y and @mouse_y < y*2+200
+			color2 = [255, 0, 0]
+		end
+		if @mouse_y > 200+y*2 and @mouse_y < y*3+200
+			color3 = [255, 0, 0]
+		end
+		if @mouse_y > 200+y*3 and @mouse_y < y*4+200
+			color4 = [255, 0, 0]
+		end
 		# Borders are at 190 and 320
 		@font2.render("Start", true, color).blit(@screen, [190+(65-@font2.size_text('Start')[0]/2),200])
-		@font2.render("Continue", true, color).blit(@screen, [190+(65-@font2.size_text('Continue')[0]/2),200+y])
-		@font2.render("Play Level", true, color).blit(@screen, [190+(65-@font2.size_text('Play Level')[0]/2),200+y*2])
-		@font2.render("Options", true, color).blit(@screen, [190+(65-@font2.size_text('Options')[0]/2),200+y*3])
+		@font2.render("Continue", true, color2).blit(@screen, [190+(65-@font2.size_text('Continue')[0]/2),200+y])
+		@font2.render("Play Level", true, color3).blit(@screen, [190+(65-@font2.size_text('Play Level')[0]/2),200+y*2])
+		@font2.render("Options", true, color4).blit(@screen, [190+(65-@font2.size_text('Options')[0]/2),200+y*3])
 		
 		@screen.flip
 	end
