@@ -24,7 +24,6 @@ class Game
 			puts 'Error! Could not load levels'
 			exit
 		end
-		@levels.reverse!
 		@player = Rubygame::Surface.load "sprites/player.bmp"
 		@ball = Rubygame::Surface.load 'sprites/ball.bmp'
 		@title = Rubygame::Surface.load 'bounce.bmp'
@@ -32,6 +31,8 @@ class Game
 		# Main menu variables
 		@mouse_y = 0
 		@selected = 0
+		@cur_level = 0
+		@mode = :pick
 		
 		@state = :menu
 	end
@@ -126,10 +127,14 @@ class Game
 				when Rubygame::MouseUpEvent
 					case @selected
 						when 1
-							puts "NOT IMPLEMENTED"
+							@cur_level = 0
+							@mode = :progress
+							load_level('levels/' + @levels[@cur_level].split('.')[0..-2].to_s)
+							@state = :playing
 						when 2
 							puts "NOT IMPLEMENTED"
 						when 3
+							@mode = :pick
 							@state = :loading
 						when 4
 							puts "NOT IMPLEMENTED (alpha10)"
@@ -263,8 +268,18 @@ class Game
 				when Rubygame::MouseUpEvent
 					@started = true
 					if @lvl_sprites.length == 0 or @life <= 0
-						@state = :loading
-						reset true
+						if @mode == :pick
+							@state = :loading
+							reset true
+						elsif @mode == :progress and @cur_level+1 == @levels.length
+							@state = :menu
+						elsif @mode == :progress
+							if @lvl_sprites.length == 0
+								@cur_level += 1
+							end
+							load_level('levels/' + @levels[@cur_level].split('.')[0..-2].to_s)
+							reset true
+						end
 					end
 			end
 		end
