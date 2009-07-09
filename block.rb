@@ -26,7 +26,7 @@ class Game
 		end
 		@player = Rubygame::Surface.load "sprites/player.bmp"
 		@ball = Rubygame::Surface.load 'sprites/ball.bmp'
-		@title = Rubygame::Surface.load 'bounce.bmp'
+		@title = Rubygame::Surface.load 'sprites/bounce.bmp'
 		
 		# Main menu variables
 		@mouse_y = 0
