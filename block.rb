@@ -35,6 +35,20 @@ class Game
 		@mode = :pick
 		
 		@state = :menu
+		load_settings
+	end
+	
+	def save_settings
+		File.open 'settings.yml', 'w' do |f|
+			f.puts YAML.dump({:cur_level => @cur_level})
+		end
+	end
+	
+	def load_settings
+		File.open 'settings.yml', 'r' do |f|
+			data = YAML.load(f.read)
+			@cur_level = data[:cur_level]
+		end
 	end
 	
 	def reset life=false
@@ -122,6 +136,7 @@ class Game
 		@queue.each do |ev|
 			case ev
 				when Rubygame::QuitEvent
+					save_settings
 					Rubygame.quit
 					exit
 				when Rubygame::MouseUpEvent
@@ -132,13 +147,16 @@ class Game
 							load_level('levels/' + @levels[@cur_level].split('.')[0..-2].to_s)
 							@state = :playing
 						when 2
-							puts "NOT IMPLEMENTED"
+							@mode = :progress
+							load_level('levels/' + @levels[@cur_level].split('.')[0..-2].to_s)
+							@state = :playing
 						when 3
 							@mode = :pick
 							@state = :loading
 						when 4
 							puts "NOT IMPLEMENTED (alpha10)"
 						when 5
+							save_settings
 							Rubygame.quit
 							exit
 					end
@@ -147,6 +165,7 @@ class Game
 				when Rubygame::KeyDownEvent
 					case ev.key
 						when Rubygame::K_ESCAPE
+							save_settings
 							@to = :exit
 							@from = :menu
 							@state = :quitting
