@@ -391,11 +391,19 @@ class Game
 			@font.render("You got pwned!", true, [255, 255, 255]).blit(@screen,[@screen.width/2-@font.size_text("You got pwned!")[0]/2,@screen.height/2])
 			@font.render("Click To Start...", true, [255,255,255]).blit(@screen,[@screen.width/2-@font.size_text("Click To Start...")[0]/2,@screen.height/2+100])
 		end
-		if @lvl_sprites.length == 0
+		if @lvl_sprites.length == 0 and @cur_level+1 != @levels.length
 			@screen.fill [0,0,0]
 			@font.render("You are an uber", true, [255, 255, 255]).blit(@screen,[@screen.width/2-@font.size_text("You are an uber")[0]/2,@screen.height/2])
 			@font.render("l33t player!", true, [255, 255, 255]).blit(@screen,[@screen.width/2-@font.size_text("l33t player!")[0]/2,@screen.height/2+@font.size_text("l33t player!")[1]])
 			@font.render("Click To Start...", true, [255,255,255]).blit(@screen,[@screen.width/2-@font.size_text("Click To Start...")[0]/2,@screen.height/2+250])
+		end
+		
+		if @lvl_sprites.length == 0 and @cur_level+1 == @levels.length
+			@screen.fill [0,0,0]
+			@font.render("You beat the game!!!", true, [255, 255, 255]).blit(@screen,[@screen.width/2-@font.size_text("You beat the game!!!")[0]/2,@screen.height/2-200])
+			@font.render("You are the best", true, [255, 255, 255]).blit(@screen,[@screen.width/2-@font.size_text("You are the best")[0]/2,@screen.height/2])
+			@font.render("player ever!!!", true, [255, 255, 255]).blit(@screen,[@screen.width/2-@font.size_text("player ever!!!")[0]/2,@screen.height/2+@font.size_text("player ever!!!")[1]])
+			@font.render("Click To Finish...", true, [255,255,255]).blit(@screen,[@screen.width/2-@font.size_text("Click To Finish...")[0]/2,@screen.height/2+250])
 		end
 		@screen.flip
 	end
