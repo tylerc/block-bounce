@@ -11,6 +11,7 @@ class Game
 		@clock = Rubygame::Clock.new
 		@clock.target_framerate = 30
 		@font = Rubygame::TTF.new 'FreeSans.ttf', 56
+		@font2 = Rubygame::TTF.new 'FreeSans.ttf', 25
 		
 		@levels = []
 		if File.directory? 'levels'
@@ -27,6 +28,7 @@ class Game
 		@player = Rubygame::Surface.load "sprites/player.bmp"
 		@ball = Rubygame::Surface.load 'sprites/ball.bmp'
 		@title = Rubygame::Surface.load 'bounce.bmp'
+		@mouse_y = 0
 		reset true
 		
 		@state = :menu
@@ -76,8 +78,16 @@ class Game
 	def draw_menu
 		@screen.fill [0,0,0]
 		@title.blit @screen, [0,0]
-		font = Rubygame::TTF.new 'FreeSans.ttf', 25
-		font.render("Load Level", true, [255,255,255]).blit(@screen, [190,200])
+		color = [255,255,255]
+		if @mouse_y > 200 and @mouse_y < @font2.size_text('Load Level')[1]+200
+			color = [255, 0, 0]
+		end
+		y = @font2.size_text('A')[1]
+		@font2.render("Start", true, color).blit(@screen, [190,200])
+		@font2.render("Continue", true, color).blit(@screen, [190,200+y])
+		@font2.render("Play Level", true, color).blit(@screen, [190,200+y*2])
+		@font2.render("Options", true, color).blit(@screen, [190,200+y*3])
+		
 		@screen.flip
 	end
 	
@@ -89,6 +99,8 @@ class Game
 					exit
 				when Rubygame::MouseUpEvent
 					@state = :loading
+				when Rubygame::MouseMotionEvent
+					@mouse_y = ev.pos[1]
 			end
 		end
 	end
