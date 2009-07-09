@@ -2,6 +2,8 @@ h2. Block-Bounce
 
 h3. Written by: Tyler Church
 
+h4. Version: alpha6
+
 h2. Description
 
 This game is a simple breakout clone.
