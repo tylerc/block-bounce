@@ -48,8 +48,6 @@ Version 1.2 (release)
 == Milestones - Game Made
 * document code
 * create a level making tutorial
-* create a guide/tutorial on using the code to make 
-	other games (if the code is good enough)
 
 == Other
 * Add link to Rubygame installing instructions in README
