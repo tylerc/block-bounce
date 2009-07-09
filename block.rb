@@ -83,10 +83,11 @@ class Game
 			color = [255, 0, 0]
 		end
 		y = @font2.size_text('A')[1]
-		@font2.render("Start", true, color).blit(@screen, [190,200])
-		@font2.render("Continue", true, color).blit(@screen, [190,200+y])
-		@font2.render("Play Level", true, color).blit(@screen, [190,200+y*2])
-		@font2.render("Options", true, color).blit(@screen, [190,200+y*3])
+		# Borders are at 190 and 320
+		@font2.render("Start", true, color).blit(@screen, [190+(65-@font2.size_text('Start')[0]/2),200])
+		@font2.render("Continue", true, color).blit(@screen, [190+(65-@font2.size_text('Continue')[0]/2),200+y])
+		@font2.render("Play Level", true, color).blit(@screen, [190+(65-@font2.size_text('Play Level')[0]/2),200+y*2])
+		@font2.render("Options", true, color).blit(@screen, [190+(65-@font2.size_text('Options')[0]/2),200+y*3])
 		
 		@screen.flip
 	end
