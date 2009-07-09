@@ -31,7 +31,7 @@ class Game
 		
 		# Main menu variables
 		@mouse_y = 0
-		reset true
+		@selected = 0
 		
 		@state = :menu
 	end
@@ -87,15 +87,19 @@ class Game
 		y = @font2.size_text('A')[1]
 		if @mouse_y > 200 and @mouse_y < y+200
 			color = [255, 0, 0]
+			@selected = 1
 		end
 		if @mouse_y > 200+y and @mouse_y < y*2+200
 			color2 = [255, 0, 0]
+			@selected = 2
 		end
 		if @mouse_y > 200+y*2 and @mouse_y < y*3+200
 			color3 = [255, 0, 0]
+			@selected = 3
 		end
 		if @mouse_y > 200+y*3 and @mouse_y < y*4+200
 			color4 = [255, 0, 0]
+			@selected = 4
 		end
 		# Borders are at 190 and 320
 		@font2.render("Start", true, color).blit(@screen, [190+(65-@font2.size_text('Start')[0]/2),200])
@@ -107,15 +111,32 @@ class Game
 	end
 	
 	def update_menu
+		reset true
 		@queue.each do |ev|
 			case ev
 				when Rubygame::QuitEvent
 					Rubygame.quit
 					exit
 				when Rubygame::MouseUpEvent
-					@state = :loading
+					case @selected
+						when 1
+							puts "NOT IMPLEMENTED"
+						when 2
+							puts "NOT IMPLEMENTED"
+						when 3
+							@state = :loading
+						when 4
+							puts "NOT IMPLEMENTED (alpha10)"
+					end
 				when Rubygame::MouseMotionEvent
 					@mouse_y = ev.pos[1]
+				when Rubygame::KeyDownEvent
+					case ev.key
+						when Rubygame::K_ESCAPE
+							@to = :exit
+							@from = :menu
+							@state = :quitting
+					end
 			end
 		end
 	end
@@ -163,10 +184,14 @@ class Game
 						when Rubygame::K_E
 							eval STDIN.gets
 						when Rubygame::K_Y
-							Rubygame.quit
-							exit
+							if @to == :menu
+								@state = @to
+							else
+								Rubygame.quit
+								exit
+							end
 						when Rubygame::K_N
-							@state = :playing
+							@state = @from
 					end
 			end
 		end
@@ -189,6 +214,8 @@ class Game
 				when Rubygame::KeyDownEvent
 					case ev.key
 						when Rubygame::K_ESCAPE
+							@from = :paused
+							@to = :menu
 							@state = :quitting
 						when Rubygame::K_E
 							eval STDIN.gets
@@ -215,6 +242,8 @@ class Game
 					case ev.key
 						when Rubygame::K_ESCAPE
 							@state = :quitting
+							@from = :playing
+							@to = :menu
 						when Rubygame::K_E
 							eval STDIN.gets
 						when Rubygame::K_P
