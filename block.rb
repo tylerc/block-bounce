@@ -26,10 +26,18 @@ class Game
 			exit
 		end
 		@powers = []
+		@powers_code = []
 		if File.directory? 'sprites/powers'
 			Dir.entries('sprites/powers/.').each do |x|
-				if x != '..' and x != '.' and x[-3..-1] == 'bmp'
-					@powers += [x]
+				if x != '..' and x != '.'
+					if x[-3..-1] == 'bmp'
+						@powers += [x]
+					end
+					if x[-2..-1] == 'rb'
+						File.open 'sprites/powers/' + x, 'r' do |f|
+							@powers_code += [f.read]
+						end
+					end
 				end
 			end
 		else
@@ -38,6 +46,7 @@ class Game
 		end
 		@power = nil # Power-up object
 		@power_pos = [0,0]
+		@power_file = ""
 		@player = Rubygame::Surface.load "sprites/player.bmp"
 		@ball = Rubygame::Surface.load 'sprites/ball.bmp'
 		@title = Rubygame::Surface.load 'sprites/bounce.bmp'
@@ -367,11 +376,19 @@ class Game
                 	reset
                 end
                 
-                # Check for collision with paddle
+                # Check for collision with paddle and ball
                 if @bally+@ball.height >= @y and @ballx+@ball.width > @x and @ballx < @x + @player.width
                 	@angle = @ballx-(@x + @player.width/2)
                 	@hope = 1
                 	@hope2 = 1
+                end
+                
+                # Check for collision with paddle and power
+                if @power_pos[1]+32 >= @y and @power_pos[0]+32 > @x and @power_pos[0] < @x + @player.width
+                	eval @powers_code[@powers.index(@power_file)]
+                	@power_file = ""
+                	@power = nil
+                	@power_pos = [0,0]
                 end
                 
 		@lvl_sprites.each_key do |sprite|
@@ -417,7 +434,16 @@ class Game
 				@lvl_sprites.delete sprite
 			end
 			@sounds[:bounce].play
-			@power = Rubygame::Surface.load 'sprites/powers/' + @powers[rand(@powers.length)]
+			if @power == nil
+				@power_file = @powers[rand(@powers.length)]
+				@power = Rubygame::Surface.load 'sprites/powers/' + @power_file
+				@power_pos = [@ballx, @bally]
+			end
+		end
+		
+		# Update power
+		if @power != nil
+			@power_pos[1] += 1
 		end
 	end
 	
