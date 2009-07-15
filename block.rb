@@ -88,6 +88,9 @@ class Game
 		@hope = 1
 		@hope2 = 1
 		@started = false
+		@power = nil
+		@power_pos = [0,0]
+		@power_file = ""
 		if life
 			@life = 3
 		end

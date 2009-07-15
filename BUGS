@@ -1,6 +1,5 @@
 == Main Game (block.rb)
 * Powers don't appear randomly
-* Powers move when game is waiting to start (should be destroyed)
 
 == Level Editor (level.rb)
 
