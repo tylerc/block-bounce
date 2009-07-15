@@ -1,7 +1,62 @@
-<h2>Block-Bounce</h2>
-<h3>Written by: Tyler Church</h3>
-<h4>Version: alpha7</h4>
-<h2>Description</h2>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<style type="text/css">
+h2.author
+{
+font-size: 15pt;
+}
+h2.version
+{
+font-size: 14pt;
+}
+div.heading, div.content { margin-top: 35px; margin-left: 35px; }
+div.content
+{
+width: 30%;
+background: #FFD;
+padding: 30px;
+float: left;
+}
+div.title
+{
+padding: 30px;
+background: #DFF;
+}
+div.heading
+{
+width: 350px;
+float: left;
+}
+div.license
+{
+margin-top: 35px;
+padding: 30px;
+background: #FDF;
+}
+code
+{
+font-size: 10pt;
+background: #DDD;
+padding: 5px;
+}
+</style>
+<div class="heading">
+<div class="title">
+<h1 class="title">Block Bounce</h1>
+<h2 class="author">Written by: Tyler Church</h2>
+<h2 class="version">Version: alpha7</h2>
+</div>
+<div class='license'>
+<h2>License</h2>
+<p>Copyright &#169; 2009 Tyler Church</p>
+<p>This software is provided &#8216;as-is&#8217;, without any express or implied warranty.  In no event will the authors be held liable for any damages arising from the use of this software.</p>
+<p>Permission is granted to anyone to use this software for any purpose, including commercial applications, and to alter it and redistribute it freely, subject to the following restrictions:</p>
+<p>1. The origin of this software must not be misrepresented; you must not claim that you wrote the original software. If you use this software in a product, an acknowledgement in the product documentation would be appreciated but is not required.</p>
+<p>2. Altered source versions must be plainly marked as such, and must not be misrepresented as being the original software.</p>
+<p>3. This notice may not be removed or altered from any source distribution.</p>
+</div>
+</div>
+<div class="content">
+<h2 class="description">Description</h2>
 <p>This game is a simple breakout clone.<br />
 I am making this for a few reasons:</p>
 <ul>
@@ -13,55 +68,42 @@ I am making this for a few reasons:</p>
 <h2>Running The Game</h2>
 <p>(Note: This game is tested and developed on Linux with Ruby 1.8.7)<br />
 You need Rubygame installed (see below) to play the game<br />
-To run the game use the command:<br />
-ruby -rubygems block.rb</p>
+To run the game use the command:</p>
+<p><code>ruby -rubygems block.rb</code></p>
 <h2>Installing Rubygame</h2>
 <p><a href="http://docs.rubygame.org/rdoc/current/">Mac and Windows Instructions</a><br />
 <a href="http://rubygame.org/wiki/Debian_based_GNU/Linux_Distro_Installation_Guide">Ubuntu/Debian Instructions</a></p>
 <h2>Playing The Game</h2>
+<h3>In The Menu:</h3>
+<ul>
+	<li>Start starts a game that plays throught all levels (your progress is saved if you quit)</li>
+	<li>Continue continues a game from where you left off</li>
+	<li>Play Level lets you choose a specific level to play</li>
+	<li>Options lets you change stuff&#8230;</li>
+	<li>Quit quits the game</li>
+</ul>
+<h3>In Game:</h3>
 <ul>
 	<li>Your mouse moves the blue paddle</li>
 	<li>You goal is to destroy all the blocks on the screen</li>
 	<li>Press &#8216;p&#8217; to pause the game</li>
 	<li>Press Escape (<span class="caps">ESC</span>) to quit</li>
-	<li>Click the button with the level name to choose a level (in the menu)</li>
 	<li><span class="caps">HINT</span>: The ball bounces at a different angle depending on where it hits the paddle</li>
 </ul>
 <h2>Running The Level Editor</h2>
+<p><code>ruby -rubygems level.rb</code></p>
 <ul>
-	<li>Command: ruby -rubygems level.rb</li>
 	<li>See <span class="caps">LEVEL</span>-<span class="caps">DOC</span> for full information</li>
 	<li>See <span class="caps">LEVEL</span>-<span class="caps">PROPERTIES</span>-<span class="caps">DOC</span> for information on adding level properties</li>
 </ul>
 <h2>Running the Level Properties Editor</h2>
+<p><code>ruby -rubygems properties.rb</code></p>
 <ul>
-	<li>Command: ruby -rubygems properties.rb</li>
 	<li>you need <a href="http://ruby-gnome2.sourceforge.jp/hiki.cgi?Install+Guide">ruby-GNOME2 installed</a></li>
 	<li>See <span class="caps">LEVEL</span>-<span class="caps">PROPERTIES</span>-<span class="caps">DOC</span> for more information</li>
 </ul>
 <h2>Running The Sprite Editor</h2>
-<ul>
-	<li>Note: It is recommended that you do <span class="caps">NOT</span> use the sprite editor. Just use a different program and save to a .bmp file</li>
-	<li>ruby -rubygems sprite.rb [existing-sprite-name]</li>
-	<li>See <span class="caps">SPRITE</span>-<span class="caps">DOC</span> for full information</li>
-</ul>
-<h2>License</h2>
-<pre>
-Copyright (C) 2009 Tyler Church
-
-This software is provided 'as-is', without any express or implied
-warranty.  In no event will the authors be held liable for any damages
-arising from the use of this software.
-
-Permission is granted to anyone to use this software for any purpose,
-including commercial applications, and to alter it and redistribute it
-freely, subject to the following restrictions:
-
-1. The origin of this software must not be misrepresented; you must not
-claim that you wrote the original software. If you use this software
-in a product, an acknowledgement in the product documentation would be
-appreciated but is not required.
-2. Altered source versions must be plainly marked as such, and must not be
-misrepresented as being the original software.
-3. This notice may not be removed or altered from any source distribution.
-</pre>
+<h4>Note: It is recommended that you do <span class="caps">NOT</span> use the sprite editor. Just use a different program and save to a .bmp file</h4>
+<p><code>ruby -rubygems sprite.rb [existing-sprite-name]</code></p>
+<p>See <span class="caps">SPRITE</span>-<span class="caps">DOC</span> for full information</p>
+</div>

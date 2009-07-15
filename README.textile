@@ -1,10 +1,33 @@
-h2. Block-Bounce
+<div class="heading">
+<div class="title">
 
-h3. Written by: Tyler Church
+h1(title). Block Bounce
 
-h4. Version: alpha7
+h2(author). Written by: Tyler Church
 
-h2. Description
+h2(version). Version: alpha7
+</div>
+<div class='license'>
+h2. License
+
+Copyright (C) 2009 Tyler Church
+
+This software is provided 'as-is', without any express or implied warranty.  In no event will the authors be held liable for any damages arising from the use of this software.
+
+Permission is granted to anyone to use this software for any purpose, including commercial applications, and to alter it and redistribute it freely, subject to the following restrictions:
+
+1. The origin of this software must not be misrepresented; you must not claim that you wrote the original software. If you use this software in a product, an acknowledgement in the product documentation would be appreciated but is not required.
+
+2. Altered source versions must be plainly marked as such, and must not be misrepresented as being the original software.
+
+3. This notice may not be removed or altered from any source distribution.
+
+</div>
+
+</div>
+
+<div class="content">
+h2(description). Description
 
 This game is a simple breakout clone.
 I am making this for a few reasons:
@@ -19,7 +42,8 @@ h2. Running The Game
 (Note: This game is tested and developed on Linux with Ruby 1.8.7)
 You need Rubygame installed (see below) to play the game
 To run the game use the command:
-ruby -rubygems block.rb
+
+@ruby -rubygems block.rb@
 
 h2. Installing Rubygame
 
@@ -28,49 +52,38 @@ h2. Installing Rubygame
 
 h2. Playing The Game
 
+h3. In The Menu:
+* Start starts a game that plays throught all levels (your progress is saved if you quit)
+* Continue continues a game from where you left off
+* Play Level lets you choose a specific level to play
+* Options lets you change stuff...
+* Quit quits the game
+
+h3. In Game:
 * Your mouse moves the blue paddle
 * You goal is to destroy all the blocks on the screen
 * Press 'p' to pause the game
 * Press Escape (ESC) to quit
-* Click the button with the level name to choose a level (in the menu)
 * HINT: The ball bounces at a different angle depending on where it hits the paddle
 
 h2. Running The Level Editor
 
-* Command: ruby -rubygems level.rb
+@ruby -rubygems level.rb@
 * See LEVEL-DOC for full information
 * See LEVEL-PROPERTIES-DOC for information on adding level properties
 
 h2. Running the Level Properties Editor
 
-* Command: ruby -rubygems properties.rb
+@ruby -rubygems properties.rb@
 * you need "ruby-GNOME2 installed":http://ruby-gnome2.sourceforge.jp/hiki.cgi?Install+Guide
 * See LEVEL-PROPERTIES-DOC for more information
 
 h2. Running The Sprite Editor
 
-* Note: It is recommended that you do NOT use the sprite editor. Just use a different program and save to a .bmp file
-* ruby -rubygems sprite.rb [existing-sprite-name]
-* See SPRITE-DOC for full information
+h4. Note: It is recommended that you do NOT use the sprite editor. Just use a different program and save to a .bmp file
 
-h2. License
+@ruby -rubygems sprite.rb [existing-sprite-name]@
 
-<pre>
-Copyright (C) 2009 Tyler Church
+See SPRITE-DOC for full information
 
-This software is provided 'as-is', without any express or implied
-warranty.  In no event will the authors be held liable for any damages
-arising from the use of this software.
-
-Permission is granted to anyone to use this software for any purpose,
-including commercial applications, and to alter it and redistribute it
-freely, subject to the following restrictions:
-
-1. The origin of this software must not be misrepresented; you must not
-claim that you wrote the original software. If you use this software
-in a product, an acknowledgement in the product documentation would be
-appreciated but is not required.
-2. Altered source versions must be plainly marked as such, and must not be
-misrepresented as being the original software.
-3. This notice may not be removed or altered from any source distribution.
-</pre>
+</div>
