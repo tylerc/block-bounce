@@ -34,6 +34,9 @@ class Game
 		@cur_level = 0
 		@mode = :pick
 		
+		# Sounds
+		@sounds = {:bounce => Rubygame::Sound.load('sound/bounce.wav')}
+		
 		@state = :menu
 		load_settings
 	end
@@ -313,18 +316,21 @@ class Game
                 # Left
                 if @ballx <= 0
                 	@angle *= -1
-					@ballx = 1
+			@ballx = 1
+			@sounds[:bounce].play
                 end
                 
                 # Right
                 if @ballx >= @screen.width-@ball.width
                 	@angle *= -1
+                	@sounds[:bounce].play
                 end
                 
                 # Top
                 if @bally <= 0
                 	@hope *= -1
-					@bally = 1
+			@bally = 1
+			@sounds[:bounce].play
                 end
                 
                 # Bottom
@@ -382,6 +388,7 @@ class Game
 			if @sprites_health[sprite] == 0
 				@lvl_sprites.delete sprite
 			end
+			@sounds[:bounce].play
 		end
 	end
 	
