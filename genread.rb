@@ -17,7 +17,7 @@ h2.version
 {
 font-size: 14pt;
 }
-div.heading, div.content { margin-top: 35px; margin-left: 35px; }
+div.top, div.content { margin-top: 35px; margin-left: 35px; }
 div.content
 {
 width: 30%;
@@ -25,12 +25,12 @@ background: #FFD;
 padding: 30px;
 float: left;
 }
-div.title
+div.heading
 {
 padding: 30px;
 background: #DFF;
 }
-div.heading
+div.top
 {
 width: 350px;
 float: left;

@@ -1,5 +1,5 @@
+<div class="top">
 <div class="heading">
-<div class="title">
 
 h1(title). Block Bounce
 
@@ -53,7 +53,7 @@ h2. Installing Rubygame
 h2. Playing The Game
 
 h3. In The Menu:
-* Start starts a game that plays throught all levels (your progress is saved if you quit)
+* Start starts a game that plays through all levels (your progress is saved if you quit)
 * Continue continues a game from where you left off
 * Play Level lets you choose a specific level to play
 * Options lets you change stuff...
