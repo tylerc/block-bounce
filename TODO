@@ -30,15 +30,12 @@ Version < 1.0 (alpha)
 (in alpha6) * ESC while in-game should quit to main menu, ESC while in menu should exit the game
 ---
 (in alpha7) * Bouncing Sound
-(planned alpha7) * Subtle background music (loop)
-(planned alpha7) * Menu Music
+(planned alpha7) * Upgrades when tiles are destroyed (bonus life, bigger paddle, etc.)
+(planned alpha7) * Downgrades when tiles are destroyed (smaller paddle, faster ball, etc.)
 ---
-(planned alpha8) * Upgrades when tiles are destroyed (bonus life, bigger paddle, etc.)
-(planned alpha8) * Downgrades when tiles are destroyed (smaller paddle, faster ball, etc.)
+(planned alpha8) * Different types of tiles (gives out upgrades or not, # of hits to destruction, etc.)
 ---
-(planned alpha9) * Different types of tiles (gives out upgrades or not, # of hits to destruction, etc.)
----
-(planned alpha10) * Options - Turn off fx, music, etc
+(planned alpha9) * Options - Turn off fx, music, etc
 
 Version 1.1 (beta)
 * polish (better graphics, add effects, clean up code, address any bugs)
