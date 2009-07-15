@@ -12,6 +12,7 @@ class Game
 		@clock.target_framerate = 30
 		@font = Rubygame::TTF.new 'FreeSans.ttf', 56
 		@font2 = Rubygame::TTF.new 'FreeSans.ttf', 25
+		@font3 = Rubygame::TTF.new 'FreeSans.ttf', 20
 		
 		@levels = []
 		if File.directory? 'levels'
@@ -180,11 +181,11 @@ class Game
 	def draw_loading
 		@screen.fill [0,0,0]
 		@title.blit @screen, [0,0]
-		loading_font = Rubygame::TTF.new 'FreeSans.ttf', 20
 		@levels.each do |level|
-			@screen.draw_box([@screen.width/2-loading_font.size_text(level)[0]/2-5,35*@levels.index(level)+200],[@screen.width/2+loading_font.size_text(level)[0]/2+5,35*@levels.index(level)+loading_font.size_text(level)[1]+200],[0,255,255])
-			loading_font.render(level, true, [255, 255, 255]).blit(@screen,[@screen.width/2-loading_font.size_text(level)[0]/2,35*@levels.index(level)+200])
+			@screen.draw_box([@screen.width/2-@font3.size_text(level)[0]/2-5,35*@levels.index(level)+200],[@screen.width/2+@font3.size_text(level)[0]/2+5,35*@levels.index(level)+@font3.size_text(level)[1]+200],[0,255,255])
+			@font3.render(level, true, [255, 255, 255]).blit(@screen,[@screen.width/2-@font3.size_text(level)[0]/2,35*@levels.index(level)+200])
 		end
+		
 		@screen.flip
 	end
 	
