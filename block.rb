@@ -25,6 +25,19 @@ class Game
 			puts 'Error! Could not load levels'
 			exit
 		end
+		@powers = []
+		if File.directory? 'sprites/powers'
+			Dir.entries('sprites/powers/.').each do |x|
+				if x != '..' and x != '.' and x[-3..-1] == 'bmp'
+					@powers += [x]
+				end
+			end
+		else
+			puts 'Error! Could not load powers'
+			exit
+		end
+		@power = nil # Power-up object
+		@power_pos = [0,0]
 		@player = Rubygame::Surface.load "sprites/player.bmp"
 		@ball = Rubygame::Surface.load 'sprites/ball.bmp'
 		@title = Rubygame::Surface.load 'sprites/bounce.bmp'
@@ -404,6 +417,7 @@ class Game
 				@lvl_sprites.delete sprite
 			end
 			@sounds[:bounce].play
+			@power = Rubygame::Surface.load 'sprites/powers/' + @powers[rand(@powers.length)]
 		end
 	end
 	
@@ -445,6 +459,9 @@ class Game
 			@font.render("You are the best", true, [255, 255, 255]).blit(@screen,[@screen.width/2-@font.size_text("You are the best")[0]/2,@screen.height/2])
 			@font.render("player ever!!!", true, [255, 255, 255]).blit(@screen,[@screen.width/2-@font.size_text("player ever!!!")[0]/2,@screen.height/2+@font.size_text("player ever!!!")[1]])
 			@font.render("Click To Finish...", true, [255,255,255]).blit(@screen,[@screen.width/2-@font.size_text("Click To Finish...")[0]/2,@screen.height/2+250])
+		end
+		unless @power == nil
+			@power.blit(@screen, @power_pos)
 		end
 		@screen.flip
 	end
