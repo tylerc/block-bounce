@@ -33,15 +33,13 @@ Version < 1.0 (alpha)
 (planned alpha7) * Upgrades when tiles are destroyed (bonus life, bigger paddle, etc.)
 (planned alpha7) * Downgrades when tiles are destroyed (smaller paddle, faster ball, etc.)
 ---
-(planned alpha8) * Different types of tiles (gives out upgrades or not, # of hits to destruction, etc.)
----
-(planned alpha9) * Options - Turn off fx, music, etc
+(planned alpha8) * Options - Turn off fx, music, etc
 
 Version 1.1 (beta)
 * polish (better graphics, add effects, clean up code, address any bugs)
 
 Version 1.2 (release)
-* create at least 20 levels
+* create at least 20 levels 
 
 == Milestones - Game Made
 * document code
