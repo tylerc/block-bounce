@@ -181,7 +181,7 @@ class Game
 							@mode = :pick
 							@state = :loading
 						when 4
-							puts "NOT IMPLEMENTED (alpha9)"
+							puts "NOT IMPLEMENTED (alpha8)"
 						when 5
 							save_settings
 							Rubygame.quit
