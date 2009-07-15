@@ -1,5 +1,5 @@
 == Milestones - Making the game
-Version < 1.0 (alpha)
+Alpha
 (in alpha1) * Have a working Sprite editor + loader
 ---
 (in alpha2) * Have a working level editor
@@ -41,11 +41,14 @@ Version < 1.0 (alpha)
 ---
 (planned alpha8) * Options - Turn off fx, music, etc
 
-Version 1.1 (beta)
-* polish (better graphics, add effects, clean up code, address any bugs)
+Beta
+* More block sprites
+* fix any bugs
+* test with rubygame 2.3.0 (windows)
 
-Version 1.2 (release)
-* create at least 20 levels 
+Version 1.0 (release)
+* create at least 20 levels
+* package for linux and windows (try to get packaged for mac)
 
 == Milestones - Game Made
 * document code
