@@ -34,6 +34,7 @@ class Game
 		@selected = 0
 		@cur_level = 0
 		@mode = :pick
+		@back_color = [255,255,255]
 		
 		# Sounds
 		@sounds = {:bounce => Rubygame::Sound.load('sound/bounce.wav')}
@@ -185,11 +186,14 @@ class Game
 			@screen.draw_box([@screen.width/2-@font3.size_text(level)[0]/2-5,35*@levels.index(level)+200],[@screen.width/2+@font3.size_text(level)[0]/2+5,35*@levels.index(level)+@font3.size_text(level)[1]+200],[0,255,255])
 			@font3.render(level, true, [255, 255, 255]).blit(@screen,[@screen.width/2-@font3.size_text(level)[0]/2,35*@levels.index(level)+200])
 		end
-		
+		@font3.render('Back', true, @back_color).blit(@screen,[@screen.width/2-@font3.size_text('Back')[0]/2,@levels.length*35+200])
 		@screen.flip
 	end
 	
 	def update_loading
+		x = @screen.width/2-@font3.size_text('Back')[0]/2
+		y = @levels.length*35+200
+		width, height = @font3.size_text('Back')
 		@queue.each do |ev|
 			case ev	
 				when Rubygame::QuitEvent
@@ -205,6 +209,16 @@ class Game
 					load_level("levels/#{@levels[(ev.pos[1]-200)/35][0..-5]}")
 					@state = :playing
 					rescue
+					end
+					if ev.pos[0] > x and ev.pos[0] < x+width and ev.pos[1] > y and ev.pos[1] < y+height
+						@state = :menu
+					end
+				when Rubygame::MouseMotionEvent	
+					# Back to menu button
+					if ev.pos[0] > x and ev.pos[0] < x+width and ev.pos[1] > y and ev.pos[1] < y+height
+						@back_color = [255,0,0]
+					else
+						@back_color = [255,255,255]
 					end
 			end
 		end
