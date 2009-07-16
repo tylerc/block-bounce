@@ -441,13 +441,13 @@ class Game
 			
 			if @sprites_health[sprite] == 0
 				@lvl_sprites.delete sprite
+				if @power == nil
+					@power_file = @powers.keys[rand(@powers.size)]
+					@power = Rubygame::Surface.load 'sprites/powers/' + @power_file
+					@power_pos = [@ballx, @bally]
+				end
 			end
 			@sounds[:bounce].play
-			if @power == nil
-				@power_file = @powers.keys[rand(@powers.size)]
-				@power = Rubygame::Surface.load 'sprites/powers/' + @power_file
-				@power_pos = [@ballx, @bally]
-			end
 		end
 		
 		# Update power
