@@ -2,6 +2,7 @@
 * Powers don't appear at random intervals
 * Powers don't die when they go offscreen
 * Only one power is possible to get (because of testing)
+* Powers should spawn when blocks are destroyed, not when touched
 
 == Level Editor (level.rb)
 
