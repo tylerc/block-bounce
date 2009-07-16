@@ -458,6 +458,10 @@ class Game
 		if @power_status == :on
 			updating
 		end
+		
+		if @power_pos[1] > @screen.height
+			reset_power
+		end
 	end
 	
 	def draw
