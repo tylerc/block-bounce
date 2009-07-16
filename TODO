@@ -30,15 +30,15 @@ Alpha
 (in alpha6) * ESC while in-game should quit to main menu, ESC while in menu should exit the game
 ---
 (in alpha7) * Bouncing Sound
-(planned alpha7) * Upgrades when tiles are destroyed:
+(in alpha7) * Upgrades when tiles are destroyed:
 			(art,code)
 			++ bonus life
 			++ bigger paddle
 			++ No kill when bottom is touched (floor)
-(planned alpha7) * Downgrades when tiles are destroyed:
+(in alpha7) * Downgrades when tiles are destroyed:
 			++ smaller paddle
 			++ faster ball
-			+- loss of life
+			++ loss of life
 ---
 (planned alpha8) * Options - Turn off fx, music, etc
 
