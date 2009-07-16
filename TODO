@@ -34,9 +34,9 @@ Alpha
 			(art,code)
 			++ bonus life
 			++ bigger paddle
-			++ No kill when bottom is touched
+			++ No kill when bottom is touched (floor)
 (planned alpha7) * Downgrades when tiles are destroyed:
-			+- smaller paddle
+			++ smaller paddle
 			+- faster ball
 			+- loss of life
 ---

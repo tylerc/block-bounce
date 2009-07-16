@@ -90,6 +90,9 @@ class Game
 		if life
 			@life = 3
 		end
+		unless @power_status == :off
+			stop
+		end
 		reset_power
 	end
 	
@@ -441,7 +444,7 @@ class Game
 			end
 			@sounds[:bounce].play
 			if @power == nil
-				@power_file = "floor.bmp" #@powers[rand(@powers.length)]
+				@power_file = "small.bmp" #@powers[rand(@powers.length)]
 				@power = Rubygame::Surface.load 'sprites/powers/' + @power_file
 				@power_pos = [@ballx, @bally]
 			end
