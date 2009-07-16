@@ -441,7 +441,7 @@ class Game
 			end
 			@sounds[:bounce].play
 			if @power == nil
-				@power_file = "big.bmp" #@powers[rand(@powers.length)]
+				@power_file = "floor.bmp" #@powers[rand(@powers.length)]
 				@power = Rubygame::Surface.load 'sprites/powers/' + @power_file
 				@power_pos = [@ballx, @bally]
 			end
@@ -498,6 +498,9 @@ class Game
 		end
 		unless @power == nil
 			@power.blit(@screen, @power_pos)
+		end
+		if @power_status == :on
+			drawing
 		end
 		@screen.flip
 	end

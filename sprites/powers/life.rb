@@ -5,3 +5,9 @@ end
 
 def updating
 end
+
+def stop
+end
+
+def drawing
+end

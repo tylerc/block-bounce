@@ -6,7 +6,7 @@ end
 def updating
 	@power_pos = [0,0]
 	@time += 1
-	if @time >= 150 #300
+	if @time >= 300
 		stop
 	end
 end
@@ -14,4 +14,7 @@ end
 def stop
 	@player = @player.zoom([0.5,1])
 	reset_power
+end
+
+def drawing
 end
