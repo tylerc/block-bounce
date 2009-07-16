@@ -1,6 +1,7 @@
 == Main Game (block.rb)
-* Powers don't appear randomly
+* Powers don't appear at random intervals
 * Powers don't die when they go offscreen
+* Only one power is possible to get (because of testing)
 
 == Level Editor (level.rb)
 
