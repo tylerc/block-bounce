@@ -37,7 +37,7 @@ Alpha
 			+- No kill when bottom is touched
 (planned alpha7) * Downgrades when tiles are destroyed:
 			+- smaller paddle
-			-- faster ball
+			+- faster ball
 			-- loss of life
 ---
 (planned alpha8) * Options - Turn off fx, music, etc
