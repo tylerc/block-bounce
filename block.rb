@@ -441,7 +441,7 @@ class Game
 			end
 			@sounds[:bounce].play
 			if @power == nil
-				@power_file = "life.bmp" #@powers[rand(@powers.length)]
+				@power_file = "big.bmp" #@powers[rand(@powers.length)]
 				@power = Rubygame::Surface.load 'sprites/powers/' + @power_file
 				@power_pos = [@ballx, @bally]
 			end

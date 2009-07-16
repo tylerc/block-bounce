@@ -33,7 +33,7 @@ Alpha
 (planned alpha7) * Upgrades when tiles are destroyed:
 			(art,code)
 			++ bonus life
-			+- bigger paddle
+			++ bigger paddle
 			+- No kill when bottom is touched
 (planned alpha7) * Downgrades when tiles are destroyed:
 			+- smaller paddle
