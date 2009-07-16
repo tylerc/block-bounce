@@ -441,7 +441,7 @@ class Game
 			
 			if @sprites_health[sprite] == 0
 				@lvl_sprites.delete sprite
-				if @power == nil
+				if @power == nil and rand(4) == 0
 					@power_file = @powers.keys[rand(@powers.size)]
 					@power = Rubygame::Surface.load 'sprites/powers/' + @power_file
 					@power_pos = [@ballx, @bally]

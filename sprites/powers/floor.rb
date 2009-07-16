@@ -1,7 +1,8 @@
 def start
-	@floor = Rubygame::Surface.new [@screen.width, 5]
+	@floor = Rubygame::Surface.new [@screen.width, 10]
 	@floor.fill [255,255,255]
 	@time = 0
+	@stop_time = 300
 end
 
 def updating
@@ -11,7 +12,7 @@ def updating
 	end
 	
 	@time += 1
-	if @time >= 300
+	if @time >= @stop_time
 		stop
 	end
 end
@@ -22,4 +23,5 @@ end
 
 def drawing
 	@floor.blit @screen, [0,@screen.height-@floor.height]
+	@font3.render(((@stop_time-@time)/30).to_i.to_s, true, [255,255,255]).blit(@screen,[40,0])
 end
