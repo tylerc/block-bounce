@@ -36,7 +36,7 @@ Alpha
 			+- bigger paddle
 			+- No kill when bottom is touched
 (planned alpha7) * Downgrades when tiles are destroyed:
-			-- smaller paddle
+			+- smaller paddle
 			-- faster ball
 			-- loss of life
 ---
