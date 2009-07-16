@@ -25,18 +25,16 @@ class Game
 			puts 'Error! Could not load levels'
 			exit
 		end
-		@powers = []
-		@powers_code = []
+		@powers = {}
 		if File.directory? 'sprites/powers'
 			Dir.entries('sprites/powers/.').each do |x|
 				if x != '..' and x != '.'
 					if x[-3..-1] == 'bmp'
-						@powers += [x]
-					end
-					if x[-2..-1] == 'rb'
-						File.open 'sprites/powers/' + x, 'r' do |f|
-							@powers_code += [f.read]
+						code = ""
+						File.open 'sprites/powers/' + x.split('.')[0..-2].to_s + '.rb', 'r' do |f|
+							code = f.read
 						end
+						@powers[x] = code
 					end
 				end
 			end
@@ -395,7 +393,7 @@ class Game
                 # Check for collision with paddle and power
                 if @power_pos[1]+32 >= @y and @power_pos[0]+32 > @x and @power_pos[0] < @x + @player.width
                 	@power_status = :on
-                	eval @powers_code[@powers.index(@power_file)]
+                	eval @powers[@power_file]
                 	start
                 end
                 
@@ -443,7 +441,7 @@ class Game
 			end
 			@sounds[:bounce].play
 			if @power == nil
-				@power_file = @powers[rand(@powers.length)]
+				@power_file = "life.bmp" #@powers[rand(@powers.length)]
 				@power = Rubygame::Surface.load 'sprites/powers/' + @power_file
 				@power_pos = [@ballx, @bally]
 			end
