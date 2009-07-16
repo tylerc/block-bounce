@@ -62,8 +62,10 @@ h3. In The Menu:
 h3. In Game:
 * Your mouse moves the blue paddle
 * You goal is to destroy all the blocks on the screen
+* Blocks occasionally drop "powers", which alter certain parts of the game
 * Press 'p' to pause the game
 * Press Escape (ESC) to quit
+* HINT: Some powers are good, some bad, its up to you to figure out which are which
 * HINT: The ball bounces at a different angle depending on where it hits the paddle
 
 h2. Running The Level Editor
@@ -80,7 +82,7 @@ h2. Running the Level Properties Editor
 
 h2. Running The Sprite Editor
 
-h4. Note: It is recommended that you do NOT use the sprite editor. Just use a different program and save to a .bmp file
+h4. It is recommended that you do NOT use the sprite editor. Just use a different program and save to a .bmp file
 
 @ruby -rubygems sprite.rb [existing-sprite-name]@
 
