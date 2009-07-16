@@ -444,7 +444,7 @@ class Game
 			end
 			@sounds[:bounce].play
 			if @power == nil
-				@power_file = "death.bmp" #@powers[rand(@powers.length)]
+				@power_file = @powers.keys[rand(@powers.size)]
 				@power = Rubygame::Surface.load 'sprites/powers/' + @power_file
 				@power_pos = [@ballx, @bally]
 			end
