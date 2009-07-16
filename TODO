@@ -1,5 +1,4 @@
-== Milestones - Making the game
-Alpha
+== Alpha
 (in alpha1) * Have a working Sprite editor + loader
 ---
 (in alpha2) * Have a working level editor
@@ -42,12 +41,14 @@ Alpha
 ---
 (planned alpha8) * Options - Turn off fx, music, etc
 
-Beta
-* More block sprites
-* fix any bugs
-* test with rubygame 2.3.0 (windows)
+== Beta
+(planned beta1) * More block sprites
+(planned beta1) * test with rubygame 2.3.0 (windows)
+(planned beta1) * get other people to test
+(planned beta1) * package for linux and windows (try to get packaged for mac)
+(planned beta1) * fix any bugs
 
-Version 1.0 (release)
-* create at least 20 levels
-* package for linux and windows (try to get packaged for mac)
-* create a level making tutorial
+== Release
+(planned 1.0) * create at least 20 levels
+(planned 1.0) * package for linux and windows (try to get packaged for mac)
+(planned 1.0) * create a level making tutorial
