@@ -47,7 +47,8 @@ class Game
 		@power = nil # Power-up object
 		@power_pos = [0,0]
 		@power_file = ""
-		@player = Rubygame::Surface.load "sprites/player.bmp"
+		@power_status = :off
+		@player = Rubygame::Surface.load("sprites/player.bmp")
 		@ball = Rubygame::Surface.load 'sprites/ball.bmp'
 		@title = Rubygame::Surface.load 'sprites/bounce.bmp'
 		
@@ -88,12 +89,17 @@ class Game
 		@hope = 1
 		@hope2 = 1
 		@started = false
-		@power = nil
-		@power_pos = [0,0]
-		@power_file = ""
 		if life
 			@life = 3
 		end
+		reset_power
+	end
+	
+	def reset_power
+		@power = nil
+		@power_pos = [0,0]
+		@power_file = ""
+		@power_status = :off
 	end
 	
 	def run
@@ -388,10 +394,9 @@ class Game
                 
                 # Check for collision with paddle and power
                 if @power_pos[1]+32 >= @y and @power_pos[0]+32 > @x and @power_pos[0] < @x + @player.width
+                	@power_status = :on
                 	eval @powers_code[@powers.index(@power_file)]
-                	@power_file = ""
-                	@power = nil
-                	@power_pos = [0,0]
+                	start
                 end
                 
 		@lvl_sprites.each_key do |sprite|
@@ -447,6 +452,10 @@ class Game
 		# Update power
 		if @power != nil
 			@power_pos[1] += 1
+		end
+		
+		if @power_status == :on
+			updating
 		end
 	end
 	
