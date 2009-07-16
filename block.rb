@@ -49,6 +49,7 @@ class Game
 		@player = Rubygame::Surface.load("sprites/player.bmp")
 		@ball = Rubygame::Surface.load 'sprites/ball.bmp'
 		@title = Rubygame::Surface.load 'sprites/bounce.bmp'
+		@ball_speed = 10 # do not set to 1 (the ball wont move...)
 		
 		# Main menu variables
 		@mouse_y = 0
@@ -82,7 +83,6 @@ class Game
 		@y = @screen.height-32
 		@ballx = @screen.width/2
 		@bally = @y-@ball.height
-		@ball_speed = 10 # do not set to 1 (the ball wont move...)
 		@angle = 220
 		@hope = 1
 		@hope2 = 1
@@ -444,7 +444,7 @@ class Game
 			end
 			@sounds[:bounce].play
 			if @power == nil
-				@power_file = "small.bmp" #@powers[rand(@powers.length)]
+				@power_file = "fast.bmp" #@powers[rand(@powers.length)]
 				@power = Rubygame::Surface.load 'sprites/powers/' + @power_file
 				@power_pos = [@ballx, @bally]
 			end
