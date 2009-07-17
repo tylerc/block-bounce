@@ -159,10 +159,9 @@ class Game
 								@ball_speed = 10
 							end
 						when 3
-							#@mode = :pick
-							#@state = :loading
+							@cur_level = 0
 						when 4
-							#puts "NOT IMPLEMENTED (alpha8)"
+							#
 						when 5
 							@state = :menu
 					end
@@ -198,11 +197,11 @@ class Game
 			@selected = 2
 		end
 		if @mouse_y > 200+y*2 and @mouse_y < y*3+200
-			color3 = [0, 255, 0]
+			color3 = [255, 0, 0]
 			@selected = 3
 		end
 		if @mouse_y > 200+y*3 and @mouse_y < y*4+200
-			color4 = [0, 255, 0]
+			color4 = [255, 0, 0]
 			@selected = 4
 		end
 		if @mouse_y > 200+y*4 and @mouse_y < y*5+200
@@ -231,7 +230,6 @@ class Game
 		color2 = [255,255,255]
 		color3 = [255,255,255]
 		color4 = [255,255,255]
-		color5 = [255,255,255]
 		y = @font2.size_text('A')[1]
 		if @mouse_y > 200 and @mouse_y < y+200
 			color = [0, 255, 0]
@@ -249,16 +247,11 @@ class Game
 			color4 = [0, 255, 0]
 			@selected = 4
 		end
-		if @mouse_y > 200+y*4 and @mouse_y < y*5+200
-			color5 = [255, 0, 0]
-			@selected = 5
-		end
 		# Borders are at 190 and 320
 		@font2.render("Start", true, color).blit(@screen, [190+(65-@font2.size_text('Start')[0]/2),200])
-		@font2.render("Continue", true, color2).blit(@screen, [190+(65-@font2.size_text('Continue')[0]/2),200+y])
-		@font2.render("Play Level", true, color3).blit(@screen, [190+(65-@font2.size_text('Play Level')[0]/2),200+y*2])
-		@font2.render("Options", true, color4).blit(@screen, [190+(65-@font2.size_text('Options')[0]/2),200+y*3])
-		@font2.render("Quit", true, color5).blit(@screen, [190+(65-@font2.size_text('Quit')[0]/2),200+y*4])
+		@font2.render("Play Level", true, color2).blit(@screen, [190+(65-@font2.size_text('Play Level')[0]/2),200+y])
+		@font2.render("Options", true, color3).blit(@screen, [190+(65-@font2.size_text('Options')[0]/2),200+y*2])
+		@font2.render("Quit", true, color4).blit(@screen, [190+(65-@font2.size_text('Quit')[0]/2),200+y*3])
 		
 		@screen.flip
 	end
@@ -279,15 +272,11 @@ class Game
 							load_level('levels/' + @levels[@cur_level].split('.')[0..-2].to_s)
 							@state = :playing
 						when 2
-							@mode = :progress
-							load_level('levels/' + @levels[@cur_level].split('.')[0..-2].to_s)
-							@state = :playing
-						when 3
 							@mode = :pick
 							@state = :loading
-						when 4
+						when 3
 							@state = :options
-						when 5
+						when 4
 							save_settings
 							Rubygame.quit
 							exit
