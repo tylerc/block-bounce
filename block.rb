@@ -67,7 +67,7 @@ class Game
 	
 	def save_settings
 		File.open 'settings.yml', 'w' do |f|
-			f.puts YAML.dump({:cur_level => @cur_level})
+			f.puts YAML.dump({:cur_level => @cur_level, :fx => @fx})
 		end
 	end
 	
@@ -75,6 +75,7 @@ class Game
 		File.open 'settings.yml', 'r' do |f|
 			data = YAML.load(f.read)
 			@cur_level = data[:cur_level]
+			@fx = data[:fx]
 		end
 	end
 	
@@ -144,10 +145,11 @@ class Game
 				when Rubygame::MouseUpEvent
 					case @selected
 						when 1
-							#@cur_level = 0
-							#@mode = :progress
-							#load_level('levels/' + @levels[@cur_level].split('.')[0..-2].to_s)
-							#@state = :playing
+							if @fx
+								@fx = false
+							else
+								@fx = true
+							end
 						when 2
 							#@mode = :progress
 							#load_level('levels/' + @levels[@cur_level].split('.')[0..-2].to_s)
@@ -204,7 +206,13 @@ class Game
 			@selected = 5
 		end
 		# Borders are at 190 and 320
-		@font2.render("Fx #{@fx}", true, color).blit(@screen, [190+(65-@font2.size_text("Fx #{@fx}")[0]/2),200])
+		status = ''
+		if @fx
+			status = 'on'
+		else
+			status = 'off'
+		end
+		@font2.render("Fx #{status}", true, color).blit(@screen, [190+(65-@font2.size_text("Fx #{status}")[0]/2),200])
 		@font2.render("Speed: #{@ball_speed}", true, color2).blit(@screen, [190+(65-@font2.size_text("Speed: #{@ball_speed}")[0]/2),200+y])
 		@font2.render("Clear Progress", true, color3).blit(@screen, [190+(65-@font2.size_text('Clear Progress')[0]/2),200+y*2])
 		@font2.render("Reset all Data", true, color4).blit(@screen, [190+(65-@font2.size_text('Reset all Data')[0]/2),200+y*3])
@@ -447,20 +455,26 @@ class Game
                 if @ballx <= 0
                 	@angle *= -1
 			@ballx = 1
-			@sounds[:bounce].play
+			if @fx
+				@sounds[:bounce].play
+                	end
                 end
                 
                 # Right
                 if @ballx >= @screen.width-@ball.width
                 	@angle *= -1
-                	@sounds[:bounce].play
+                	if @fx
+				@sounds[:bounce].play
+                	end
                 end
                 
                 # Top
                 if @bally <= 0
                 	@hope *= -1
 			@bally = 1
-			@sounds[:bounce].play
+			if @fx
+				@sounds[:bounce].play
+                	end
                 end
                 
                 # Bottom
@@ -530,7 +544,9 @@ class Game
 					@power_pos = [@ballx, @bally]
 				end
 			end
-			@sounds[:bounce].play
+			if @fx
+				@sounds[:bounce].play
+                	end
 		end
 		
 		# Update power
