@@ -1,7 +1,7 @@
+require 'rubygems'
 require 'rubygame'
 require 'yaml'
 Rubygame::TTF.setup
-
 class Game
 	def initialize
 		@screen = Rubygame::Screen.new [512,650], 0, [Rubygame::HWSURFACE, Rubygame::DOUBLEBUF]
