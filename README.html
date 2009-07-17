@@ -72,20 +72,16 @@ I am making this for a few reasons:</p>
 	<li>To create a game with physics!</li>
 </ul>
 <h2>Running The Game</h2>
-<p>(Note: This game is tested and developed on Linux with Ruby 1.8.7)<br />
-You need Rubygame installed (see below) to play the game<br />
-To run the game use the command:</p>
-<p><code>ruby -rubygems block.rb</code></p>
-<h2>Installing Rubygame</h2>
-<p><a href="http://docs.rubygame.org/rdoc/current/">Mac and Windows Instructions</a><br />
-<a href="http://rubygame.org/wiki/Debian_based_GNU/Linux_Distro_Installation_Guide">Ubuntu/Debian Instructions</a></p>
+<p>Simply run <code>block.sh</code> (usually a double click)</p>
+<p>or, if you prefer the command line:</p>
+<p><code>sh block.sh</code></p>
 <h2>Playing The Game</h2>
 <h3>In The Menu:</h3>
 <ul>
 	<li>Start starts a game that plays through all levels (your progress is saved if you quit)</li>
 	<li>Continue continues a game from where you left off</li>
 	<li>Play Level lets you choose a specific level to play</li>
-	<li>Options lets you change stuff&#8230;</li>
+	<li>Options lets you turn on and off FX, change the speed of the ball, reset progress, and reset everything</li>
 	<li>Quit quits the game</li>
 </ul>
 <h3>In Game:</h3>
@@ -99,20 +95,17 @@ To run the game use the command:</p>
 	<li><span class="caps">HINT</span>: The ball bounces at a different angle depending on where it hits the paddle</li>
 </ul>
 <h2>Running The Level Editor</h2>
-<p><code>ruby -rubygems level.rb</code></p>
+<p><code>sh level.sh</code></p>
 <ul>
 	<li>See <span class="caps">LEVEL</span>-<span class="caps">DOC</span> for full information</li>
 	<li>See <span class="caps">LEVEL</span>-<span class="caps">PROPERTIES</span>-<span class="caps">DOC</span> for information on adding level properties</li>
 </ul>
 <h2>Running the Level Properties Editor</h2>
 <p><code>ruby -rubygems properties.rb</code></p>
-<ul>
-	<li>you need <a href="http://ruby-gnome2.sourceforge.jp/hiki.cgi?Install+Guide">ruby-GNOME2 installed</a></li>
-	<li>See <span class="caps">LEVEL</span>-<span class="caps">PROPERTIES</span>-<span class="caps">DOC</span> for more information</li>
-</ul>
+<p>Sorry, but I don&#8217;t package the properties editor with the game, but you can follow the instructions in <span class="caps">LEVEL</span>-<span class="caps">PROPERTIES</span>-<span class="caps">DOC</span> if you would like to write the level properties by hand</p>
 <h2>Running The Sprite Editor</h2>
 <h4>It is recommended that you do <span class="caps">NOT</span> use the sprite editor. Just use a different program and save to a .bmp file</h4>
-<p><code>ruby -rubygems sprite.rb [existing-sprite-name]</code></p>
+<p><code>sh sprite.rb</code></p>
 <p>See <span class="caps">SPRITE</span>-<span class="caps">DOC</span> for full information</p>
 </div>
 </body>
