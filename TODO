@@ -46,11 +46,11 @@
 			+ Reset all Data
 
 == Beta
+* get other people to test
+* fix any bugs (from above)
 (planned beta1) * More block sprites
 (planned beta1) * test with rubygame 2.3.0 (windows)
-(planned beta1) * get other people to test
 (planned beta1) * package for linux and windows (try to get packaged for mac)
-(planned beta1) * fix any bugs
 
 == Release
 (planned 1.0) * create at least 20 levels
