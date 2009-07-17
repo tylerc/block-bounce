@@ -161,7 +161,9 @@ class Game
 						when 3
 							@cur_level = 0
 						when 4
-							#
+							@ball_speed = 10
+							@cur_level = 0
+							@fx = true
 						when 5
 							@state = :menu
 					end
@@ -267,7 +269,6 @@ class Game
 				when Rubygame::MouseUpEvent
 					case @selected
 						when 1
-							@cur_level = 0
 							@mode = :progress
 							load_level('levels/' + @levels[@cur_level].split('.')[0..-2].to_s)
 							@state = :playing
