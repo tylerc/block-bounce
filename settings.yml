@@ -1,3 +1,4 @@
 --- 
-:fx: true
+:speed: 10
 :cur_level: 0
+:fx: true

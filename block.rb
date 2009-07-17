@@ -49,7 +49,6 @@ class Game
 		@player = Rubygame::Surface.load("sprites/player.bmp")
 		@ball = Rubygame::Surface.load 'sprites/ball.bmp'
 		@title = Rubygame::Surface.load 'sprites/bounce.bmp'
-		@ball_speed = 10 # do not set to 1 (the ball wont move...)
 		
 		# Main menu variables
 		@mouse_y = 0
@@ -67,7 +66,7 @@ class Game
 	
 	def save_settings
 		File.open 'settings.yml', 'w' do |f|
-			f.puts YAML.dump({:cur_level => @cur_level, :fx => @fx})
+			f.puts YAML.dump({:cur_level => @cur_level, :fx => @fx, :speed => @ball_speed})
 		end
 	end
 	
@@ -76,6 +75,7 @@ class Game
 			data = YAML.load(f.read)
 			@cur_level = data[:cur_level]
 			@fx = data[:fx]
+			@ball_speed = data[:speed]
 		end
 	end
 	
@@ -151,9 +151,13 @@ class Game
 								@fx = true
 							end
 						when 2
-							#@mode = :progress
-							#load_level('levels/' + @levels[@cur_level].split('.')[0..-2].to_s)
-							#@state = :playing
+							if @ball_speed == 10
+								@ball_speed = 14
+							elsif @ball_speed == 14
+								@ball_speed = 18
+							elsif @ball_speed == 18
+								@ball_speed = 10
+							end
 						when 3
 							#@mode = :pick
 							#@state = :loading
@@ -212,11 +216,11 @@ class Game
 		else
 			status = 'off'
 		end
-		@font2.render("Fx #{status}", true, color).blit(@screen, [190+(65-@font2.size_text("Fx #{status}")[0]/2),200])
-		@font2.render("Speed: #{@ball_speed}", true, color2).blit(@screen, [190+(65-@font2.size_text("Speed: #{@ball_speed}")[0]/2),200+y])
-		@font2.render("Clear Progress", true, color3).blit(@screen, [190+(65-@font2.size_text('Clear Progress')[0]/2),200+y*2])
-		@font2.render("Reset all Data", true, color4).blit(@screen, [190+(65-@font2.size_text('Reset all Data')[0]/2),200+y*3])
-		@font2.render("Back", true, color5).blit(@screen, [190+(65-@font2.size_text('Back')[0]/2),200+y*4])
+		@font3.render("Fx #{status}", true, color).blit(@screen, [190+(65-@font3.size_text("Fx #{status}")[0]/2),200])
+		@font3.render("Ball Speed: #{@ball_speed}", true, color2).blit(@screen, [190+(65-@font3.size_text("Ball Speed: #{@ball_speed}")[0]/2),200+y])
+		@font3.render("Clear Progress", true, color3).blit(@screen, [190+(65-@font3.size_text('Clear Progress')[0]/2),200+y*2])
+		@font3.render("Reset all Data", true, color4).blit(@screen, [190+(65-@font3.size_text('Reset all Data')[0]/2),200+y*3])
+		@font3.render("Back", true, color5).blit(@screen, [190+(65-@font3.size_text('Back')[0]/2),200+y*4])
 		@screen.flip
 	end
 	
