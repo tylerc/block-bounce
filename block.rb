@@ -125,8 +125,91 @@ class Game
 				update_menu
 				draw_menu
 			end
+			if @state == :options
+				update_options
+				draw_options
+			end
 			@clock.tick
 		end
+	end
+	
+	def update_options
+		reset true
+		@queue.each do |ev|
+			case ev
+				when Rubygame::QuitEvent
+					save_settings
+					Rubygame.quit
+					exit
+				when Rubygame::MouseUpEvent
+					case @selected
+						when 1
+							#@cur_level = 0
+							#@mode = :progress
+							#load_level('levels/' + @levels[@cur_level].split('.')[0..-2].to_s)
+							#@state = :playing
+						when 2
+							#@mode = :progress
+							#load_level('levels/' + @levels[@cur_level].split('.')[0..-2].to_s)
+							#@state = :playing
+						when 3
+							#@mode = :pick
+							#@state = :loading
+						when 4
+							#puts "NOT IMPLEMENTED (alpha8)"
+						when 5
+							@state = :menu
+					end
+				when Rubygame::MouseMotionEvent
+					@mouse_y = ev.pos[1]
+				when Rubygame::KeyDownEvent
+					case ev.key
+						when Rubygame::K_ESCAPE
+							save_settings
+							@to = :exit
+							@from = :options
+							@state = :quitting
+					end
+			end
+		end
+	end
+	
+	def draw_options
+		@screen.fill [0,0,0]
+		@title.blit @screen, [0,0]
+		color = [255,255,255]
+		color2 = [255,255,255]
+		color3 = [255,255,255]
+		color4 = [255,255,255]
+		color5 = [255,255,255]
+		y = @font2.size_text('A')[1]
+		if @mouse_y > 200 and @mouse_y < y+200
+			color = [0, 255, 0]
+			@selected = 1
+		end
+		if @mouse_y > 200+y and @mouse_y < y*2+200
+			color2 = [0, 255, 0]
+			@selected = 2
+		end
+		if @mouse_y > 200+y*2 and @mouse_y < y*3+200
+			color3 = [0, 255, 0]
+			@selected = 3
+		end
+		if @mouse_y > 200+y*3 and @mouse_y < y*4+200
+			color4 = [0, 255, 0]
+			@selected = 4
+		end
+		if @mouse_y > 200+y*4 and @mouse_y < y*5+200
+			color5 = [255, 0, 0]
+			@selected = 5
+		end
+		# Borders are at 190 and 320
+		@font2.render("Fx #{@fx}", true, color).blit(@screen, [190+(65-@font2.size_text("Fx #{@fx}")[0]/2),200])
+		@font2.render("Speed: #{@ball_speed}", true, color2).blit(@screen, [190+(65-@font2.size_text("Speed: #{@ball_speed}")[0]/2),200+y])
+		@font2.render("Clear Progress", true, color3).blit(@screen, [190+(65-@font2.size_text('Clear Progress')[0]/2),200+y*2])
+		@font2.render("Reset all Data", true, color4).blit(@screen, [190+(65-@font2.size_text('Reset all Data')[0]/2),200+y*3])
+		@font2.render("Back", true, color5).blit(@screen, [190+(65-@font2.size_text('Back')[0]/2),200+y*4])
+		@screen.flip
 	end
 	
 	def draw_menu
@@ -191,7 +274,7 @@ class Game
 							@mode = :pick
 							@state = :loading
 						when 4
-							puts "NOT IMPLEMENTED (alpha8)"
+							@state = :options
 						when 5
 							save_settings
 							Rubygame.quit
