@@ -39,7 +39,11 @@
 			++ faster ball
 			++ loss of life
 ---
-(planned alpha8) * Options - Turn off fx, music, etc
+(planned alpha8) * Options:
+			- Turn off fx
+			- Ball Speed
+			- Clear Progress
+			- Reset all Data
 
 == Beta
 (planned beta1) * More block sprites
