@@ -56,7 +56,7 @@ h3. In The Menu:
 * Start starts a game that plays through all levels (your progress is saved if you quit)
 * Continue continues a game from where you left off
 * Play Level lets you choose a specific level to play
-* Options lets you change stuff...
+* Options lets you turn on and off FX, change the speed of the ball, reset progress, and reset everything
 * Quit quits the game
 
 h3. In Game:
