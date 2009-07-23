@@ -47,7 +47,6 @@
 
 == Beta
 (planned beta1) * test with rubygame 2.3.0 (windows)
-(planned beta1) * package for linux and windows (try to get packaged for mac)
 road to beta2 or release:
 * get other people to test
 * fix any bugs (from above)
