@@ -46,7 +46,7 @@ Controls
 	q - cancels the color changes (after r,g,b,or a is pressed)
 	c - copy the color of the currently selected pixel
 	v - paste the color of the currently selected pixel
-	l - toggles the line tool. The fill tool fills the pixels 
+	l - toggles the line tool. The line tool fills the pixels 
 		with the color that was selected when it was toggled 
 		on as you move around the grid.
 	f - fill tool, fills the whole screen with a color
