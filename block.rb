@@ -445,37 +445,37 @@ class Game
 		end
                 # Check for collisions with borders
                 
-                # Left
-                if @ballx <= 0
-                	@angle *= -1
-			@ballx = 1
-			if @fx
-				@sounds[:bounce].play
-                	end
-                end
+				# Left
+				if @ballx <= 0
+					@angle *= -1
+					@ballx = 1
+					if @fx
+						@sounds[:bounce].play
+					end
+				end
+
+				# Right
+				if @ballx >= @screen.width-@ball.width
+					@angle *= -1
+					if @fx
+						@sounds[:bounce].play
+					end
+				end
+
+				# Top
+				if @bally <= 0
+					@hope *= -1
+					@bally = 1
+					if @fx
+						@sounds[:bounce].play
+					end
+				end
                 
-                # Right
-                if @ballx >= @screen.width-@ball.width
-                	@angle *= -1
-                	if @fx
-				@sounds[:bounce].play
-                	end
-                end
-                
-                # Top
-                if @bally <= 0
-                	@hope *= -1
-			@bally = 1
-			if @fx
-				@sounds[:bounce].play
-                	end
-                end
-                
-                # Bottom
-                if @bally+@ball.height >= @screen.height
-                	@life -= 1
-                	reset
-                end
+				# Bottom
+				if @bally+@ball.height >= @screen.height
+					@life -= 1
+					reset
+				end
                 
                 # Check for collision with paddle and ball
                 if @bally+@ball.height >= @y and @ballx+@ball.width > @x and @ballx < @x + @player.width
