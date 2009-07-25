@@ -13,6 +13,7 @@ class Game
 		@font = Rubygame::TTF.new 'FreeSans.ttf', 56
 		@font2 = Rubygame::TTF.new 'FreeSans.ttf', 25
 		@font3 = Rubygame::TTF.new 'FreeSans.ttf', 20
+		@font4 = Rubygame::TTF.new 'FreeSans.ttf', 18
 		
 		@levels = []
 		if File.directory? 'levels'
@@ -300,16 +301,17 @@ class Game
 		@screen.fill [0,0,0]
 		@title.blit @screen, [0,0]
 		@levels.each do |level|
-			@screen.draw_box([@screen.width/2-@font3.size_text(level)[0]/2-5,35*@levels.index(level)+100],[@screen.width/2+@font3.size_text(level)[0]/2+5,35*@levels.index(level)+@font3.size_text(level)[1]+100],[0,255,255])
-			@font3.render(level, true, [255, 255, 255]).blit(@screen,[@screen.width/2-@font3.size_text(level)[0]/2,35*@levels.index(level)+100])
+			@screen.draw_box([@screen.width/2-@font4.size_text(level)[0]/2-5,@sp*@levels.index(level)+125],[@screen.width/2+@font4.size_text(level)[0]/2+5,@sp*@levels.index(level)+@font4.size_text(level)[1]+125],[0,255,255])
+			@font4.render(level, true, [255, 255, 255]).blit(@screen,[@screen.width/2-@font4.size_text(level)[0]/2,@sp*@levels.index(level)+125])
 		end
-		@font3.render('Back', true, @back_color).blit(@screen,[@screen.width/2-@font3.size_text('Back')[0]/2,@levels.length*35+100])
+		@font3.render('Back', true, @back_color).blit(@screen,[@screen.width/2-@font3.size_text('Back')[0]/2,@levels.length*@sp+125])
 		@screen.flip
 	end
 	
 	def update_loading
+		@sp = 30
 		x = @screen.width/2-@font3.size_text('Back')[0]/2
-		y = @levels.length*35+100
+		y = @levels.length*@sp+125
 		width, height = @font3.size_text('Back')
 		@queue.each do |ev|
 			case ev	
@@ -323,7 +325,7 @@ class Game
 					end
 				when Rubygame::MouseUpEvent
 					begin
-					load_level("levels/#{@levels[(ev.pos[1]-100)/35][0..-5]}")
+					load_level("levels/#{@levels[(ev.pos[1]-125)/@sp][0..-5]}")
 					@state = :playing
 					rescue
 					end
