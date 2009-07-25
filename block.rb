@@ -300,16 +300,16 @@ class Game
 		@screen.fill [0,0,0]
 		@title.blit @screen, [0,0]
 		@levels.each do |level|
-			@screen.draw_box([@screen.width/2-@font3.size_text(level)[0]/2-5,35*@levels.index(level)+200],[@screen.width/2+@font3.size_text(level)[0]/2+5,35*@levels.index(level)+@font3.size_text(level)[1]+200],[0,255,255])
-			@font3.render(level, true, [255, 255, 255]).blit(@screen,[@screen.width/2-@font3.size_text(level)[0]/2,35*@levels.index(level)+200])
+			@screen.draw_box([@screen.width/2-@font3.size_text(level)[0]/2-5,35*@levels.index(level)+100],[@screen.width/2+@font3.size_text(level)[0]/2+5,35*@levels.index(level)+@font3.size_text(level)[1]+100],[0,255,255])
+			@font3.render(level, true, [255, 255, 255]).blit(@screen,[@screen.width/2-@font3.size_text(level)[0]/2,35*@levels.index(level)+100])
 		end
-		@font3.render('Back', true, @back_color).blit(@screen,[@screen.width/2-@font3.size_text('Back')[0]/2,@levels.length*35+200])
+		@font3.render('Back', true, @back_color).blit(@screen,[@screen.width/2-@font3.size_text('Back')[0]/2,@levels.length*35+100])
 		@screen.flip
 	end
 	
 	def update_loading
 		x = @screen.width/2-@font3.size_text('Back')[0]/2
-		y = @levels.length*35+200
+		y = @levels.length*35+100
 		width, height = @font3.size_text('Back')
 		@queue.each do |ev|
 			case ev	
@@ -323,7 +323,7 @@ class Game
 					end
 				when Rubygame::MouseUpEvent
 					begin
-					load_level("levels/#{@levels[(ev.pos[1]-200)/35][0..-5]}")
+					load_level("levels/#{@levels[(ev.pos[1]-100)/35][0..-5]}")
 					@state = :playing
 					rescue
 					end
