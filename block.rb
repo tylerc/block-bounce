@@ -457,6 +457,7 @@ class Game
 				# Right
 				if @ballx >= @screen.width-@ball.width
 					@angle *= -1
+					@ballx = @screen.width-@ball.width-1
 					if @fx
 						@sounds[:bounce].play
 					end
