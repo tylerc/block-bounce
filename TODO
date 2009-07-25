@@ -46,8 +46,8 @@
 			+ Reset all Data
 
 == Beta
-(planned beta1) * test with rubygame 2.3.0 (windows)
-(planned beta1) * have at least 10 levels
+(in beta1) * test with rubygame 2.3.0 (windows)
+(in beta1) * have at least 10 levels
 road to beta2 or release:
 * get other people to test
 * fix any bugs (from above)
