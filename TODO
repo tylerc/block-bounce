@@ -47,12 +47,13 @@
 
 == Beta
 (planned beta1) * test with rubygame 2.3.0 (windows)
+(planned beta1) * have at least 10 levels
 road to beta2 or release:
 * get other people to test
 * fix any bugs (from above)
 
 == Release
 (planned 1.0) * More block sprites
-(planned 1.0) * create at least 20 levels
+(planned 1.0) * have at least 20 levels
 (planned 1.0) * package for linux and windows (try to get packaged for mac)
 (planned 1.0) * create a level making tutorial
