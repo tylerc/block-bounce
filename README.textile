@@ -5,7 +5,7 @@ h1(title). Block Bounce
 
 h2(author). Written by: Tyler Church
 
-h2(version). Version: linux-alpha8
+h2(version). Version: linux-beta1
 </div>
 <div class='license'>
 h2. License
@@ -65,9 +65,9 @@ h3. In Game:
 
 h2. Running The Level Editor
 
-@sh level.sh@
-* See LEVEL-DOC for full information
-* See LEVEL-PROPERTIES-DOC for information on adding level properties
+@ruby -rubygems level.rb@
+* See doc/LEVEL-DOC for full information
+* See doc/LEVEL-PROPERTIES-DOC for information on adding level properties
 
 h2. Running the Level Properties Editor
 
@@ -81,6 +81,6 @@ h4. It is recommended that you do NOT use the sprite editor. Just use a differen
 
 @sh sprite.rb@
 
-See SPRITE-DOC for full information
+See doc/SPRITE-DOC for full information
 
 </div>

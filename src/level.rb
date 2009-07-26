@@ -64,7 +64,7 @@ class LevelEditor
 								if @cur_edit == :load_sprite
 									begin
 									@sprites[@sprites.length] = Rubygame::Surface.load "#{@buf}.bmp"
-									@sprite_files += [@buf]
+									@sprite_files += [@buf+'.bmp']
 									rescue
 										puts "Error: Couldn't load sprite"
 									end
@@ -95,8 +95,9 @@ class LevelEditor
 									@name = data[:name]
 									input.close
 									@dir = @buf
-									rescue
+									rescue Exception => e
 										puts "Error: Couldn't load level"
+										puts e
 									end
 								end
 								@buf = " "
