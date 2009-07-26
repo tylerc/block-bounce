@@ -26,6 +26,7 @@ class Game
 			puts 'Error! Could not load levels'
 			exit
 		end
+		@levels.sort!
 		@powers = {}
 		if File.directory? 'sprites/powers'
 			Dir.entries('sprites/powers/.').each do |x|
