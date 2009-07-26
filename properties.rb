@@ -11,6 +11,7 @@ class LevelEditor
 		@clock = Rubygame::Clock.new
 		@clock.target_framerate = 30
 		@font = Rubygame::TTF.new 'FreeSans.ttf', 30
+		@font2 = Rubygame::TTF.new 'FreeSans.ttf', 25
 		
 		@files = []
 		@file = ""
@@ -30,6 +31,7 @@ class LevelEditor
 		end
 		@pos = [0,0]
 		@height = @font.size_text('hello')[1]
+		@height2 = @font2.size_text('hello')[1]
 		@hover3 = false
 	end
 	
@@ -90,8 +92,8 @@ class LevelEditor
 			end
 		end
 		@files.each do |file|
-			width = @font.size_text(file)[0]
-			if collision_between(@pos[0],@pos[1],1,1, 0,@files.index(file)*@height,width,@height)
+			width = @font2.size_text(file)[0]
+			if collision_between(@pos[0],@pos[1],1,1, 0,@files.index(file)*@height2,width,@height2)
 				@hover2[@files.index(file)] = true
 			else
 				@hover2[@files.index(file)] = false
@@ -115,7 +117,7 @@ class LevelEditor
 		@files.each do |file|
 			color = [0,255,0] if @hover2[@files.index(file)]
 			color = [255,255,255] if !@hover2[@files.index(file)]
-			@font.render(file, true, color).blit(@screen, [0,@files.index(file)*@height])
+			@font2.render(file, true, color).blit(@screen, [0,@files.index(file)*@height2])
 		end
 		
 		color = [0,255,0] if @hover3
