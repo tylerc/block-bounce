@@ -81,13 +81,13 @@ h3. In Game:
 h2. Running The Level Editor
 
 @ruby -rubygems level.rb@
-* See doc/LEVEL-DOC for full information
-* See doc/LEVEL-PROPERTIES-DOC for information on adding level properties
+* See "doc/LEVEL-DOC":doc/LEVEL-DOC for full information
+* See "doc/LEVEL-PROPERTIES-DOC":doc/LEVEL-PROPERTIES-DOC for information on adding level properties
 
 h2. Running the Level Properties Editor
 
 @ruby -rubygems properties.rb@
-* See doc/LEVEL-PROPERTIES-DOC for more information
+* See "doc/LEVEL-PROPERTIES-DOC":doc/LEVEL-PROPERTIES-DOC for more information
 
 h2. Running The Sprite Editor
 
@@ -95,6 +95,6 @@ h4. It is recommended that you do NOT use the sprite editor. Just use a differen
 
 @ruby -rubygems sprite.rb [existing-sprite-name]@
 
-See doc/SPRITE-DOC for full information
+See "doc/SPRITE-DOC":doc/SPRITE-DOC for full information
 
 </div>
