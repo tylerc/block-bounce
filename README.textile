@@ -24,6 +24,16 @@ Permission is granted to anyone to use this software for any purpose, including 
 
 </div>
 
+<div class='version'>
+h2. Versions
+
+*alpha* - Some features implemented. More features in each successive release. Not all features decided upon.
+
+*beta* - All features implemented, adding few extras (levels, sprites, etc) and bug fixes
+
+*final* - All features implemented, anything after _final1_ is purely bug-fix, or contributed additions
+</div>
+
 </div>
 
 <div class="content">
