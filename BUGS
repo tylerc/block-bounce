@@ -1,5 +1,9 @@
 == Main Game (block.rb)
 
+Old properties editor is still here
+README still has reference to old property editor
+New properties editor has no documentation
+
 == Level Editor (level.rb)
 
 == Level Properties Editor (properties.rb)
