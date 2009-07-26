@@ -5,7 +5,7 @@ h1(title). Block Bounce
 
 h2(author). Written by: Tyler Church
 
-h2(version). Version: linux-beta1
+h2(version). Version: beta1-linux
 </div>
 <div class='license'>
 h2. License
