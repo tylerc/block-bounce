@@ -274,6 +274,7 @@ class Game
 							@mode = :progress
 							load_level('levels/' + @levels[@cur_level].split('.')[0..-2].to_s)
 							@state = :playing
+							@to = :menu
 						when 2
 							@mode = :pick
 							@state = :loading
@@ -328,6 +329,7 @@ class Game
 					begin
 					load_level("levels/#{@levels[(ev.pos[1]-125)/@sp][0..-5]}")
 					@state = :playing
+					@to = :loading
 					rescue
 					end
 					if ev.pos[0] > x and ev.pos[0] < x+width and ev.pos[1] > y and ev.pos[1] < y+height
@@ -355,7 +357,7 @@ class Game
 						when Rubygame::K_E
 							eval STDIN.gets
 						when Rubygame::K_Y
-							if @to == :menu
+							if @to != :exit
 								@state = @to
 							else
 								Rubygame.quit
@@ -414,7 +416,6 @@ class Game
 						when Rubygame::K_ESCAPE
 							@state = :quitting
 							@from = :playing
-							@to = :menu
 						when Rubygame::K_E
 							eval STDIN.gets
 						when Rubygame::K_P

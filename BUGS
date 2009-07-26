@@ -1,7 +1,5 @@
 == Main Game (block.rb)
 
-* Quitting from play level should go back to play level, not menu
-
 == Level Editor (level.rb)
 
 == Level Properties Editor (properties.rb)
