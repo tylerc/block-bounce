@@ -1,95 +1,146 @@
-#!/usr/bin/env ruby
-
-require 'gtk2'
+require 'rubygame'
 require 'yaml'
+Rubygame::TTF.setup
 
-window = Gtk::Window.new
-window.signal_connect("delete_event") {
-  false
-}
-
-window.signal_connect("destroy") {
-  Gtk.main_quit
-}
-
-table = Gtk::Table.new(20,2,true)
-
-# Load level
-hbox = Gtk::HBox.new(false,5)
-level = Gtk::Entry.new
-level_label = Gtk::Label.new("Level:")
-hbox.pack_start_defaults(level_label)
-hbox.pack_start_defaults(level)
-level_button = Gtk::Button.new("Load Level")
-labels = []
-19.times do |x|
-	labels[x] = Gtk::Label.new("")
-end
-entries = []
-19.times do |x|
-	entries[x] = Gtk::Entry.new
-end
-level_button.signal_connect("clicked") do
-	begin
-		input = File.new "#{level.text}.lvl"
-		data = YAML.load(input)
-		input.close
-		length = data[:sprite_files].length
-		data[:sprite_files].length.times do |x|
-			labels[x].text = data[:sprite_files][x]
+class LevelEditor
+	def initialize
+		@screen = Rubygame::Screen.new [512,700], 0, [Rubygame::HWSURFACE, Rubygame::DOUBLEBUF]
+		@screen.title = "Level Editor"
+		
+		@queue = Rubygame::EventQueue.new
+		@clock = Rubygame::Clock.new
+		@clock.target_framerate = 30
+		@font = Rubygame::TTF.new 'FreeSans.ttf', 30
+		@font2 = Rubygame::TTF.new 'FreeSans.ttf', 15
+		
+		@files = []
+		@file = ""
+		Dir.foreach('levels') do |file|
+			@files += [file] if file[-3..-1] == 'lvl'
 		end
-	rescue
-		puts "Could not load level"
-		length = 0
-	end
-	begin
-		input = File.new "#{level.text}.yml"
-		data = YAML.load(input)
-		input.close
-		data[:health].length.times do |x|
-			entries[x].text = data[:health][x].to_s
+		@files.sort!
+		@hover2 = []
+		@files.each do |file|
+			@hover2 += [false]
 		end
-		@health = data[:health].clone
-		rescue Errno::ENOENT
-			@health = {}
-			length.times do |x|
-				entries[x].text = "1"
-				@health[x] = 1
-			end
+		@level = {:sprite_files => []}
+		@props = {}
+		@hover = []
+		@level[:sprite_files].length.times do |x|
+			@hover[x] = false
+		end
+		@pos = [0,0]
+		@height = @font.size_text('hello')[1]
+		@height2 = @font2.size_text('hello')[1]
+		@hover3 = false
 	end
-end
-save_button = Gtk::Button.new("Save")
-save_button.signal_connect("clicked") do
-	save = true
-	@health.length.times do |x|
-		@health[x] = entries[x].text.to_i
-		@health[x] == 0 ? save = false : nil
-	end
-	if save
-		data = {}
-		data[:health] = @health.clone
 	
-		output = File.new "#{level.text}.yml", 'w'
-		output.puts YAML.dump(data)
-		output.close
-	else
-		puts "Values can't be Strings or 0"
+	def run
+		loop do
+			update
+			draw
+			@clock.tick
+		end
+	end
+	
+	def update
+		@queue.each do |ev|
+			case ev
+				when Rubygame::QuitEvent
+					Rubygame.quit
+					exit
+				when Rubygame::KeyDownEvent
+					case ev.key
+						when Rubygame::K_ESCAPE
+							@queue.post(Rubygame::QuitEvent.new)
+					end
+				when Rubygame::MouseMotionEvent
+					@pos = ev.pos
+				when Rubygame::MouseDownEvent
+					@hover.length.times do |x|
+						if @hover[x]
+							if ev.button == Rubygame::MOUSE_LEFT
+								@props[:health][x] += 1
+							elsif ev.button == Rubygame::MOUSE_RIGHT
+								@props[:health][x] -= 1
+							end
+						end
+					end
+					@hover2.length.times do |x|
+						if @hover2[x]
+							@level = YAML.load(File.read('levels/' + @files[x]))
+							@file = 'levels/' + @files[x]
+							if File.exists?('levels/' + @files[x].split('.')[0..-2].to_s + '.yml')
+								@props = YAML.load(File.read('levels/' + @files[x].split('.')[0..-2].to_s + '.yml'))
+							else
+								@props = {:health => {}}
+								@level[:sprite_files].length.times { |y| @props[:health][y] = 1 }
+							end
+						end
+					end
+					if @hover3
+						save
+					end
+			end
+		end
+		@level[:sprite_files].length.times do |x|
+			width = @font.size_text(@level[:sprite_files][x] + ': ' + @props[:health][x].to_s)[0]
+			if collision_between(@pos[0],@pos[1],1,1, 200,x*@height,width, @height)
+				@hover[x] = true
+			else
+				@hover[x] = false
+			end
+		end
+		@files.each do |file|
+			width = @font2.size_text(file)[0]
+			if collision_between(@pos[0],@pos[1],1,1, 0,@files.index(file)*@height2,width,@height2)
+				@hover2[@files.index(file)] = true
+			else
+				@hover2[@files.index(file)] = false
+			end
+		end
+		width = @font.size_text('Save')[0]
+		if collision_between(@pos[0],@pos[1],1,1, 200, @screen.height-@height,width,@height)
+			@hover3 = true
+		else
+			@hover3 = false
+		end
+	end
+	
+	def draw
+		@screen.fill [0,0,0]
+		@level[:sprite_files].length.times do |x|
+			color = [0,255,0] if @hover[x]
+			color = [255,255,255] if !@hover[x]
+			@font.render("#{@level[:sprite_files][x]}: #{@props[:health][x]}", true, color).blit(@screen, [200,x*@height])
+		end
+		@files.each do |file|
+			color = [0,255,0] if @hover2[@files.index(file)]
+			color = [255,255,255] if !@hover2[@files.index(file)]
+			@font2.render(file, true, color).blit(@screen, [0,@files.index(file)*@height2])
+		end
+		
+		color = [0,255,0] if @hover3
+		color = [255,255,255] if !@hover3
+		@font.render("Save", true, color).blit(@screen, [200,@screen.height-@height])
+		
+		@screen.flip
+	end
+	
+	def collision_between obj1x, obj1y, obj1width, obj1height, obj2x, obj2y, obj2width, obj2height
+		if obj1y + obj1height < obj2y ; return false ; end
+		if obj1y > obj2y + obj2height ; return false ; end
+		if obj1x + obj1width < obj2x ; return false ; end
+		if obj1x > obj2x + obj2width ; return false ; end
+		return true
+	end
+	
+	def save
+		File.open(@file.split('.')[0..-2].to_s + '.yml','w') do |file|
+			file.puts YAML.dump(@props) 
+		end
 	end
 end
 
-table.attach(hbox,0,1,0,1)
-table.attach(level_button,1,2,0,1)
-table.attach(save_button,1,2,1,2)
-labels.length.times do |x|
-	table.attach(labels[x],0,1,2+x,3+x)
-end
-entries.length.times do |x|
-	table.attach(entries[x],1,2,2+x,3+x)
-end
-
-window.border_width = 5
-window.title = "Level Properties Editor"
-window.add(table)
-window.show_all
-
-Gtk.main
+leveler = LevelEditor.new
+leveler.run

@@ -51,6 +51,12 @@ font-size: 10pt;
 background: #DDD;
 padding: 5px;
 }
+div.version
+{
+margin-top: 35px;
+padding: 30px;
+background: #DFD;
+}
 </style>
 </head>
 <body>

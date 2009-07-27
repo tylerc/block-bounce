@@ -5,7 +5,7 @@ h1(title). Block Bounce
 
 h2(author). Written by: Tyler Church
 
-h2(version). Version: beta1-linux
+h2(version). Version: final1-linux
 </div>
 <div class='license'>
 h2. License
@@ -22,6 +22,16 @@ Permission is granted to anyone to use this software for any purpose, including 
 
 3. This notice may not be removed or altered from any source distribution.
 
+</div>
+
+<div class='version'>
+h2. Versions
+
+*alpha* - Some features implemented. More features in each successive release. Not all features decided upon.
+
+*beta* - All features implemented, adding few extras (levels, sprites, etc) and bug fixes
+
+*final* - All features implemented, anything after _final1_ is purely bug-fix, or contributed additions
 </div>
 
 </div>
@@ -65,15 +75,16 @@ h3. In Game:
 
 h2. Running The Level Editor
 
-@ruby -rubygems level.rb@
-* See doc/LEVEL-DOC for full information
-* See doc/LEVEL-PROPERTIES-DOC for information on adding level properties
+@sh level.sh@
+* See "doc/LEVEL-TUTORIAL":doc/LEVEL-TUTORIAL for a tutorial on making levels
+* See "doc/LEVEL-DOC":doc/LEVEL-DOC for full information
+* See "doc/LEVEL-PROPERTIES-DOC":doc/LEVEL-PROPERTIES-DOC for information on adding level properties
 
 h2. Running the Level Properties Editor
 
-@ruby -rubygems properties.rb@
+@sh properties.sh@
 
-Sorry, but I don't package the properties editor with the game, but you can follow the instructions in LEVEL-PROPERTIES-DOC if you would like to write the level properties by hand
+* See "doc/LEVEL-PROPERTIES-DOC":doc/LEVEL-PROPERTIES-DOC for more information
 
 h2. Running The Sprite Editor
 
@@ -81,6 +92,6 @@ h4. It is recommended that you do NOT use the sprite editor. Just use a differen
 
 @sh sprite.rb@
 
-See doc/SPRITE-DOC for full information
+See "doc/SPRITE-DOC":doc/SPRITE-DOC for full information
 
 </div>

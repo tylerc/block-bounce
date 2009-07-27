@@ -11,19 +11,16 @@ Properties.
 	where health is the number of desired hits it takes to destroy a tile
 	
 How to create properties with properties editor:
-	You need to have ruby-GNOME2 installed (http://ruby-gnome2.sourceforge.jp/hiki.cgi?Install+Guide )
 	run the command:
-		ruby properties.rb
-	Enter the path to the level in the input box labeled "Level"
-	LEAVE OUT THE FILE EXTENSION!
-	Press Load Level
+		ruby -rubygems properties.rb
 	
-	It will then show the sprites you used for that level, along with their health values
-	change to the desired settings
+	Click on the level with the properties you would like to edit
 	
-	press the Save button.
+	Left click on the property to increase the value, Right click to decrease. 
 	
-	You are now done, you can edit another level's properties or quit the application
+	When your done editing the properties for the level, click the save button
+	
+	You are now done, but you can edit other properties if you wish.
 	
 How to create properties via other ruby script/irb:
 	If you don't like, or can't use the properties editor here's how to write a ruby script:

@@ -42,6 +42,12 @@ font-size: 10pt;
 background: #DDD;
 padding: 5px;
 }
+div.version
+{
+margin-top: 35px;
+padding: 30px;
+background: #DFD;
+}
 </style>
 </head>
 <body>
@@ -49,7 +55,7 @@ padding: 5px;
 <div class="heading">
 <h1 class="title">Block Bounce</h1>
 <h2 class="author">Written by: Tyler Church</h2>
-<h2 class="version">Version: beta1-linux</h2>
+<h2 class="version">Version: final1-linux</h2>
 </div>
 <div class='license'>
 <h2>License</h2>
@@ -59,6 +65,12 @@ padding: 5px;
 <p>1. The origin of this software must not be misrepresented; you must not claim that you wrote the original software. If you use this software in a product, an acknowledgement in the product documentation would be appreciated but is not required.</p>
 <p>2. Altered source versions must be plainly marked as such, and must not be misrepresented as being the original software.</p>
 <p>3. This notice may not be removed or altered from any source distribution.</p>
+</div>
+<div class='version'>
+<h2>Versions</h2>
+<p><strong>alpha</strong> &#8211; Some features implemented. More features in each successive release. Not all features decided upon.</p>
+<p><strong>beta</strong> &#8211; All features implemented, adding few extras (levels, sprites, etc) and bug fixes</p>
+<p><strong>final</strong> &#8211; All features implemented, anything after <em>final1</em> is purely bug-fix, or contributed additions</p>
 </div>
 </div>
 <div class="content">
@@ -95,18 +107,21 @@ I am making this for a few reasons:</p>
 	<li><span class="caps">HINT</span>: The ball bounces at a different angle depending on where it hits the paddle</li>
 </ul>
 <h2>Running The Level Editor</h2>
-<p><code>ruby -rubygems level.rb</code></p>
+<p><code>sh level.sh</code></p>
 <ul>
-	<li>See doc/<span class="caps">LEVEL</span>-<span class="caps">DOC</span> for full information</li>
-	<li>See doc/<span class="caps">LEVEL</span>-<span class="caps">PROPERTIES</span>-<span class="caps">DOC</span> for information on adding level properties</li>
+	<li>See <a href="doc/LEVEL-TUTORIAL">doc/<span class="caps">LEVEL</span>-<span class="caps">TUTORIAL</span></a> for a tutorial on making levels</li>
+	<li>See <a href="doc/LEVEL-DOC">doc/<span class="caps">LEVEL</span>-<span class="caps">DOC</span></a> for full information</li>
+	<li>See <a href="doc/LEVEL-PROPERTIES-DOC">doc/<span class="caps">LEVEL</span>-<span class="caps">PROPERTIES</span>-<span class="caps">DOC</span></a> for information on adding level properties</li>
 </ul>
 <h2>Running the Level Properties Editor</h2>
-<p><code>ruby -rubygems properties.rb</code></p>
-<p>Sorry, but I don&#8217;t package the properties editor with the game, but you can follow the instructions in <span class="caps">LEVEL</span>-<span class="caps">PROPERTIES</span>-<span class="caps">DOC</span> if you would like to write the level properties by hand</p>
+<p><code>sh properties.sh</code></p>
+<ul>
+	<li>See <a href="doc/LEVEL-PROPERTIES-DOC">doc/<span class="caps">LEVEL</span>-<span class="caps">PROPERTIES</span>-<span class="caps">DOC</span></a> for more information</li>
+</ul>
 <h2>Running The Sprite Editor</h2>
 <h4>It is recommended that you do <span class="caps">NOT</span> use the sprite editor. Just use a different program and save to a .bmp file</h4>
 <p><code>sh sprite.rb</code></p>
-<p>See doc/<span class="caps">SPRITE</span>-<span class="caps">DOC</span> for full information</p>
+<p>See <a href="doc/SPRITE-DOC">doc/<span class="caps">SPRITE</span>-<span class="caps">DOC</span></a> for full information</p>
 </div>
 </body>
 </html>
