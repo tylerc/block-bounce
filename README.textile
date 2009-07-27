@@ -5,7 +5,7 @@ h1(title). Block Bounce
 
 h2(author). Written by: Tyler Church
 
-h2(version). Version: final1-linux
+h2(version). Version: final1-windows
 </div>
 <div class='license'>
 h2. License
@@ -49,11 +49,7 @@ I am making this for a few reasons:
 
 h2. Running The Game
 
-Simply run @block.sh@ (usually a double click) 
-
-or, if you prefer the command line:
-
-@sh block.sh@
+Simply run @block.bat@ (usually a double click)
 
 h2. Playing The Game
 
@@ -75,14 +71,14 @@ h3. In Game:
 
 h2. Running The Level Editor
 
-@sh level.sh@
+@level.bat@
 * See "doc/LEVEL-TUTORIAL":doc/LEVEL-TUTORIAL for a tutorial on making levels
 * See "doc/LEVEL-DOC":doc/LEVEL-DOC for full information
 * See "doc/LEVEL-PROPERTIES-DOC":doc/LEVEL-PROPERTIES-DOC for information on adding level properties
 
 h2. Running the Level Properties Editor
 
-@sh properties.sh@
+@properties.bat@
 
 * See "doc/LEVEL-PROPERTIES-DOC":doc/LEVEL-PROPERTIES-DOC for more information
 
@@ -90,7 +86,7 @@ h2. Running The Sprite Editor
 
 h4. It is recommended that you do NOT use the sprite editor. Just use a different program and save to a .bmp file
 
-@sh sprite.sh@
+@sprite.bat@
 
 See "doc/SPRITE-DOC":doc/SPRITE-DOC for full information
 
