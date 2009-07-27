@@ -81,6 +81,7 @@ h3. In Game:
 h2. Running The Level Editor
 
 @ruby -rubygems level.rb@
+* See "doc/LEVEL-TUTORIAL":doc/LEVEL-TUTORIAL for a tutorial on making levels
 * See "doc/LEVEL-DOC":doc/LEVEL-DOC for full information
 * See "doc/LEVEL-PROPERTIES-DOC":doc/LEVEL-PROPERTIES-DOC for information on adding level properties
 

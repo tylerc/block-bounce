@@ -1,0 +1,37 @@
+How to create levels
+====================
+
+See LEVEL-DOC for all controls.
+
+1. Start the level editor (to find out how, see README).
+
+2. You will a screen with a green grid at the top, and a blue grid at the bottom. The blue grid is where all your loaded blocks will be. The green grid is where you can place your blocks.
+
+3. The first thing to do is load some blocks. Press shift, then enter the path to the file (listed below). When you press enter you should see your block loaded in the blue grid.
+	sprites/b2 - Black
+	sprites/b - Blue
+	sprites/y - Yellow
+	sprites/g - Green
+	sprites/r - Red
+	sprites/p - Purple
+	sprites/w - White
+	
+4. Click on one of the blocks you loaded to select it and then click again in the green area to place a block. You will keep placing the same kind of block until you select a different one from the blue section. If you make a mistake, right click to delete the block.
+
+5. If while making your level, you wish to see it without the grid, press h
+
+6. When you are satisfied with your level, press s. The editor should prompt you for a name. enter whatever you like.
+
+7. The editor should've saved a file like: name.lvl. place this file in the levels folder.
+
+8. Start the properties editor (to find out how, see README). Click on your level from the list. You will then be presented with the filename of each block. Left click to give that color block, more health. Right click to decrease health. (Health is the number of hits it takes to destroy a block)
+
+9. When you have set the properties to what you want, click save.
+
+10. Start the game.
+
+11. Go to Play Level and find your level, you can now see your level in action!
+
+12. If you want to change your level, you can start the level editor again. Press l and enter levels/name where name is the name of your level.
+
+Have fun making levels!

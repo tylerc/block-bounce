@@ -54,6 +54,6 @@ road to beta2 or release:
 
 == Release
 (in final1) * rubygame based properties editor
-(planned final1) * have at least 20 levels
-(planned final1) * create a level making tutorial
+(in final1) * have at least 20 levels
+(in final1) * create a level making tutorial
 (planned after final1) * package for linux and windows (try to get packaged for mac)
