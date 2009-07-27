@@ -58,6 +58,9 @@ class Game
 		@cur_level = 0
 		@mode = :pick
 		@back_color = [255,255,255]
+		@back_color2 = [255,255,255]
+		@back_color3 = [255,255,255]
+		@page = 8
 		
 		# Sounds
 		@sounds = {:bounce => Rubygame::Sound.load('sound/bounce.wav')}
@@ -302,19 +305,33 @@ class Game
 	def draw_loading
 		@screen.fill [0,0,0]
 		@title.blit @screen, [0,0]
-		@levels.each do |level|
-			@screen.draw_box([@screen.width/2-@font4.size_text(level)[0]/2-5,@sp*@levels.index(level)+125],[@screen.width/2+@font4.size_text(level)[0]/2+5,@sp*@levels.index(level)+@font4.size_text(level)[1]+125],[0,255,255])
-			@font4.render(level, true, [255, 255, 255]).blit(@screen,[@screen.width/2-@font4.size_text(level)[0]/2,@sp*@levels.index(level)+125])
+		#@levels[@page-8..@page].each do |level|
+		lvls = @levels[@page-8..@page]
+		unless lvls.nil?
+			lvls.each do |level|
+				@font2.render(level, true, [255,255,255]).blit(@screen,[@screen.width/2-@font2.size_text(level)[0]/2, @sp*(@levels.index(level)-@page)+350])
+			end
 		end
-		@font3.render('Back', true, @back_color).blit(@screen,[@screen.width/2-@font3.size_text('Back')[0]/2,@levels.length*@sp+125])
+		
+		# Pagination
+		@font3.render('<', true, @back_color2).blit(@screen,[@screen.width/2-@font3.size_text('<')[0],9*@sp+100])
+		@font3.render('>', true, @back_color3).blit(@screen,[@screen.width/2+@font3.size_text('>')[0],9*@sp+100])
+		
+		@font3.render('Back', true, @back_color).blit(@screen,[@screen.width/2-@font3.size_text('Back')[0]/2,9*@sp+125])
 		@screen.flip
 	end
 	
 	def update_loading
 		@sp = 30
 		x = @screen.width/2-@font3.size_text('Back')[0]/2
-		y = @levels.length*@sp+125
+		y = 9*@sp+125
 		width, height = @font3.size_text('Back')
+		x2 = @screen.width/2-@font3.size_text('<')[0]
+		y2 = 9*@sp+100
+		width2, height2 = @font3.size_text('<')
+		x3 = @screen.width/2+@font3.size_text('>')[0]
+		y3 = 9*@sp+100
+		width3, height3 = @font3.size_text('>')
 		@queue.each do |ev|
 			case ev	
 				when Rubygame::QuitEvent
@@ -327,13 +344,19 @@ class Game
 					end
 				when Rubygame::MouseUpEvent
 					begin
-					load_level("levels/#{@levels[(ev.pos[1]-125)/@sp][0..-5]}")
-					@state = :playing
-					@to = :loading
+					#load_level("levels/#{@levels[(ev.pos[1]-125)/@sp][0..-5]}")
+					#@state = :playing
+					#@to = :loading
 					rescue
 					end
 					if ev.pos[0] > x and ev.pos[0] < x+width and ev.pos[1] > y and ev.pos[1] < y+height
 						@state = :menu
+					end
+					if ev.pos[0] > x2 and ev.pos[0] < x2+width2 and ev.pos[1] > y2 and ev.pos[1] < y2+height2
+						@page -= 8
+					end
+					if ev.pos[0] > x3 and ev.pos[0] < x3+width3 and ev.pos[1] > y3 and ev.pos[1] < y3+height3
+						@page += 8
 					end
 				when Rubygame::MouseMotionEvent	
 					# Back to menu button
@@ -341,6 +364,17 @@ class Game
 						@back_color = [255,0,0]
 					else
 						@back_color = [255,255,255]
+					end
+					if ev.pos[0] > x2 and ev.pos[0] < x2+width2 and ev.pos[1] > y2 and ev.pos[1] < y2+height2
+						@back_color2 = [0,255,0]
+					else
+						@back_color2 = [255,255,255]
+					end
+					if ev.pos[0] > x3 and ev.pos[0] < x3+width3 and ev.pos[1] > y3 and ev.pos[1] < y3+height3
+						
+						@back_color3 = [0,255,0]
+					else
+						@back_color3 = [255,255,255]
 					end
 			end
 		end
