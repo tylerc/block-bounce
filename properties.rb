@@ -11,7 +11,7 @@ class LevelEditor
 		@clock = Rubygame::Clock.new
 		@clock.target_framerate = 30
 		@font = Rubygame::TTF.new 'FreeSans.ttf', 30
-		@font2 = Rubygame::TTF.new 'FreeSans.ttf', 20
+		@font2 = Rubygame::TTF.new 'FreeSans.ttf', 15
 		
 		@files = []
 		@file = ""
