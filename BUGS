@@ -1,5 +1,7 @@
 == Main Game (block.rb)
 
+Level listing on play level goes off screen
+
 == Level Editor (level.rb)
 
 == Level Properties Editor (properties.rb)
