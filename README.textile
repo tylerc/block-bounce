@@ -90,7 +90,7 @@ h2. Running The Sprite Editor
 
 h4. It is recommended that you do NOT use the sprite editor. Just use a different program and save to a .bmp file
 
-@sh sprite.rb@
+@sh sprite.sh@
 
 See "doc/SPRITE-DOC":doc/SPRITE-DOC for full information
 
