@@ -21,13 +21,14 @@ h2.version
 {
 font-size: 14pt;
 }
-div.top, div.content { margin-top: 35px; margin-left: 35px; }
+div.top, div.content { margin-top: 35px; }
 div.content
 {
-width: 30%;
+width: 350px;
 background: #FFD;
 padding: 30px;
 float: left;
+margin-left: 35px;
 }
 div.heading
 {
@@ -56,6 +57,12 @@ div.version
 margin-top: 35px;
 padding: 30px;
 background: #DFD;
+}
+div.all
+{
+margin-left: auto;
+margin-right: auto;
+width: 800px;
 }
 </style>
 </head>

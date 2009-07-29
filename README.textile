@@ -1,3 +1,4 @@
+<div class="all">
 <div class="top">
 <div class="heading">
 
@@ -98,4 +99,5 @@ h4. It is recommended that you do NOT use the sprite editor. Just use a differen
 
 See "doc/SPRITE-DOC":doc/SPRITE-DOC for full information
 
+</div>
 </div>
