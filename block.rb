@@ -29,10 +29,10 @@ class Game
 		@levels.sort!
 		@powers = {}
 		if File.directory? 'sprites/powers'
-                        Dir.entries('sprites/powers/.').select { |filename| filename[-3..-1] == 'bmp' }.each do |filename|
-                               code_name = filename[0..-5] + '.rb';
-                               @powers[filename] = File.read('sprites/powers/' + code_name)
-                        end
+			Dir.entries('sprites/powers/.').select { |filename| filename[-3..-1] == 'bmp' }.each do |filename|
+				code_name = filename[0..-5] + '.rb';
+				@powers[filename] = File.read('sprites/powers/' + code_name)
+			end
 		else
 			puts 'Error! Could not load powers'
 			exit
