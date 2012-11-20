@@ -46,11 +46,11 @@ class LevelEditor
 				when Rubygame::KeyDownEvent
 					if @cur_edit != nil
 						if @buf == ' ' and
-							@buf = ev.string.chomp
+							@buf = ev.string.chomp.downcase
 						elsif ev.key == 8
 							@buf.chop!
 						else
-							@buf += ev.string.chomp
+							@buf += ev.string.chomp.downcase
 						end
 					end
 					case ev.key
@@ -63,7 +63,7 @@ class LevelEditor
 							if @cur_edit != nil
 								if @cur_edit == :load_sprite
 									begin
-									@sprites[@sprites.length] = Rubygame::Surface.load "#{@buf}.bmp"
+									@sprites[@sprites.length] = Rubygame::Surface.load "sprites/#{@buf}.bmp"
 									@sprite_files += [@buf+'.bmp']
 									rescue
 										puts "Error: Couldn't load sprite"
@@ -76,7 +76,7 @@ class LevelEditor
 									data[:lvl_sprites] = @lvl_sprites.clone
 									data[:name] = @name
 									puts "Saving level..."
-									input = File.new "#{@buf}.lvl", "w"
+									input = File.new "levels/#{@buf}.lvl", "w"
 									input.puts YAML.dump(data)
 									input.close
 									puts "Level saved!"
@@ -85,7 +85,7 @@ class LevelEditor
 									begin
 									@sprites = []
 									@sprite_files = []
-									input = File.new "#{@buf}.lvl"
+									input = File.new "levels/#{@buf}.lvl"
 									data = YAML.load(input)
 									data[:sprite_files].length.times do |sprite|
 										@sprites[sprite] = Rubygame::Surface.load data[:sprite_files][sprite]
@@ -134,7 +134,7 @@ class LevelEditor
 									data[:lvl_sprites] = @lvl_sprites.clone
 									data[:name] = @name
 									puts "Saving level..."
-									input = File.new "#{@dir}.lvl", "w"
+									input = File.new "levels/#{@dir}.lvl", "w"
 									input.puts YAML.dump(data)
 									input.close
 									puts "Level saved!"

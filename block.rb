@@ -29,17 +29,10 @@ class Game
 		@levels.sort!
 		@powers = {}
 		if File.directory? 'sprites/powers'
-			Dir.entries('sprites/powers/.').each do |x|
-				if x != '..' and x != '.'
-					if x[-3..-1] == 'bmp'
-						code = ""
-						File.open 'sprites/powers/' + x.split('.')[0..-2].to_s + '.rb', 'r' do |f|
-							code = f.read
-						end
-						@powers[x] = code
-					end
-				end
-			end
+                        Dir.entries('sprites/powers/.').select { |filename| filename[-3..-1] == 'bmp' }.each do |filename|
+                               code_name = filename[0..-5] + '.rb';
+                               @powers[filename] = File.read('sprites/powers/' + code_name)
+                        end
 		else
 			puts 'Error! Could not load powers'
 			exit
@@ -277,7 +270,7 @@ class Game
 					case @selected
 						when 1
 							@mode = :progress
-							load_level('levels/' + @levels[@cur_level].split('.')[0..-2].to_s)
+							load_level(@levels[@cur_level])
 							@state = :playing
 							@to = :menu
 						when 2
@@ -362,7 +355,7 @@ class Game
 				when Rubygame::MouseUpEvent
 					begin
 					unless @selected_load.empty?
-						load_level("levels/#{@selected_load.split('.')[0..-2]}")
+						load_level(@selected_load)
 						@state = :playing
 						@to = :loading
 					end
@@ -490,7 +483,7 @@ class Game
 							if @lvl_sprites.length == 0
 								@cur_level += 1
 							end
-							load_level('levels/' + @levels[@cur_level].split('.')[0..-2].to_s)
+							load_level(@levels[@cur_level])
 							reset true
 						end
 					end
@@ -666,6 +659,7 @@ class Game
 	end
 	
 	def load_level name
+                name = 'levels/' + name.split('.')[0..-2][0].to_s
 		@sprites = []
 		@sprite_files = []
 		begin
@@ -673,7 +667,7 @@ class Game
 		data = YAML.load(input)
 		data[:sprite_files].length.times do |sprite|
 			@sprites[sprite] = Rubygame::Surface.load data[:sprite_files][sprite]
-			@sprite_files += data[:sprite_files][sprite].to_a
+			@sprite_files += [data[:sprite_files][sprite]]
 		end
 		@lvl_sprites = data[:lvl_sprites].clone
 		@name = data[:name]
